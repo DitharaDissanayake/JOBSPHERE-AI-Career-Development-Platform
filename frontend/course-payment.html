@@ -1,0 +1,2036 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width,initial-scale=1"
+    >
+
+    <title>Secure Course Payment | JOBSPHERE</title>
+
+    <link
+        rel="stylesheet"
+        href="assets/css/app.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <style>
+
+        body {
+            background: #f5f9ff;
+        }
+
+        .pay-wrap {
+            max-width: 1080px;
+            margin: auto;
+        }
+
+        .pay-grid {
+            display: grid;
+            grid-template-columns: 1fr .72fr;
+            gap: 20px;
+        }
+
+        .pay-card,
+        .summary {
+            background: #fff;
+            border: 1px solid #dfe9f5;
+            border-radius: 22px;
+            box-shadow: 0 14px 35px rgba(23, 71, 125, .07);
+        }
+
+        .pay-card {
+            padding: 28px;
+        }
+
+        .summary {
+            padding: 25px;
+            height: max-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .eyebrow2 {
+            color: #1769e0;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.4px;
+        }
+
+        .pay-card h2,
+        .summary h3 {
+            color: #09213f;
+        }
+
+        .pay-card h2 {
+            font-size: 27px;
+            margin: 8px 0;
+        }
+
+        .sub {
+            color: #687b91;
+            line-height: 1.7;
+            font-size: 13px;
+        }
+
+        .secure {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            background: #edf8f2;
+            color: #167044;
+            border: 1px solid #c9ebd7;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 12px;
+            margin: 18px 0;
+        }
+
+        .field {
+            margin: 14px 0;
+        }
+
+        .field label {
+            display: block;
+            font-size: 12px;
+            font-weight: 800;
+            color: #274665;
+            margin-bottom: 7px;
+        }
+
+        .field input {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #cfdae7;
+            border-radius: 11px;
+            padding: 12px 13px;
+            outline: none;
+            font-size: 14px;
+            color: #173653;
+            background: #fff;
+        }
+
+        .field input:focus {
+            border-color: #168cff;
+            box-shadow: 0 0 0 3px rgba(22, 140, 255, .1);
+        }
+
+        .field input.invalid {
+            border-color: #dc3545;
+            background: #fff8f8;
+        }
+
+        .field input.valid {
+            border-color: #1aa36f;
+            background: #f8fffb;
+        }
+
+        .row2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .card-icons {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .card-icons span {
+            border: 1px solid #dbe5f0;
+            border-radius: 7px;
+            padding: 4px 8px;
+            font-size: 10px;
+            font-weight: 900;
+            color: #425d78;
+        }
+
+        .card-icons span.active {
+            border-color: #1769e0;
+            background: #edf5ff;
+            color: #1769e0;
+        }
+
+        .pay-btn {
+            width: 100%;
+            border: 0;
+            background: linear-gradient(
+                135deg,
+                #075fc7,
+                #168cff
+            );
+            color: #fff;
+            border-radius: 12px;
+            padding: 14px;
+            font-weight: 900;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .pay-btn:hover:not(:disabled) {
+            opacity: .94;
+        }
+
+        .pay-btn:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+
+        .note {
+            font-size: 11px;
+            color: #74869a;
+            line-height: 1.65;
+            margin-top: 12px;
+        }
+
+        .price {
+            font-size: 36px;
+            font-weight: 900;
+            color: #0b63c8;
+        }
+
+        .line {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #edf1f6;
+            font-size: 12px;
+            color: #60748b;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 17px;
+            font-size: 16px;
+            font-weight: 900;
+            color: #0b2c52;
+        }
+
+        .alert {
+            display: none;
+            border-radius: 12px;
+            padding: 12px;
+            font-size: 12px;
+            margin: 12px 0;
+        }
+
+        .alert.show {
+            display: block;
+        }
+
+        .alert.err {
+            background: #fff1f1;
+            color: #a32929;
+            border: 1px solid #ffd0d0;
+        }
+
+        .alert.ok {
+            background: #edf9f2;
+            color: #167044;
+            border: 1px solid #c6ead5;
+        }
+
+        .success {
+            padding: 40px;
+            text-align: center;
+        }
+
+        .success i {
+            font-size: 52px;
+            color: #1aa36f;
+        }
+
+        .download {
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 11px 16px;
+            border-radius: 10px;
+            background: #1769e0;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+        }
+
+        .secondary {
+            background: #eef4fb;
+            color: #1769e0;
+        }
+
+        .card-type {
+            margin-top: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            color: #1769e0;
+            min-height: 15px;
+        }
+
+        .field-error {
+            display: none;
+            color: #b42318;
+            font-size: 11px;
+            margin-top: 5px;
+        }
+
+        .field-error.show {
+            display: block;
+        }
+
+        @media(max-width:850px) {
+
+            .pay-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .summary {
+                position: static;
+            }
+        }
+
+        @media(max-width:550px) {
+
+            .pay-card,
+            .summary {
+                padding: 20px;
+                border-radius: 16px;
+            }
+
+            .row2 {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<script src="assets/js/app.js"></script>
+
+<script>
+
+    document.write(
+        shell(
+            'Secure Course Payment',
+            'courses'
+        )
+    );
+
+</script>
+
+
+<div class="pay-wrap">
+
+    <!-- =====================================================
+         PAYMENT AREA
+         ===================================================== -->
+
+    <div
+        id="paymentArea"
+        class="pay-grid"
+    >
+
+        <!-- =================================================
+             PAYMENT FORM
+             ================================================= -->
+
+        <section class="pay-card">
+
+            <div class="eyebrow2">
+                SECURE CHECKOUT
+            </div>
+
+            <h2>
+                Unlock your 7-Day Advanced Course
+            </h2>
+
+            <p class="sub">
+                Pay once to access the complete seven-day
+                learning programme, daily progress tracker
+                and final assessment.
+            </p>
+
+            <div class="secure">
+
+                <i class="fa-solid fa-shield-halved"></i>
+
+                <span>
+                    Your payment is processed securely.
+                    JOBSPHERE does not store your full
+                    card number or CVV.
+                </span>
+
+            </div>
+
+
+            <div
+                id="alert"
+                class="alert"
+            ></div>
+
+
+            <form id="payForm">
+
+                <!-- =========================================
+                     CARD HOLDER
+                     ========================================= -->
+
+                <div class="field">
+
+                    <label for="holder">
+                        Card holder name
+                    </label>
+
+                    <input
+                        id="holder"
+                        type="text"
+                        required
+                        maxlength="80"
+                        autocomplete="cc-name"
+                        placeholder="Dithara Dissanayake"
+                    >
+
+                </div>
+
+
+                <!-- =========================================
+                     CARD NUMBER
+                     ========================================= -->
+
+                <div class="field">
+
+                    <label for="card">
+                        Card number
+                    </label>
+
+                    <input
+                        id="card"
+                        type="text"
+                        required
+                        inputmode="numeric"
+                        autocomplete="cc-number"
+                        maxlength="23"
+                        placeholder="1234 5678 9012 3456"
+                    >
+
+                    <div class="card-icons">
+
+                        <span id="visaIcon">
+                            VISA
+                        </span>
+
+                        <span id="mastercardIcon">
+                            MASTERCARD
+                        </span>
+
+                        <span id="amexIcon">
+                            AMEX
+                        </span>
+
+                    </div>
+
+                    <div
+                        id="cardType"
+                        class="card-type"
+                    ></div>
+
+                    <div
+                        id="cardError"
+                        class="field-error"
+                    >
+                        Enter a valid card number.
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     EXPIRY + CVV
+                     ========================================= -->
+
+                <div class="row2">
+
+                    <div class="field">
+
+                        <label for="expiry">
+                            Expiry date
+                        </label>
+
+                        <input
+                            id="expiry"
+                            type="text"
+                            required
+                            inputmode="numeric"
+                            maxlength="5"
+                            autocomplete="cc-exp"
+                            placeholder="MM/YY"
+                        >
+
+                        <div
+                            id="expiryError"
+                            class="field-error"
+                        >
+                            Enter a valid expiry date.
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label for="cvv">
+                            CVV
+                        </label>
+
+                        <input
+                            id="cvv"
+                            type="password"
+                            required
+                            inputmode="numeric"
+                            maxlength="4"
+                            autocomplete="cc-csc"
+                            placeholder="123"
+                        >
+
+                        <div
+                            id="cvvError"
+                            class="field-error"
+                        >
+                            Enter a valid CVV.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     PAY BUTTON
+                     ========================================= -->
+
+                <button
+                    type="submit"
+                    class="pay-btn"
+                    id="payBtn"
+                >
+
+                    <i class="fa-solid fa-lock"></i>
+
+                    Pay LKR 250.00 Securely
+
+                </button>
+
+
+                <p class="note">
+
+                    For live deployment, PayHere securely
+                    collects your card details. JOBSPHERE
+                    does not receive or store your full
+                    card number or CVV.
+
+                </p>
+
+            </form>
+
+        </section>
+
+
+        <!-- =================================================
+             ORDER SUMMARY
+             ================================================= -->
+
+        <aside class="summary">
+
+            <div class="eyebrow2">
+                ORDER SUMMARY
+            </div>
+
+            <h3 id="courseName">
+                Loading...
+            </h3>
+
+
+            <div class="line">
+
+                <span>
+                    Advanced 7-Day Course
+                </span>
+
+                <b>
+                    1
+                </b>
+
+            </div>
+
+
+            <div class="line">
+
+                <span>
+                    Course access
+                </span>
+
+                <b>
+                    LKR 250.00
+                </b>
+
+            </div>
+
+
+            <div class="total">
+
+                <span>
+                    Total
+                </span>
+
+                <span class="price">
+                    LKR 250
+                </span>
+
+            </div>
+
+
+            <p class="note">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                A PDF receipt will be sent to your
+                registered email after successful
+                payment and will also be available
+                to download.
+
+            </p>
+
+        </aside>
+
+    </div>
+
+
+    <!-- =====================================================
+         SUCCESS AREA
+         ===================================================== -->
+
+    <div
+        id="successArea"
+        style="display:none"
+        class="pay-card success"
+    ></div>
+
+</div>
+
+
+<script>
+
+    // =========================================================
+    // REQUIRE LOGIN
+    // =========================================================
+
+    requireUser();
+
+
+    // =========================================================
+    // COURSE ID
+    // =========================================================
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    const courseId =
+        params.get('courseId');
+
+
+    if (!courseId) {
+
+        window.location.href =
+            'courses.html';
+
+    }
+
+
+    // =========================================================
+    // ORDER ID
+    // =========================================================
+
+    let orderId =
+        localStorage.getItem(
+            'jobsphere_pay_order_' + courseId
+        ) || null;
+
+
+    // =========================================================
+    // DOM ELEMENTS
+    // =========================================================
+
+    const form =
+        document.getElementById('payForm');
+
+    const alertBox =
+        document.getElementById('alert');
+
+    const holderInput =
+        document.getElementById('holder');
+
+    const cardInput =
+        document.getElementById('card');
+
+    const expiryInput =
+        document.getElementById('expiry');
+
+    const cvvInput =
+        document.getElementById('cvv');
+
+    const payBtn =
+        document.getElementById('payBtn');
+
+
+    // =========================================================
+    // SHOW ALERT
+    // =========================================================
+
+    function showAlert(
+        message,
+        success = false
+    ) {
+
+        alertBox.textContent =
+            message;
+
+        alertBox.className =
+            'alert show ' +
+            (success ? 'ok' : 'err');
+
+        alertBox.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest'
+        });
+
+    }
+
+
+    // =========================================================
+    // CLEAR ALERT
+    // =========================================================
+
+    function clearAlert() {
+
+        alertBox.textContent = '';
+
+        alertBox.className =
+            'alert';
+
+    }
+
+
+    // =========================================================
+    // FIELD ERROR
+    // =========================================================
+
+    function fieldError(
+        input,
+        errorId,
+        message
+    ) {
+
+        input.classList.add('invalid');
+
+        input.classList.remove('valid');
+
+        const error =
+            document.getElementById(errorId);
+
+        error.textContent =
+            message;
+
+        error.classList.add('show');
+
+    }
+
+
+    // =========================================================
+    // FIELD VALID
+    // =========================================================
+
+    function fieldValid(
+        input,
+        errorId
+    ) {
+
+        input.classList.remove('invalid');
+
+        input.classList.add('valid');
+
+        const error =
+            document.getElementById(errorId);
+
+        error.classList.remove('show');
+
+    }
+
+
+    // =========================================================
+    // LUHN CARD VALIDATION
+    // =========================================================
+
+    function validLuhn(value) {
+
+        const digits =
+            value.replace(/\D/g, '');
+
+        if (
+            digits.length < 13 ||
+            digits.length > 19
+        ) {
+
+            return false;
+
+        }
+
+        let sum = 0;
+
+        let alternate = false;
+
+        for (
+            let i = digits.length - 1;
+            i >= 0;
+            i--
+        ) {
+
+            let number =
+                Number(
+                    digits.charAt(i)
+                );
+
+            if (alternate) {
+
+                number *= 2;
+
+                if (number > 9) {
+
+                    number -= 9;
+
+                }
+
+            }
+
+            sum += number;
+
+            alternate =
+                !alternate;
+
+        }
+
+        return sum % 10 === 0;
+
+    }
+
+
+    // =========================================================
+    // DETECT CARD TYPE
+    // =========================================================
+
+    function detectCardType(number) {
+
+        const digits =
+            number.replace(/\D/g, '');
+
+        const visa =
+            /^4/.test(digits);
+
+        const mastercard =
+            /^(5[1-5]|2[2-7])/.test(digits);
+
+        const amex =
+            /^3[47]/.test(digits);
+
+        if (visa) {
+
+            return 'VISA';
+
+        }
+
+        if (mastercard) {
+
+            return 'MASTERCARD';
+
+        }
+
+        if (amex) {
+
+            return 'AMEX';
+
+        }
+
+        return '';
+
+    }
+
+
+    // =========================================================
+    // UPDATE CARD TYPE UI
+    // =========================================================
+
+    function updateCardType() {
+
+        const type =
+            detectCardType(
+                cardInput.value
+            );
+
+        document
+            .getElementById('visaIcon')
+            .classList.toggle(
+                'active',
+                type === 'VISA'
+            );
+
+        document
+            .getElementById('mastercardIcon')
+            .classList.toggle(
+                'active',
+                type === 'MASTERCARD'
+            );
+
+        document
+            .getElementById('amexIcon')
+            .classList.toggle(
+                'active',
+                type === 'AMEX'
+            );
+
+        document
+            .getElementById('cardType')
+            .textContent =
+                type
+                    ? 'Detected card: ' + type
+                    : '';
+
+    }
+
+
+    // =========================================================
+    // CARD NUMBER INPUT
+    // =========================================================
+
+    cardInput.addEventListener(
+        'input',
+        function () {
+
+            let digits =
+                this.value
+                    .replace(/\D/g, '')
+                    .slice(0, 19);
+
+            this.value =
+                digits
+                    .replace(
+                        /(.{4})/g,
+                        '$1 '
+                    )
+                    .trim();
+
+            updateCardType();
+
+            if (
+                digits.length >= 13 &&
+                validLuhn(digits)
+            ) {
+
+                fieldValid(
+                    this,
+                    'cardError'
+                );
+
+            } else {
+
+                this.classList.remove(
+                    'valid'
+                );
+
+            }
+
+        }
+    );
+
+
+    // =========================================================
+    // EXPIRY INPUT
+    // =========================================================
+
+    expiryInput.addEventListener(
+        'input',
+        function () {
+
+            let digits =
+                this.value
+                    .replace(/\D/g, '')
+                    .slice(0, 4);
+
+            if (digits.length > 2) {
+
+                this.value =
+                    digits.substring(0, 2)
+                    + '/'
+                    + digits.substring(2);
+
+            } else {
+
+                this.value =
+                    digits;
+
+            }
+
+
+            // Correct MM/YY validation
+            if (
+                /^(0[1-9]|1[0-2])\/\d{2}$/
+                    .test(this.value)
+            ) {
+
+                const parts =
+                    this.value.split('/');
+
+                const month =
+                    Number(parts[0]);
+
+                const year =
+                    2000 +
+                    Number(parts[1]);
+
+                const now =
+                    new Date();
+
+                const expiryDate =
+                    new Date(
+                        year,
+                        month,
+                        0,
+                        23,
+                        59,
+                        59
+                    );
+
+                if (
+                    expiryDate >= now
+                ) {
+
+                    fieldValid(
+                        this,
+                        'expiryError'
+                    );
+
+                } else {
+
+                    fieldError(
+                        this,
+                        'expiryError',
+                        'The card has expired.'
+                    );
+
+                }
+
+            } else {
+
+                this.classList.remove(
+                    'valid'
+                );
+
+            }
+
+        }
+    );
+
+
+    // =========================================================
+    // CVV INPUT
+    // =========================================================
+
+    cvvInput.addEventListener(
+        'input',
+        function () {
+
+            this.value =
+                this.value
+                    .replace(/\D/g, '')
+                    .slice(0, 4);
+
+            if (
+                /^\d{3,4}$/.test(
+                    this.value
+                )
+            ) {
+
+                fieldValid(
+                    this,
+                    'cvvError'
+                );
+
+            } else {
+
+                this.classList.remove(
+                    'valid'
+                );
+
+            }
+
+        }
+    );
+
+
+    // =========================================================
+    // LOAD COURSE + PAYMENT CONFIG
+    // =========================================================
+
+    async function init() {
+
+        try {
+
+            const course =
+                await apiJson(
+                    '/courses/' + courseId,
+                    {
+                        headers: auth()
+                    }
+                );
+
+
+            document
+                .getElementById(
+                    'courseName'
+                )
+                .textContent =
+                    course.name;
+
+
+            // -------------------------------------------------
+            // Make sure payment is actually required
+            // -------------------------------------------------
+
+            if (!course.paymentRequired) {
+
+                window.location.href =
+                    'courses.html';
+
+                return;
+
+            }
+
+
+            // -------------------------------------------------
+            // Payment configuration
+            // -------------------------------------------------
+
+            const cfg =
+                await apiJson(
+                    '/payments/config',
+                    {
+                        headers: auth()
+                    }
+                );
+
+
+            // -------------------------------------------------
+            // Return from PayHere
+            // -------------------------------------------------
+
+            const paymentParam =
+                new URLSearchParams(
+                    window.location.search
+                ).get('payment');
+
+
+            if (
+                paymentParam === 'return' &&
+                orderId
+            ) {
+
+                form.style.display =
+                    'none';
+
+                pollStatus();
+
+                return;
+
+            }
+
+
+            // -------------------------------------------------
+            // Prepare payment
+            // -------------------------------------------------
+
+            const prep =
+                await apiJson(
+                    '/payments/prepare/' +
+                    courseId,
+                    {
+                        headers: auth()
+                    }
+                );
+
+
+            orderId =
+                prep.orderId;
+
+
+            localStorage.setItem(
+                'jobsphere_pay_order_' +
+                courseId,
+                orderId
+            );
+
+
+            // =================================================
+            // PAYHERE MODE
+            // =================================================
+
+            if (
+                prep.gateway === 'PAYHERE' ||
+                cfg.payhereEnabled
+            ) {
+
+                form.innerHTML = `
+
+                    <div class="secure">
+
+                        <i class="fa-solid fa-shield-halved"></i>
+
+                        <span>
+                            Real card details are entered
+                            securely on the PayHere payment
+                            gateway. JOBSPHERE does not
+                            receive or store your full
+                            card number or CVV.
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="pay-btn"
+                        id="realPayBtn"
+                        type="submit"
+                    >
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        Continue to PayHere Secure Checkout
+
+                    </button>
+
+
+                    <p class="note">
+
+                        PayHere validates and processes
+                        the card securely. Your card
+                        details are handled by the
+                        payment gateway.
+
+                    </p>
+
+                `;
+
+
+                form.addEventListener(
+                    'submit',
+                    function (event) {
+
+                        event.preventDefault();
+
+                        submitPayHere(
+                            prep
+                        );
+
+                    }
+                );
+
+
+                return;
+
+            }
+
+        } catch (error) {
+
+            showAlert(
+                error.message ||
+                'Unable to load payment information.'
+            );
+
+        }
+
+    }
+
+
+    // =========================================================
+    // PAYHERE SUBMISSION
+    // =========================================================
+
+    function submitPayHere(payment) {
+
+        localStorage.setItem(
+            'jobsphere_pay_order_' +
+            courseId,
+            payment.orderId
+        );
+
+
+        const paymentForm =
+            document.createElement(
+                'form'
+            );
+
+        paymentForm.method =
+            'POST';
+
+        paymentForm.action =
+            payment.actionUrl;
+
+
+        const data = {
+
+            merchant_id:
+                payment.merchantId,
+
+            return_url:
+                payment.returnUrl,
+
+            cancel_url:
+                payment.cancelUrl,
+
+            notify_url:
+                payment.notifyUrl,
+
+            first_name:
+                payment.firstName,
+
+            last_name:
+                payment.lastName,
+
+            email:
+                payment.email,
+
+            phone:
+                payment.phone,
+
+            address:
+                payment.address,
+
+            city:
+                payment.city,
+
+            country:
+                payment.country,
+
+            order_id:
+                payment.orderId,
+
+            items:
+                payment.items,
+
+            currency:
+                'LKR',
+
+            amount:
+                '250.00',
+
+            hash:
+                payment.hash
+
+        };
+
+
+        Object.entries(data)
+            .forEach(
+                function ([key, value]) {
+
+                    const input =
+                        document.createElement(
+                            'input'
+                        );
+
+                    input.type =
+                        'hidden';
+
+                    input.name =
+                        key;
+
+                    input.value =
+                        value ?? '';
+
+                    paymentForm.appendChild(
+                        input
+                    );
+
+                }
+            );
+
+
+        document.body.appendChild(
+            paymentForm
+        );
+
+        paymentForm.submit();
+
+    }
+
+
+    // =========================================================
+    // DEMO PAYMENT SUBMIT
+    // =========================================================
+
+    form.addEventListener(
+        'submit',
+        async function (event) {
+
+            event.preventDefault();
+
+
+            /*
+             * IMPORTANT:
+             *
+             * Card holder name is NOT validated.
+             *
+             * Only these are checked:
+             * 1. Card number
+             * 2. Card type
+             * 3. Expiry date
+             * 4. CVV
+             */
+
+
+            try {
+
+                // -------------------------------------------------
+                // Check PayHere configuration
+                // -------------------------------------------------
+
+                const cfg =
+                    await apiJson(
+                        '/payments/config',
+                        {
+                            headers: auth()
+                        }
+                    );
+
+
+                if (
+                    cfg.payhereEnabled
+                ) {
+
+                    return;
+
+                }
+
+
+                clearAlert();
+
+
+                // =================================================
+                // CARD HOLDER
+                // =================================================
+
+                const holder =
+                    holderInput.value.trim();
+
+                /*
+                 * NO CARD HOLDER NAME VALIDATION.
+                 *
+                 * The value is simply accepted and sent
+                 * to the backend for the demo payment.
+                 */
+
+
+                // =================================================
+                // CARD NUMBER
+                // =================================================
+
+                const cleanCard =
+                    cardInput.value
+                        .replace(/\D/g, '');
+
+
+                if (
+                    !validLuhn(
+                        cleanCard
+                    )
+                ) {
+
+                    fieldError(
+                        cardInput,
+                        'cardError',
+                        'Enter a valid card number.'
+                    );
+
+                    cardInput.focus();
+
+                    return;
+
+                }
+
+
+                // -------------------------------------------------
+                // Card type must be recognised
+                // -------------------------------------------------
+
+                const cardType =
+                    detectCardType(
+                        cleanCard
+                    );
+
+
+                if (!cardType) {
+
+                    fieldError(
+                        cardInput,
+                        'cardError',
+                        'Only VISA, Mastercard or AMEX cards are accepted.'
+                    );
+
+                    cardInput.focus();
+
+                    return;
+
+                }
+
+
+                fieldValid(
+                    cardInput,
+                    'cardError'
+                );
+
+
+                // =================================================
+                // EXPIRY
+                // =================================================
+
+                const expiry =
+                    expiryInput.value.trim();
+
+
+                if (
+                    !/^(0[1-9]|1[0-2])\/\d{2}$/
+                        .test(expiry)
+                ) {
+
+                    fieldError(
+                        expiryInput,
+                        'expiryError',
+                        'Expiry must use MM/YY.'
+                    );
+
+                    expiryInput.focus();
+
+                    return;
+
+                }
+
+
+                const expiryParts =
+                    expiry.split('/');
+
+
+                const expiryMonth =
+                    Number(
+                        expiryParts[0]
+                    );
+
+
+                const expiryYear =
+                    2000 +
+                    Number(
+                        expiryParts[1]
+                    );
+
+
+                const now =
+                    new Date();
+
+
+                const expiryDate =
+                    new Date(
+                        expiryYear,
+                        expiryMonth,
+                        0,
+                        23,
+                        59,
+                        59
+                    );
+
+
+                if (
+                    expiryDate < now
+                ) {
+
+                    fieldError(
+                        expiryInput,
+                        'expiryError',
+                        'The card has expired.'
+                    );
+
+                    expiryInput.focus();
+
+                    return;
+
+                }
+
+
+                fieldValid(
+                    expiryInput,
+                    'expiryError'
+                );
+
+
+                // =================================================
+                // CVV
+                // =================================================
+
+                const cvv =
+                    cvvInput.value.trim();
+
+
+                if (
+                    !/^\d{3,4}$/.test(cvv)
+                ) {
+
+                    fieldError(
+                        cvvInput,
+                        'cvvError',
+                        'Enter a valid CVV.'
+                    );
+
+                    cvvInput.focus();
+
+                    return;
+
+                }
+
+
+                fieldValid(
+                    cvvInput,
+                    'cvvError'
+                );
+
+
+                // =================================================
+                // PROCESS PAYMENT
+                // =================================================
+
+                payBtn.disabled =
+                    true;
+
+
+                payBtn.innerHTML =
+                    '<i class="fa-solid fa-spinner fa-spin"></i> Processing secure payment...';
+
+
+                try {
+
+                    const result =
+                        await apiJson(
+                            '/payments/demo',
+                            {
+
+                                method: 'POST',
+
+                                headers: {
+
+                                    ...auth(),
+
+                                    'Content-Type':
+                                        'application/json'
+
+                                },
+
+                                body:
+                                    JSON.stringify({
+
+                                        courseId:
+                                            Number(
+                                                courseId
+                                            ),
+
+                                        orderId:
+                                            orderId,
+
+                                        /*
+                                         * Card holder name is
+                                         * passed without validation.
+                                         */
+
+                                        cardHolder:
+                                            holder,
+
+                                        /*
+                                         * DEMO PAYMENT ONLY.
+                                         *
+                                         * Backend MUST NEVER store
+                                         * the full card number or CVV.
+                                         */
+
+                                        cardNumber:
+                                            cleanCard,
+
+                                        expiry:
+                                            expiry,
+
+                                        cvv:
+                                            cvv
+
+                                    })
+
+                            }
+                        );
+
+
+                    if (
+                        result &&
+                        result.success
+                    ) {
+
+                        showSuccess(
+                            result
+                        );
+
+                    } else {
+
+                        throw new Error(
+                            result?.message ||
+                            'Payment could not be completed.'
+                        );
+
+                    }
+
+
+                } catch (error) {
+
+                    showAlert(
+                        error.message ||
+                        'Payment failed. Please try again.'
+                    );
+
+                } finally {
+
+                    payBtn.disabled =
+                        false;
+
+                    payBtn.innerHTML =
+                        '<i class="fa-solid fa-lock"></i> Pay LKR 250.00 Securely';
+
+                }
+
+
+            } catch (error) {
+
+                showAlert(
+                    error.message ||
+                    'Unable to process payment.'
+                );
+
+            }
+
+        }
+    );
+
+
+    // =========================================================
+    // CHECK PAYHERE PAYMENT STATUS
+    // =========================================================
+
+    function pollStatus() {
+
+        showAlert(
+            'Checking your verified payment status...',
+            true
+        );
+
+
+        let tries = 0;
+
+
+        const timer =
+            setInterval(
+                async function () {
+
+                    tries++;
+
+
+                    try {
+
+                        const result =
+                            await apiJson(
+                                '/payments/status?orderId=' +
+                                encodeURIComponent(
+                                    orderId
+                                ),
+                                {
+                                    headers: auth()
+                                }
+                            );
+
+
+                        if (
+                            result.status ===
+                            'PAID'
+                        ) {
+
+                            clearInterval(
+                                timer
+                            );
+
+                            showSuccess(
+                                result
+                            );
+
+                        }
+
+
+                    } catch (error) {
+
+                        console.error(
+                            'Payment status check:',
+                            error
+                        );
+
+                    }
+
+
+                    if (
+                        tries >= 10
+                    ) {
+
+                        clearInterval(
+                            timer
+                        );
+
+                        showAlert(
+                            'Payment verification is taking longer than expected. Please check your payment history shortly.'
+                        );
+
+                    }
+
+                },
+                1500
+            );
+
+    }
+
+
+    // =========================================================
+    // PAYMENT SUCCESS
+    // =========================================================
+
+    function showSuccess(data) {
+
+        document
+            .getElementById(
+                'paymentArea'
+            )
+            .style.display =
+                'none';
+
+
+        const successArea =
+            document.getElementById(
+                'successArea'
+            );
+
+
+        successArea.style.display =
+            'block';
+
+
+        successArea.innerHTML = `
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            <h2>
+                Payment Successful
+            </h2>
+
+            <p class="sub">
+
+                Your LKR 250 payment has been
+                recorded and your advanced
+                course is now unlocked.
+
+            </p>
+
+            <p>
+
+                <b>Order ID:</b>
+
+                ${esc(
+                    data.orderId || orderId
+                )}
+
+            </p>
+
+
+            ${
+                data.paymentId
+                    ? `
+
+                        <button
+                            class="download"
+                            onclick="downloadInvoice(${Number(data.paymentId)})"
+                        >
+
+                            <i class="fa-solid fa-file-pdf"></i>
+
+                            Download PDF Receipt
+
+                        </button>
+
+                    `
+                    : ''
+            }
+
+
+            <a
+                class="download secondary"
+                href="courses.html"
+            >
+
+                Start Course
+
+            </a>
+
+
+            <p class="note">
+
+                If email delivery is configured,
+                the same PDF receipt has been
+                sent to your registered email.
+
+            </p>
+
+        `;
+
+
+        localStorage.removeItem(
+            'jobsphere_pay_order_' +
+            courseId
+        );
+
+    }
+
+
+    // =========================================================
+    // DOWNLOAD PDF INVOICE
+    // =========================================================
+
+    async function downloadInvoice(
+        paymentId
+    ) {
+
+        try {
+
+            const response =
+                await fetch(
+                    API +
+                    '/payments/' +
+                    paymentId +
+                    '/invoice',
+                    {
+                        headers: auth()
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    'Invoice could not be downloaded.'
+                );
+
+            }
+
+
+            const blob =
+                await response.blob();
+
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            const link =
+                document.createElement(
+                    'a'
+                );
+
+
+            link.href =
+                url;
+
+
+            link.download =
+                'JOBSPHERE-Payment-Receipt.pdf';
+
+
+            document.body.appendChild(
+                link
+            );
+
+
+            link.click();
+
+
+            link.remove();
+
+
+            URL.revokeObjectURL(
+                url
+            );
+
+
+        } catch (error) {
+
+            alert(
+                error.message ||
+                'Unable to download invoice.'
+            );
+
+        }
+
+    }
+
+
+    // =========================================================
+    // INITIALISE
+    // =========================================================
+
+    init();
+
+</script>
+
+
+<script>
+
+    document.write(
+        dashboardFooter()
+    );
+
+</script>
+
+
+</main>
+
+</body>
+
+</html>

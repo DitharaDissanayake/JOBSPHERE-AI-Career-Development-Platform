@@ -1,0 +1,2336 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+
+    <title>User Management | JOBSPHERE</title>
+
+    <link rel="stylesheet"
+          href="assets/css/app.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        /* =========================================================
+           USER MANAGEMENT PAGE
+           ========================================================= */
+
+        .users-page {
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================================================
+           HERO
+           ========================================================= */
+
+        .users-hero {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #071d39 0%,
+                    #1769e0 70%,
+                    #4d91ee 100%
+                );
+
+            color: white;
+
+            border-radius: 24px;
+
+            padding: 32px;
+
+            margin-bottom: 20px;
+
+            box-shadow:
+                0 20px 55px rgba(23,105,224,.18);
+
+        }
+
+
+        .users-hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            right: -80px;
+            top: -130px;
+
+        }
+
+
+        .users-hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.06);
+
+            right: 150px;
+            bottom: -130px;
+
+        }
+
+
+        .users-hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            max-width: 750px;
+
+        }
+
+
+        .users-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 7px 12px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,.12);
+
+            border:
+                1px solid
+                rgba(255,255,255,.18);
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: .8px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .users-hero h2 {
+
+            margin: 0;
+
+            font-size: 30px;
+
+            letter-spacing: -.6px;
+
+        }
+
+
+        .users-hero p {
+
+            margin: 10px 0 0;
+
+            max-width: 680px;
+
+            color: #dceaff;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+        }
+
+
+        /* =========================================================
+           STATISTICS
+           ========================================================= */
+
+        .user-stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .user-stat {
+
+            background: white;
+
+            border:
+                1px solid
+                var(--line);
+
+            border-radius: 17px;
+
+            padding: 18px;
+
+            box-shadow: var(--shadow);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+        }
+
+
+        .user-stat-icon {
+
+            width: 42px;
+            height: 42px;
+
+            min-width: 42px;
+
+            border-radius: 12px;
+
+            background: #edf4ff;
+
+            color: var(--blue);
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 16px;
+
+        }
+
+
+        .user-stat-number {
+
+            font-size: 23px;
+
+            font-weight: 900;
+
+            color: var(--navy);
+
+            line-height: 1;
+
+        }
+
+
+        .user-stat-label {
+
+            margin-top: 5px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =========================================================
+           MANAGEMENT CARD
+           ========================================================= */
+
+        .users-card {
+
+            background: white;
+
+            border:
+                1px solid
+                var(--line);
+
+            border-radius: 20px;
+
+            box-shadow: var(--shadow);
+
+            overflow: hidden;
+
+        }
+
+
+        .users-card-header {
+
+            padding: 22px 24px;
+
+            border-bottom:
+                1px solid
+                #e9eff6;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+        }
+
+
+        .users-card-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .users-card-title-icon {
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 11px;
+
+            background: #edf4ff;
+
+            color: var(--blue);
+
+            display: grid;
+
+            place-items: center;
+
+        }
+
+
+        .users-card-title h3 {
+
+            margin: 0;
+
+            font-size: 18px;
+
+        }
+
+
+        .users-card-title p {
+
+            margin: 3px 0 0;
+
+            font-size: 11px;
+
+            color: var(--muted);
+
+        }
+
+
+        /* =========================================================
+           FILTER BAR
+           ========================================================= */
+
+        .user-filters {
+
+            padding: 17px 24px;
+
+            background: #fbfdff;
+
+            border-bottom:
+                1px solid
+                #e9eff6;
+
+            display: grid;
+
+            grid-template-columns:
+                1.5fr
+                .7fr
+                .7fr;
+
+            gap: 12px;
+
+        }
+
+
+        .search-box {
+
+            position: relative;
+
+        }
+
+
+        .search-box i {
+
+            position: absolute;
+
+            left: 13px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            color: #8294a8;
+
+            font-size: 13px;
+
+        }
+
+
+        .search-box input {
+
+            width: 100%;
+
+            box-sizing: border-box;
+
+            height: 40px;
+
+            padding:
+                0 13px 0 36px;
+
+            border:
+                1px solid
+                #dce6f2;
+
+            border-radius: 10px;
+
+            background: white;
+
+            outline: none;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+        }
+
+
+        .search-box input:focus {
+
+            border-color: var(--blue);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(23,105,224,.08);
+
+        }
+
+
+        .user-filter {
+
+            height: 40px;
+
+            border:
+                1px solid
+                #dce6f2;
+
+            border-radius: 10px;
+
+            padding: 0 11px;
+
+            background: white;
+
+            color: var(--navy);
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            outline: none;
+
+            cursor: pointer;
+
+        }
+
+
+        .user-filter:focus {
+
+            border-color: var(--blue);
+
+        }
+
+
+        /* =========================================================
+           TABLE
+           ========================================================= */
+
+        .users-table-wrap {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+        }
+
+
+        .users-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            min-width: 850px;
+
+        }
+
+
+        .users-table th {
+
+            background: #f7faff;
+
+            color: #60748d;
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            text-transform: uppercase;
+
+            letter-spacing: .5px;
+
+            padding:
+                14px 18px;
+
+            text-align: left;
+
+            border-bottom:
+                1px solid
+                #e4ebf4;
+
+            white-space: nowrap;
+
+        }
+
+
+        .users-table td {
+
+            padding:
+                15px 18px;
+
+            border-bottom:
+                1px solid
+                #edf2f7;
+
+            font-size: 12px;
+
+            color: var(--navy);
+
+            vertical-align: middle;
+
+        }
+
+
+        .users-table tbody tr {
+
+            transition:
+                background .15s ease;
+
+        }
+
+
+        .users-table tbody tr:hover {
+
+            background: #f9fbff;
+
+        }
+
+
+        .users-table tbody tr:last-child td {
+
+            border-bottom: 0;
+
+        }
+
+
+        /* =========================================================
+           USER ID
+           ========================================================= */
+
+        .user-id {
+
+            color: #7b8da2;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =========================================================
+           USER PROFILE
+           ========================================================= */
+
+        .user-profile {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            min-width: 180px;
+
+        }
+
+
+        .user-avatar {
+
+            width: 38px;
+            height: 38px;
+
+            min-width: 38px;
+
+            border-radius: 12px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #1769e0,
+                    #4d91ee
+                );
+
+            color: white;
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            box-shadow:
+                0 5px 14px
+                rgba(23,105,224,.18);
+
+        }
+
+
+        .user-name {
+
+            font-weight: 800;
+
+            font-size: 12px;
+
+            color: var(--navy);
+
+        }
+
+
+        .user-email {
+
+            margin-top: 3px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+        }
+
+
+        /* =========================================================
+           ROLE BADGES
+           ========================================================= */
+
+        .role-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            padding:
+                6px 9px;
+
+            border-radius: 999px;
+
+            background: #f1f5fa;
+
+            color: #60748d;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+            letter-spacing: .4px;
+
+        }
+
+
+        .role-badge.admin {
+
+            background: #fff5df;
+
+            color: #a66b00;
+
+        }
+
+
+        /* =========================================================
+           STATUS
+           ========================================================= */
+
+        .status-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding:
+                6px 10px;
+
+            border-radius: 999px;
+
+            font-size: 9px;
+
+            font-weight: 900;
+
+        }
+
+
+        .status-badge.active {
+
+            background: #eaf8f0;
+
+            color: #218653;
+
+        }
+
+
+        .status-badge.disabled {
+
+            background: #fff0f1;
+
+            color: #b82e3a;
+
+        }
+
+
+        .status-dot {
+
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: currentColor;
+
+        }
+
+
+        /* =========================================================
+           DATE
+           ========================================================= */
+
+        .created-date {
+
+            color: #667b91;
+
+            font-size: 11px;
+
+            white-space: nowrap;
+
+        }
+
+
+        /* =========================================================
+           ACTION
+           ========================================================= */
+
+        .action-cell {
+
+            text-align: right;
+
+            white-space: nowrap;
+
+        }
+
+
+        .user-action-btn {
+
+            border: 0;
+
+            border-radius: 9px;
+
+            padding:
+                8px 11px;
+
+            font-family: inherit;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition:
+                .18s ease;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+        }
+
+
+        .disable-btn {
+
+            background: #fff0f1;
+
+            color: #b82e3a;
+
+        }
+
+
+        .disable-btn:hover {
+
+            background: #ffe1e4;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .enable-btn {
+
+            background: #eaf8f0;
+
+            color: #218653;
+
+        }
+
+
+        .enable-btn:hover {
+
+            background: #d9f2e4;
+
+            transform:
+                translateY(-1px);
+
+        }
+
+
+        .protected-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: #8a9aae;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =========================================================
+           EMPTY STATE
+           ========================================================= */
+
+        .users-empty {
+
+            padding: 55px 20px;
+
+            text-align: center;
+
+            color: var(--muted);
+
+        }
+
+
+        .users-empty-icon {
+
+            width: 55px;
+            height: 55px;
+
+            margin:
+                0 auto 14px;
+
+            border-radius: 16px;
+
+            background: #f1f6fd;
+
+            color: #8aa0b8;
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 21px;
+
+        }
+
+
+        .users-empty h3 {
+
+            margin: 0 0 5px;
+
+            color: var(--navy);
+
+            font-size: 15px;
+
+        }
+
+
+        .users-empty p {
+
+            margin: 0;
+
+            font-size: 11px;
+
+        }
+
+
+        /* =========================================================
+           LOADING
+           ========================================================= */
+
+        .users-loading {
+
+            padding: 55px 20px;
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+        }
+
+
+        .users-loading i {
+
+            margin-right: 7px;
+
+            color: var(--blue);
+
+        }
+
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+
+        .jobsphere-footer {
+
+            margin-top: 50px;
+
+            width: 100%;
+
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+           ========================================================= */
+
+        @media(max-width:900px) {
+
+            .user-stats {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+
+            }
+
+
+            .user-filters {
+
+                grid-template-columns: 1fr 1fr;
+
+            }
+
+
+            .search-box {
+
+                grid-column:
+                    1 / -1;
+
+            }
+
+        }
+
+
+        @media(max-width:600px) {
+
+            .users-hero {
+
+                padding: 25px;
+
+                border-radius: 19px;
+
+            }
+
+
+            .users-hero h2 {
+
+                font-size: 25px;
+
+            }
+
+
+            .user-stats {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .user-filters {
+
+                grid-template-columns: 1fr;
+
+            }
+
+
+            .search-box {
+
+                grid-column: auto;
+
+            }
+
+
+            .users-card-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="app"
+     id="app">
+</div>
+
+
+<script src="assets/js/app.js"></script>
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* =====================================================
+           LOGIN
+           ===================================================== */
+
+        const currentUser =
+            requireUser();
+
+
+        /* =====================================================
+           ADMIN CHECK
+           ===================================================== */
+
+        if (
+            currentUser.role !== "ADMIN"
+        ) {
+
+            location.href =
+                "dashboard.html";
+
+            return;
+
+        }
+
+
+        /* =====================================================
+           PAGE
+           ===================================================== */
+
+        app.innerHTML =
+
+            shell(
+                "User Management",
+                "admin"
+            )
+
+            +
+
+            `
+
+            <div class="users-page">
+
+
+                <!-- =================================================
+                     HERO
+                     ================================================= -->
+
+                <section class="users-hero">
+
+                    <div class="users-hero-content">
+
+                        <div class="users-badge">
+
+                            <i class="fa-solid fa-users-gear"></i>
+
+                            ADMINISTRATION
+
+                        </div>
+
+
+                        <h2>
+                            User Management
+                        </h2>
+
+
+                        <p>
+
+                            Manage JOBSPHERE user accounts,
+                            monitor account status and control
+                            access to the career platform.
+
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     STATISTICS
+                     ================================================= -->
+
+                <section class="user-stats">
+
+
+                    <div class="user-stat">
+
+                        <div class="user-stat-icon">
+
+                            <i class="fa-solid fa-users"></i>
+
+                        </div>
+
+                        <div>
+
+                            <div
+                                class="user-stat-number"
+                                id="totalUsers"
+                            >
+                                0
+                            </div>
+
+                            <div
+                                class="user-stat-label"
+                            >
+                                Total Users
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="user-stat">
+
+                        <div class="user-stat-icon">
+
+                            <i class="fa-solid fa-user-check"></i>
+
+                        </div>
+
+                        <div>
+
+                            <div
+                                class="user-stat-number"
+                                id="activeUsers"
+                            >
+                                0
+                            </div>
+
+                            <div
+                                class="user-stat-label"
+                            >
+                                Active Accounts
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="user-stat">
+
+                        <div class="user-stat-icon">
+
+                            <i class="fa-solid fa-user-slash"></i>
+
+                        </div>
+
+                        <div>
+
+                            <div
+                                class="user-stat-number"
+                                id="disabledUsers"
+                            >
+                                0
+                            </div>
+
+                            <div
+                                class="user-stat-label"
+                            >
+                                Disabled Accounts
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="user-stat">
+
+                        <div class="user-stat-icon">
+
+                            <i class="fa-solid fa-user-shield"></i>
+
+                        </div>
+
+                        <div>
+
+                            <div
+                                class="user-stat-number"
+                                id="adminUsers"
+                            >
+                                0
+                            </div>
+
+                            <div
+                                class="user-stat-label"
+                            >
+                                Administrators
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                </section>
+
+
+
+                <!-- =================================================
+                     USERS CARD
+                     ================================================= -->
+
+                <section class="users-card">
+
+
+                    <div class="users-card-header">
+
+                        <div class="users-card-title">
+
+                            <div
+                                class="users-card-title-icon"
+                            >
+
+                                <i class="fa-solid fa-user-group"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <h3>
+                                    Registered Users
+                                </h3>
+
+                                <p>
+                                    View and manage registered JOBSPHERE accounts.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <span
+                            class="tag"
+                            id="userCountLabel"
+                        >
+
+                            0 USERS
+
+                        </span>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         FILTERS
+                         ================================================= -->
+
+                    <div class="user-filters">
+
+
+                        <div class="search-box">
+
+                            <i
+                                class="fa-solid fa-magnifying-glass"
+                            ></i>
+
+                            <input
+                                id="searchInput"
+                                type="text"
+                                placeholder="Search by name or email..."
+                                autocomplete="off"
+                            >
+
+                        </div>
+
+
+                        <select
+                            id="roleFilter"
+                            class="user-filter"
+                        >
+
+                            <option value="ALL">
+                                All Roles
+                            </option>
+
+                            <option value="USER">
+                                Users
+                            </option>
+
+                            <option value="ADMIN">
+                                Administrators
+                            </option>
+
+                        </select>
+
+
+                        <select
+                            id="statusFilter"
+                            class="user-filter"
+                        >
+
+                            <option value="ALL">
+                                All Status
+                            </option>
+
+                            <option value="ACTIVE">
+                                Active
+                            </option>
+
+                            <option value="DISABLED">
+                                Disabled
+                            </option>
+
+                        </select>
+
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         NOTICE
+                         ================================================= -->
+
+                    <div
+                        id="n"
+                        class="notice"
+                        style="margin:15px 24px 0"
+                    >
+                    </div>
+
+
+
+                    <!-- =================================================
+                         TABLE
+                         ================================================= -->
+
+                    <div class="users-table-wrap">
+
+                        <table
+                            class="users-table"
+                        >
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        ID
+                                    </th>
+
+                                    <th>
+                                        User
+                                    </th>
+
+                                    <th>
+                                        Role
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Registered
+                                    </th>
+
+                                    <th
+                                        style="text-align:right"
+                                    >
+                                        Action
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody
+                                id="rows"
+                            >
+
+                                <tr>
+
+                                    <td
+                                        colspan="6"
+                                        class="users-loading"
+                                    >
+
+                                        <i
+                                            class="fa-solid fa-spinner fa-spin"
+                                        ></i>
+
+                                        Loading users...
+
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+
+            `
+
+            +
+
+            closeShell();
+
+
+
+        /* =====================================================
+           ELEMENTS
+           ===================================================== */
+
+        const rows =
+            document.getElementById(
+                "rows"
+            );
+
+        const noticeBox =
+            document.getElementById(
+                "n"
+            );
+
+        const searchInput =
+            document.getElementById(
+                "searchInput"
+            );
+
+        const roleFilter =
+            document.getElementById(
+                "roleFilter"
+            );
+
+        const statusFilter =
+            document.getElementById(
+                "statusFilter"
+            );
+
+        const totalUsers =
+            document.getElementById(
+                "totalUsers"
+            );
+
+        const activeUsers =
+            document.getElementById(
+                "activeUsers"
+            );
+
+        const disabledUsers =
+            document.getElementById(
+                "disabledUsers"
+            );
+
+        const adminUsers =
+            document.getElementById(
+                "adminUsers"
+            );
+
+        const userCountLabel =
+            document.getElementById(
+                "userCountLabel"
+            );
+
+
+        let allUsers = [];
+
+
+
+        /* =====================================================
+           GET INITIALS
+           ===================================================== */
+
+        function initials(name) {
+
+            const value =
+                String(
+                    name || "User"
+                ).trim();
+
+
+            if (!value) {
+
+                return "U";
+
+            }
+
+
+            const parts =
+                value
+                    .split(/\s+/)
+                    .filter(Boolean);
+
+
+            if (
+                parts.length >= 2
+            ) {
+
+                return (
+                    parts[0][0] +
+                    parts[parts.length - 1][0]
+                ).toUpperCase();
+
+            }
+
+
+            return value
+                .slice(0, 2)
+                .toUpperCase();
+
+        }
+
+
+
+        /* =====================================================
+           FORMAT DATE
+           ===================================================== */
+
+        function formatDate(value) {
+
+            if (!value) {
+
+                return "—";
+
+            }
+
+
+            const date =
+                new Date(value);
+
+
+            if (
+                Number.isNaN(
+                    date.getTime()
+                )
+            ) {
+
+                return "—";
+
+            }
+
+
+            return date.toLocaleDateString(
+                undefined,
+                {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric"
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           UPDATE STATISTICS
+           ===================================================== */
+
+        function updateStatistics() {
+
+            const total =
+                allUsers.length;
+
+
+            const active =
+                allUsers.filter(
+                    x => x.active === true
+                ).length;
+
+
+            const disabled =
+                allUsers.filter(
+                    x => x.active !== true
+                ).length;
+
+
+            const admins =
+                allUsers.filter(
+                    x => x.role === "ADMIN"
+                ).length;
+
+
+            totalUsers.textContent =
+                total;
+
+            activeUsers.textContent =
+                active;
+
+            disabledUsers.textContent =
+                disabled;
+
+            adminUsers.textContent =
+                admins;
+
+
+            userCountLabel.textContent =
+                total + " USERS";
+
+        }
+
+
+
+        /* =====================================================
+           FILTER USERS
+           ===================================================== */
+
+        function filteredUsers() {
+
+            const search =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            const role =
+                roleFilter.value;
+
+
+            const status =
+                statusFilter.value;
+
+
+            return allUsers.filter(
+                function (x) {
+
+
+                    const name =
+                        String(
+                            x.fullName || ""
+                        ).toLowerCase();
+
+
+                    const email =
+                        String(
+                            x.email || ""
+                        ).toLowerCase();
+
+
+                    const matchesSearch =
+                        !search ||
+                        name.includes(search) ||
+                        email.includes(search);
+
+
+                    const matchesRole =
+                        role === "ALL" ||
+                        x.role === role;
+
+
+                    const matchesStatus =
+                        status === "ALL" ||
+
+                        (
+                            status === "ACTIVE" &&
+                            x.active === true
+                        ) ||
+
+                        (
+                            status === "DISABLED" &&
+                            x.active !== true
+                        );
+
+
+                    return (
+                        matchesSearch &&
+                        matchesRole &&
+                        matchesStatus
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =====================================================
+           RENDER USERS
+           ===================================================== */
+
+        function renderUsers() {
+
+            const users =
+                filteredUsers();
+
+
+            userCountLabel.textContent =
+                users.length +
+                " OF " +
+                allUsers.length;
+
+
+            if (
+                users.length === 0
+            ) {
+
+                rows.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            style="padding:0"
+                        >
+
+                            <div
+                                class="users-empty"
+                            >
+
+                                <div
+                                    class="users-empty-icon"
+                                >
+
+                                    <i
+                                        class="fa-solid fa-user-slash"
+                                    ></i>
+
+                                </div>
+
+
+                                <h3>
+                                    No users found
+                                </h3>
+
+
+                                <p>
+                                    Try changing your search or filters.
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+
+            }
+
+
+            rows.innerHTML =
+
+                users.map(
+                    function (x) {
+
+
+                        const isAdmin =
+                            x.role === "ADMIN";
+
+
+                        const isActive =
+                            x.active === true;
+
+
+                        return `
+
+                            <tr>
+
+
+                                <!-- ID -->
+
+                                <td>
+
+                                    <span
+                                        class="user-id"
+                                    >
+
+                                        #${esc(x.id)}
+
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- USER -->
+
+                                <td>
+
+                                    <div
+                                        class="user-profile"
+                                    >
+
+                                        <div
+                                            class="user-avatar"
+                                        >
+
+                                            ${esc(
+                                                initials(
+                                                    x.fullName
+                                                )
+                                            )}
+
+                                        </div>
+
+
+                                        <div>
+
+                                            <div
+                                                class="user-name"
+                                            >
+
+                                                ${esc(
+                                                    x.fullName ||
+                                                    "Unknown User"
+                                                )}
+
+                                            </div>
+
+
+                                            <div
+                                                class="user-email"
+                                            >
+
+                                                ${esc(
+                                                    x.email ||
+                                                    "No email"
+                                                )}
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+
+
+                                <!-- ROLE -->
+
+                                <td>
+
+                                    <span
+                                        class="role-badge ${
+                                            isAdmin
+                                                ? "admin"
+                                                : ""
+                                        }"
+                                    >
+
+                                        <i
+                                            class="fa-solid ${
+                                                isAdmin
+                                                    ? "fa-shield-halved"
+                                                    : "fa-user"
+                                            }"
+                                        ></i>
+
+                                        ${esc(
+                                            x.role ||
+                                            "USER"
+                                        )}
+
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- STATUS -->
+
+                                <td>
+
+                                    <span
+                                        class="status-badge ${
+                                            isActive
+                                                ? "active"
+                                                : "disabled"
+                                        }"
+                                    >
+
+                                        <span
+                                            class="status-dot"
+                                        ></span>
+
+                                        ${
+                                            isActive
+                                                ? "Active"
+                                                : "Disabled"
+                                        }
+
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- DATE -->
+
+                                <td>
+
+                                    <span
+                                        class="created-date"
+                                    >
+
+                                        ${formatDate(
+                                            x.createdAt
+                                        )}
+
+                                    </span>
+
+                                </td>
+
+
+
+                                <!-- ACTION -->
+
+                                <td
+                                    class="action-cell"
+                                >
+
+                                    ${
+                                        isAdmin
+
+                                        ?
+
+                                        `
+
+                                        <span
+                                            class="protected-badge"
+                                        >
+
+                                            <i
+                                                class="fa-solid fa-lock"
+                                            ></i>
+
+                                            Protected
+
+                                        </span>
+
+                                        `
+
+                                        :
+
+                                        `
+
+                                        <button
+                                            type="button"
+                                            class="user-action-btn ${
+                                                isActive
+                                                    ? "disable-btn"
+                                                    : "enable-btn"
+                                            }"
+                                            onclick="
+                                                toggleUser(
+                                                    ${x.id},
+                                                    ${!isActive}
+                                                )
+                                            "
+                                        >
+
+                                            <i
+                                                class="fa-solid ${
+                                                    isActive
+                                                        ? "fa-user-slash"
+                                                        : "fa-user-check"
+                                                }"
+                                            ></i>
+
+                                            ${
+                                                isActive
+                                                    ? "Disable"
+                                                    : "Enable"
+                                            }
+
+                                        </button>
+
+                                        `
+
+                                    }
+
+                                </td>
+
+
+                            </tr>
+
+                        `;
+
+                    }
+                ).join("");
+
+        }
+
+
+
+        /* =====================================================
+           LOAD USERS
+           ===================================================== */
+
+        async function loadUsers() {
+
+            rows.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="6"
+                        class="users-loading"
+                    >
+
+                        <i
+                            class="fa-solid fa-spinner fa-spin"
+                        ></i>
+
+                        Loading users...
+
+                    </td>
+
+                </tr>
+
+            `;
+
+
+            try {
+
+                const response =
+
+                    await apiJson(
+                        "/admin/users",
+                        {
+                            method: "GET",
+                            headers: auth()
+                        }
+                    );
+
+
+                allUsers =
+                    Array.isArray(response)
+                        ? response
+                        : [];
+
+
+                updateStatistics();
+
+                renderUsers();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Load users error:",
+                    error
+                );
+
+
+                rows.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="6"
+                            style="padding:0"
+                        >
+
+                            <div
+                                class="users-empty"
+                            >
+
+                                <div
+                                    class="users-empty-icon"
+                                >
+
+                                    <i
+                                        class="fa-solid fa-triangle-exclamation"
+                                    ></i>
+
+                                </div>
+
+
+                                <h3>
+                                    Unable to load users
+                                </h3>
+
+
+                                <p>
+
+                                    ${
+                                        esc(
+                                            error.message ||
+                                            "Please try again."
+                                        )
+                                    }
+
+                                </p>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+
+                notice(
+                    noticeBox,
+                    error.message ||
+                    "Unable to load users."
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           TOGGLE USER
+           ===================================================== */
+
+        window.toggleUser = async function (
+            id,
+            active
+        ) {
+
+
+            const target =
+                allUsers.find(
+                    x => Number(x.id) === Number(id)
+                );
+
+
+            if (!target) {
+
+                return;
+
+            }
+
+
+            const userName =
+                target.fullName ||
+                target.email ||
+                "this user";
+
+
+            if (!active) {
+
+                const confirmed =
+                    confirm(
+
+                        "Disable the account of " +
+                        userName +
+                        "?\n\n" +
+                        "The user will no longer be able " +
+                        "to access JOBSPHERE."
+
+                    );
+
+
+                if (!confirmed) {
+
+                    return;
+
+                }
+
+            }
+
+
+            try {
+
+                noticeBox.className =
+                    "notice";
+
+
+                noticeBox.textContent =
+                    "";
+
+
+                await apiJson(
+
+                    "/admin/users/" +
+                    id +
+                    "/status?active=" +
+                    active,
+
+                    {
+
+                        method: "PUT",
+
+                        headers: auth()
+
+                    }
+
+                );
+
+
+                notice(
+
+                    noticeBox,
+
+                    active
+                        ? "User account enabled successfully."
+                        : "User account disabled successfully.",
+
+                    true
+
+                );
+
+
+                await loadUsers();
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "Toggle user error:",
+                    error
+                );
+
+
+                notice(
+
+                    noticeBox,
+
+                    error.message ||
+                    "Unable to update the user account."
+
+                );
+
+            }
+
+        };
+
+
+
+        /* =====================================================
+           SEARCH
+           ===================================================== */
+
+        searchInput.addEventListener(
+            "input",
+            renderUsers
+        );
+
+
+        /* =====================================================
+           FILTERS
+           ===================================================== */
+
+        roleFilter.addEventListener(
+            "change",
+            renderUsers
+        );
+
+
+        statusFilter.addEventListener(
+            "change",
+            renderUsers
+        );
+
+
+
+        /* =====================================================
+           INITIAL LOAD
+           ===================================================== */
+
+        loadUsers();
+
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

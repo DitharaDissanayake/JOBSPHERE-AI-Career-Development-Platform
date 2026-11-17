@@ -1,0 +1,2719 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+
+<title>Interview Simulator | JOBSPHERE</title>
+
+<link rel="stylesheet" href="assets/css/app.css">
+
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<style>
+
+    :root {
+        --blue: #1769e0;
+        --blue-dark: #0b4fb7;
+        --blue-light: #2f9cff;
+        --navy: #071a33;
+        --text: #102a43;
+        --muted: #6b7f95;
+        --soft: #f5f8fd;
+        --border: #dce7f3;
+        --white: #ffffff;
+        --green: #08704b;
+        --red: #bd3030;
+        --shadow: 0 14px 40px rgba(7, 26, 51, .07);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background:
+            radial-gradient(
+                circle at 80% 0%,
+                rgba(23, 105, 224, .045),
+                transparent 25%
+            ),
+            #f6f9fe;
+    }
+
+    .is-wrap {
+        width: min(1180px, calc(100% - 48px));
+        margin: 0 auto;
+        padding-bottom: 80px;
+    }
+
+    /* HERO */
+
+    .is-hero {
+        position: relative;
+        overflow: hidden;
+
+        background:
+            radial-gradient(
+                circle at 88% 15%,
+                rgba(91, 177, 255, .35),
+                transparent 28%
+            ),
+            radial-gradient(
+                circle at 100% 100%,
+                rgba(255,255,255,.08),
+                transparent 30%
+            ),
+            linear-gradient(
+                135deg,
+                #061a35 0%,
+                #0b4fb7 55%,
+                #1769e0 100%
+            );
+
+        color: #fff;
+        border-radius: 26px;
+        padding: 42px;
+        margin-bottom: 25px;
+
+        box-shadow:
+            0 24px 60px rgba(11, 79, 183, .18);
+    }
+
+    .is-hero::before {
+        content: "";
+
+        position: absolute;
+
+        width: 330px;
+        height: 330px;
+
+        right: -150px;
+        bottom: -180px;
+
+        border: 1px solid rgba(255,255,255,.16);
+        border-radius: 50%;
+    }
+
+    .is-hero::after {
+        content: "";
+
+        position: absolute;
+
+        width: 190px;
+        height: 190px;
+
+        right: 75px;
+        top: -120px;
+
+        border: 1px solid rgba(255,255,255,.09);
+        border-radius: 50%;
+    }
+
+    .is-hero > * {
+        position: relative;
+        z-index: 2;
+    }
+
+    .is-hero .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 8px 14px;
+
+        border-radius: 999px;
+
+        border: 1px solid rgba(255,255,255,.22);
+
+        background: rgba(255,255,255,.11) !important;
+
+        color: #fff !important;
+
+        font-size: 10px;
+        font-weight: 800;
+
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .is-hero h2 {
+        max-width: 760px;
+
+        margin: 20px 0 13px;
+
+        color: #fff;
+
+        font-size: clamp(30px, 4vw, 44px);
+        line-height: 1.1;
+
+        letter-spacing: -1.5px;
+
+        font-weight: 800;
+    }
+
+    .is-hero p {
+        max-width: 800px;
+
+        margin: 0;
+
+        color: #dcecff !important;
+
+        font-size: 14px;
+        line-height: 1.85;
+    }
+
+    /* FILTER CARD */
+
+    .filter-card {
+        background: #fff;
+
+        border: 1px solid var(--border);
+
+        border-radius: 20px;
+
+        padding: 25px;
+
+        box-shadow: var(--shadow);
+    }
+
+    .filter-card h3 {
+        color: var(--text);
+
+        font-size: 18px;
+        font-weight: 800;
+    }
+
+    .filter-card .small.text-muted {
+        color: var(--muted) !important;
+    }
+
+    .pill {
+        display: inline-flex;
+
+        align-items: center;
+        gap: 8px;
+
+        padding: 8px 13px;
+
+        background: #edf4ff;
+
+        border: 1px solid #d6e6fb;
+
+        color: var(--blue);
+
+        border-radius: 999px;
+
+        font-size: 11px;
+        font-weight: 800;
+
+        white-space: nowrap;
+    }
+
+    /* FILTERS */
+
+    .filters {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr auto;
+
+        gap: 14px;
+
+        align-items: end;
+
+        margin-top: 20px;
+    }
+
+    .filters .form-label {
+        color: #40566f !important;
+
+        font-size: 11px;
+
+        font-weight: 800;
+
+        text-transform: uppercase;
+
+        letter-spacing: .6px;
+    }
+
+    .filters .form-control,
+    .filters .form-select {
+
+        height: 48px;
+
+        border: 1px solid #d5e1ef;
+
+        border-radius: 12px;
+
+        background: #fff;
+
+        color: var(--text);
+
+        font-size: 13px;
+
+        padding: 12px 14px;
+
+        box-shadow: none;
+
+        cursor: pointer;
+    }
+
+    .filters .form-control:focus,
+    .filters .form-select:focus {
+
+        border-color: var(--blue);
+
+        box-shadow:
+            0 0 0 3px rgba(23,105,224,.10);
+    }
+
+    .filters .form-select option {
+        color: var(--text);
+        background: #fff;
+    }
+
+    /* BUTTON */
+
+    .btn-ai {
+        height: 48px;
+
+        border: 0;
+
+        border-radius: 12px;
+
+        padding: 0 21px;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--blue-dark),
+                var(--blue)
+            );
+
+        color: #fff;
+
+        font-size: 13px;
+
+        font-weight: 800;
+
+        white-space: nowrap;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 10px 25px rgba(23,105,224,.20);
+
+        transition:
+            transform .2s ease,
+            box-shadow .2s ease;
+    }
+
+    .btn-ai:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 15px 32px rgba(23,105,224,.28);
+    }
+
+    .btn-ai:disabled {
+        opacity: .65;
+
+        cursor: wait;
+
+        transform: none;
+    }
+
+    /* NOTICE */
+
+    .notice {
+        display: none;
+
+        padding: 13px 15px;
+
+        border-radius: 11px;
+
+        background: #edf5ff;
+
+        border: 1px solid #cfe1f8;
+
+        color: var(--blue);
+
+        font-size: 12px;
+
+        font-weight: 700;
+    }
+
+    .notice.show {
+        display: block;
+    }
+
+    /* SPACING */
+
+    .is-wrap section.mt-4 {
+        margin-top: 70px !important;
+    }
+
+    .is-wrap section.mt-5 {
+        margin-top: 70px !important;
+    }
+
+    /* HEADINGS */
+
+    .is-wrap section.mt-4 h3,
+    .is-wrap section.mt-5 h3 {
+
+        color: var(--text);
+
+        font-size: 20px;
+
+        font-weight: 800;
+
+        letter-spacing: -.3px;
+
+        margin-bottom: 7px;
+    }
+
+    .is-wrap section.mt-4 p,
+    .is-wrap section.mt-5 p {
+
+        color: var(--muted) !important;
+
+        line-height: 1.7;
+    }
+
+    /* SESSION VIEWING */
+
+    .session-viewing {
+
+        display: none;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 15px;
+
+        margin-top: 20px;
+
+        margin-bottom: 18px;
+
+        padding: 14px 17px;
+
+        background: #edf5ff;
+
+        border: 1px solid #cfe1f8;
+
+        border-radius: 14px;
+    }
+
+    .session-viewing.show {
+        display: flex;
+    }
+
+    .session-viewing-left {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 10px;
+
+        min-width: 0;
+    }
+
+    .session-viewing-icon {
+
+        width: 34px;
+        height: 34px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        border-radius: 10px;
+
+        background: #ffffff;
+
+        color: var(--blue);
+
+        border: 1px solid #d6e6fb;
+    }
+
+    .session-viewing-title {
+
+        color: var(--blue);
+
+        font-size: 12px;
+
+        font-weight: 850;
+
+        margin-bottom: 2px;
+    }
+
+    .session-viewing-text {
+
+        color: #617a96;
+
+        font-size: 11px;
+    }
+
+    .back-latest-btn {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 6px;
+
+        flex-shrink: 0;
+
+        height: 35px;
+
+        padding: 0 13px;
+
+        border: 1px solid #1769e0;
+
+        border-radius: 9px;
+
+        background: #fff;
+
+        color: #1769e0;
+
+        font-size: 11px;
+
+        font-weight: 800;
+
+        cursor: pointer;
+
+        transition: all .2s ease;
+    }
+
+    .back-latest-btn:hover {
+
+        background: #1769e0;
+
+        color: #fff;
+
+        transform: translateY(-1px);
+
+        box-shadow:
+            0 7px 18px rgba(23,105,224,.16);
+    }
+
+    /* AI CAREER RESULT */
+
+    .ai-career-result {
+
+        margin-top: 20px;
+
+        padding: 17px 19px;
+
+        display: none;
+
+        align-items: center;
+
+        gap: 13px;
+
+        background: #edf5ff;
+
+        border: 1px solid #cfe1f8;
+
+        border-radius: 15px;
+    }
+
+    .ai-career-icon {
+
+        width: 40px;
+        height: 40px;
+
+        flex-shrink: 0;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 11px;
+
+        background: #ffffff;
+
+        color: var(--blue);
+
+        border: 1px solid #d6e6fb;
+    }
+
+    .ai-career-label {
+
+        color: var(--blue);
+
+        font-size: 11px;
+
+        font-weight: 850;
+
+        text-transform: uppercase;
+
+        letter-spacing: .7px;
+
+        margin-bottom: 3px;
+    }
+
+    .ai-career-name {
+
+        color: var(--text);
+
+        font-size: 14px;
+
+        font-weight: 800;
+    }
+
+    .ai-career-description {
+
+        color: #71859b;
+
+        font-size: 11px;
+
+        margin-top: 4px;
+    }
+
+    /* QUESTIONS */
+
+    .q-grid {
+
+        display: grid;
+
+        gap: 17px;
+
+        margin-top: 20px;
+    }
+
+    .q-card {
+
+        position: relative;
+
+        background: #fff;
+
+        border: 1px solid var(--border);
+
+        border-radius: 20px;
+
+        padding: 26px 27px 26px 30px;
+
+        box-shadow: var(--shadow);
+
+        transition:
+            transform .2s ease,
+            box-shadow .2s ease,
+            border-color .2s ease;
+    }
+
+    .q-card::before {
+
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+
+        top: 23px;
+
+        bottom: 23px;
+
+        width: 3px;
+
+        border-radius: 0 5px 5px 0;
+
+        background:
+            linear-gradient(
+                180deg,
+                var(--blue),
+                var(--blue-light)
+            );
+    }
+
+    .q-card:hover {
+
+        transform: translateY(-2px);
+
+        border-color: #c9dcf2;
+
+        box-shadow:
+            0 20px 48px rgba(18,72,145,.10);
+    }
+
+    .q-label {
+
+        display: inline-block;
+
+        color: var(--blue);
+
+        font-size: 10px;
+
+        font-weight: 850;
+
+        letter-spacing: .9px;
+
+        text-transform: uppercase;
+    }
+
+    .q-card h3 {
+
+        margin: 9px 0 8px;
+
+        color: var(--text);
+
+        font-size: 17px;
+
+        line-height: 1.55;
+
+        font-weight: 750;
+    }
+
+    .q-card .small.text-muted {
+
+        color: #71859b !important;
+
+        line-height: 1.7;
+    }
+
+    /* ANSWER */
+
+    .answer {
+
+        background:
+            linear-gradient(
+                135deg,
+                #f6faff,
+                #f9fcff
+            );
+
+        border: 1px solid #e0ebf7;
+
+        border-left: 3px solid var(--blue-light);
+
+        padding: 16px 17px;
+
+        border-radius: 0 13px 13px 0;
+
+        color: #40566f !important;
+
+        font-size: 13px;
+
+        line-height: 1.8;
+    }
+
+    /* TIPS */
+
+    .tip {
+
+        color: #60738b !important;
+
+        font-size: 12px;
+
+        line-height: 1.75;
+
+        margin-bottom: 0;
+    }
+
+    /* MEDIA */
+
+    .media-grid {
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 17px;
+
+        margin-top: 20px;
+    }
+
+    .media-card {
+
+        background: #fff;
+
+        border: 1px solid var(--border);
+
+        border-radius: 19px;
+
+        padding: 21px;
+
+        box-shadow: var(--shadow);
+
+        transition:
+            transform .2s ease,
+            box-shadow .2s ease;
+    }
+
+    .media-card:hover {
+
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 20px 48px rgba(18,72,145,.10);
+    }
+
+    .media-card h4 {
+
+        margin: 10px 0 8px;
+
+        color: var(--text);
+
+        font-size: 16px;
+
+        line-height: 1.5;
+
+        font-weight: 800;
+    }
+
+    .media-card .small.text-muted {
+
+        color: #71859b !important;
+
+        line-height: 1.7;
+    }
+
+    .media-card iframe {
+
+        width: 100%;
+
+        height: 220px;
+
+        margin: 13px 0 14px;
+
+        border: 0;
+
+        border-radius: 14px;
+
+        background: var(--navy);
+    }
+
+    .media-card a {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 7px;
+
+        color: var(--blue);
+
+        font-size: 12px;
+
+        font-weight: 800;
+
+        text-decoration: none;
+    }
+
+    .media-card a:hover {
+        color: var(--blue-dark);
+    }
+
+    /* HISTORY */
+
+    .history-list {
+
+        display: grid;
+
+        gap: 11px;
+    }
+
+    .history-item {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        gap: 20px;
+
+        background: #fff;
+
+        border: 1px solid var(--border);
+
+        border-radius: 15px;
+
+        padding: 16px 18px;
+
+        box-shadow:
+            0 8px 25px rgba(18,72,145,.045);
+
+        transition: .2s ease;
+    }
+
+    .history-item:hover {
+
+        border-color: #c9dcf2;
+
+        transform: translateY(-1px);
+    }
+
+    .history-item b {
+
+        color: var(--text);
+
+        font-size: 13px;
+    }
+
+    .history-item .small.text-muted {
+
+        color: #71859b !important;
+
+        margin-top: 4px;
+    }
+
+    /* VIEW BUTTON */
+
+    .view-session-btn {
+
+        min-width: 125px;
+
+        height: 38px;
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 6px;
+
+        flex-shrink: 0;
+
+        border-radius: 10px !important;
+
+        border: 1px solid #1769e0 !important;
+
+        color: #1769e0 !important;
+
+        background: #ffffff !important;
+
+        font-size: 11px !important;
+
+        font-weight: 800 !important;
+
+        cursor: pointer;
+
+        transition:
+            all .2s ease,
+            transform .2s ease,
+            box-shadow .2s ease;
+    }
+
+    .view-session-btn:hover {
+
+        color: #ffffff !important;
+
+        background: #1769e0 !important;
+
+        border-color: #1769e0 !important;
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 8px 20px rgba(23,105,224,.18);
+    }
+
+    /* EMPTY */
+
+    .empty {
+
+        padding: 38px 20px;
+
+        text-align: center;
+
+        color: #7b8da2 !important;
+
+        background: #fff;
+
+        border: 1px dashed #cdd9e8;
+
+        border-radius: 16px;
+
+        font-size: 12px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+
+        .is-wrap {
+            width: min(100% - 32px, 760px);
+        }
+
+        .filters {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .btn-ai {
+            width: 100%;
+            grid-column: 1 / -1;
+        }
+
+        .media-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .is-hero {
+            padding: 34px;
+        }
+
+        .is-wrap section.mt-4,
+        .is-wrap section.mt-5 {
+            margin-top: 55px !important;
+        }
+    }
+
+    @media (max-width: 650px) {
+
+        .is-wrap {
+            width: calc(100% - 22px);
+        }
+
+        .is-hero {
+            padding: 27px 22px;
+            border-radius: 20px;
+        }
+
+        .is-hero h2 {
+            font-size: 29px;
+            letter-spacing: -1px;
+        }
+
+        .is-hero p {
+            font-size: 13px;
+        }
+
+        .filter-card {
+            padding: 19px;
+            border-radius: 17px;
+        }
+
+        .filters {
+            grid-template-columns: 1fr;
+        }
+
+        .btn-ai {
+            grid-column: auto;
+        }
+
+        .q-card {
+            padding: 22px 20px 22px 24px;
+        }
+
+        .media-card iframe {
+            height: 190px;
+        }
+
+        .history-item {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .history-item .view-session-btn {
+            width: 100%;
+        }
+
+        .pill {
+            display: none;
+        }
+
+        .session-viewing {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+
+        .back-latest-btn {
+            width: 100%;
+        }
+
+        .ai-career-result {
+            align-items: flex-start;
+        }
+
+        .is-wrap section.mt-4,
+        .is-wrap section.mt-5 {
+            margin-top: 45px !important;
+        }
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<script src="assets/js/app.js"></script>
+
+<script>
+
+const current = requireUser();
+
+document.write(
+    shell('Interview Simulator', 'interview')
+);
+
+</script>
+
+<div class="is-wrap">
+
+
+<!-- =====================================================
+     HERO
+     ===================================================== -->
+
+<section class="is-hero">
+
+    <div class="eyebrow">
+
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+        AI interview preparation
+
+    </div>
+
+    <h2>
+
+        Practice the questions that matter for your target role.
+
+    </h2>
+
+    <p>
+
+        Select a category and position for targeted interview practice.
+        If you leave both fields empty, JOBSPHERE will analyze your
+        profile, latest resume, resume analysis and career analysis
+        with Ollama to identify your most relevant career direction
+        and generate exactly 10 personalized interview questions.
+
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     INTERVIEW SETTINGS
+     ===================================================== -->
+
+<section class="filter-card">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <div>
+
+            <h3 class="mb-1">
+
+                <i class="fa-solid fa-sliders me-2"
+                   style="color:#1769e0;font-size:15px;"></i>
+
+                Choose your interview focus
+
+            </h3>
+
+            <div class="small text-muted">
+
+                Select a category and position for a targeted interview,
+                or leave both empty to let Ollama choose the most
+                relevant career direction from your profile, resume
+                and career analysis.
+
+            </div>
+
+        </div>
+
+        <span class="pill">
+
+            <i class="fa-solid fa-layer-group"></i>
+
+            10 questions
+
+        </span>
+
+    </div>
+
+
+    <div class="filters">
+
+        <!-- CATEGORY -->
+
+        <div>
+
+            <label class="form-label">
+
+                Category
+
+            </label>
+
+            <select
+                id="category"
+                class="form-select">
+
+                <option value="">
+                    Select category
+                </option>
+
+                <option value="Software Engineering">
+                    Software Engineering
+                </option>
+
+                <option value="Data">
+                    Data
+                </option>
+
+                <option value="Business Management">
+                    Business Management
+                </option>
+
+                <option value="Business Analysis">
+                    Business Analysis
+                </option>
+
+                <option value="Banking">
+                    Banking
+                </option>
+
+                <option value="Finance">
+                    Finance
+                </option>
+
+                <option value="Accounting">
+                    Accounting
+                </option>
+
+                <option value="Marketing">
+                    Marketing
+                </option>
+
+                <option value="Human Resources">
+                    Human Resources
+                </option>
+
+                <option value="Science">
+                    Science
+                </option>
+
+                <option value="Environmental Science">
+                    Environmental Science
+                </option>
+
+                <option value="Healthcare">
+                    Healthcare
+                </option>
+
+                <option value="Cyber Security">
+                    Cyber Security
+                </option>
+
+                <option value="DevOps">
+                    DevOps
+                </option>
+
+                <option value="Design">
+                    Design / UI/UX
+                </option>
+
+                <option value="Networking">
+                    Networking
+                </option>
+
+                <option value="Education">
+                    Education
+                </option>
+
+                <option value="Project Management">
+                    Project Management
+                </option>
+
+                <option value="Sales">
+                    Sales
+                </option>
+
+                <option value="Entrepreneurship">
+                    Entrepreneurship
+                </option>
+
+                <option value="Supply Chain">
+                    Supply Chain
+                </option>
+
+                <option value="Customer Service">
+                    Customer Service
+                </option>
+
+                <option value="Research">
+                    Research
+                </option>
+
+                <option value="General">
+                    General / Graduate
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- POSITION -->
+
+        <div>
+
+            <label class="form-label">
+
+                Position
+
+            </label>
+
+            <select
+                id="position"
+                class="form-select">
+
+                <option value="">
+                    Select position
+                </option>
+
+                <option value="Software Engineer">
+                    Software Engineer
+                </option>
+
+                <option value="Full Stack Developer">
+                    Full Stack Developer
+                </option>
+
+                <option value="Frontend Developer">
+                    Frontend Developer
+                </option>
+
+                <option value="Backend Developer">
+                    Backend Developer
+                </option>
+
+                <option value="Mobile App Developer">
+                    Mobile App Developer
+                </option>
+
+                <option value="Data Analyst">
+                    Data Analyst
+                </option>
+
+                <option value="Data Scientist">
+                    Data Scientist
+                </option>
+
+                <option value="Business Analyst">
+                    Business Analyst
+                </option>
+
+                <option value="Business Manager">
+                    Business Manager
+                </option>
+
+                <option value="Project Manager">
+                    Project Manager
+                </option>
+
+                <option value="Banking Officer">
+                    Banking Officer
+                </option>
+
+                <option value="Banking Executive">
+                    Banking Executive
+                </option>
+
+                <option value="Financial Analyst">
+                    Financial Analyst
+                </option>
+
+                <option value="Finance Executive">
+                    Finance Executive
+                </option>
+
+                <option value="Accountant">
+                    Accountant
+                </option>
+
+                <option value="Audit Assistant">
+                    Audit Assistant
+                </option>
+
+                <option value="Marketing Executive">
+                    Marketing Executive
+                </option>
+
+                <option value="Digital Marketing Executive">
+                    Digital Marketing Executive
+                </option>
+
+                <option value="SEO Specialist">
+                    SEO Specialist
+                </option>
+
+                <option value="HR Executive">
+                    HR Executive
+                </option>
+
+                <option value="HR Assistant">
+                    HR Assistant
+                </option>
+
+                <option value="Cyber Security Analyst">
+                    Cyber Security Analyst
+                </option>
+
+                <option value="Security Engineer">
+                    Security Engineer
+                </option>
+
+                <option value="DevOps Engineer">
+                    DevOps Engineer
+                </option>
+
+                <option value="Cloud Engineer">
+                    Cloud Engineer
+                </option>
+
+                <option value="UI/UX Designer">
+                    UI/UX Designer
+                </option>
+
+                <option value="Graphic Designer">
+                    Graphic Designer
+                </option>
+
+                <option value="Network Engineer">
+                    Network Engineer
+                </option>
+
+                <option value="Network Administrator">
+                    Network Administrator
+                </option>
+
+                <option value="Teacher">
+                    Teacher
+                </option>
+
+                <option value="Lecturer">
+                    Lecturer
+                </option>
+
+                <option value="Research Assistant">
+                    Research Assistant
+                </option>
+
+                <option value="Sales Executive">
+                    Sales Executive
+                </option>
+
+                <option value="Customer Service Executive">
+                    Customer Service Executive
+                </option>
+
+                <option value="Supply Chain Executive">
+                    Supply Chain Executive
+                </option>
+
+                <option value="Operations Executive">
+                    Operations Executive
+                </option>
+
+                <option value="Entrepreneur">
+                    Entrepreneur
+                </option>
+
+                <option value="Graduate Trainee">
+                    Graduate Trainee
+                </option>
+
+                <option value="Intern">
+                    Intern
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- GENERATE -->
+
+        <button
+            id="generate"
+            class="btn-ai">
+
+            <i class="fa-solid fa-wand-magic-sparkles me-1"></i>
+
+            Generate Personalized Interview
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="notice"
+        class="notice mt-3">
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LATEST SESSION
+     ===================================================== -->
+
+<section class="mt-4">
+
+    <div class="d-flex justify-content-between align-items-center">
+
+        <div>
+
+            <h3>
+                Latest practice session
+            </h3>
+
+            <p class="text-muted small">
+
+                Read the question, think first, then compare
+                your answer with the guidance.
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- AI CAREER RESULT -->
+
+    <div
+        id="aiCareerResult"
+        class="ai-career-result">
+
+        <div class="ai-career-icon">
+
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+        </div>
+
+        <div>
+
+            <div class="ai-career-label">
+
+                AI-selected interview direction
+
+            </div>
+
+            <div
+                id="aiCareerName"
+                class="ai-career-name">
+
+            </div>
+
+            <div class="ai-career-description">
+
+                Based on your profile, resume and career information.
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="sessionViewing"
+        class="session-viewing">
+
+        <div class="session-viewing-left">
+
+            <div class="session-viewing-icon">
+
+                <i class="fa-solid fa-clock-rotate-left"></i>
+
+            </div>
+
+            <div>
+
+                <div class="session-viewing-title">
+
+                    Viewing previous session
+
+                </div>
+
+                <div
+                    id="sessionViewingText"
+                    class="session-viewing-text">
+
+                    You are reviewing an earlier interview session.
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="back-latest-btn"
+            onclick="backToLatestSession()">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Back to latest
+
+        </button>
+
+    </div>
+
+
+    <div
+        id="questions"
+        class="q-grid">
+
+        <div class="empty">
+
+            <i
+                class="fa-solid fa-comments"
+                style="font-size:30px;color:#b7cce5;margin-bottom:12px;">
+            </i>
+
+            <div>
+
+                Generate an interview session to begin.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MEDIA
+     ===================================================== -->
+
+<section class="mt-5">
+
+    <div>
+
+        <h3>
+            Recommended videos & podcasts
+        </h3>
+
+        <p class="text-muted small">
+
+            Resources are saved to your account after each session.
+
+        </p>
+
+    </div>
+
+
+    <div
+        id="media"
+        class="media-grid mt-3">
+
+        <div class="empty">
+
+            <i
+                class="fa-solid fa-video"
+                style="font-size:30px;color:#b7cce5;margin-bottom:12px;">
+            </i>
+
+            <div>
+
+                No recommendations yet.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PREVIOUS SESSIONS
+     ===================================================== -->
+
+<section class="mt-5">
+
+    <div>
+
+        <h3>
+            Previous sessions
+        </h3>
+
+        <p class="text-muted small">
+
+            Review and revisit your previous interview practice.
+
+        </p>
+
+    </div>
+
+
+    <div
+        id="history"
+        class="history-list mt-3">
+
+        <div class="empty">
+
+            Loading history...
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</div>
+
+<script>
+
+/* =========================================================
+   GLOBAL VARIABLES
+   ========================================================= */
+
+let latestSessionData = null;
+
+let previousSessions = [];
+
+
+/* =========================================================
+   SAFE JSON PARSER
+   ========================================================= */
+
+function parse(data) {
+
+    try {
+
+        if (typeof data === 'string') {
+
+            return JSON.parse(data);
+
+        }
+
+        return data || {
+            questions: []
+        };
+
+    }
+
+    catch (error) {
+
+        console.error(
+            'Session JSON parse error:',
+            error
+        );
+
+        return {
+            questions: []
+        };
+
+    }
+
+}
+
+
+/* =========================================================
+   SHOW AI SELECTED CAREER
+   ========================================================= */
+
+function renderAiCareer(data) {
+
+    const box =
+        document.getElementById(
+            'aiCareerResult'
+        );
+
+    const name =
+        document.getElementById(
+            'aiCareerName'
+        );
+
+    if (!data) {
+
+        box.style.display = 'none';
+
+        name.textContent = '';
+
+        return;
+
+    }
+
+    const category =
+        data.category ||
+        '';
+
+    const position =
+        data.position ||
+        '';
+
+    if (
+        !category &&
+        !position
+    ) {
+
+        box.style.display = 'none';
+
+        name.textContent = '';
+
+        return;
+
+    }
+
+    name.textContent =
+        category && position
+            ? `${category} · ${position}`
+            : category || position;
+
+    box.style.display = 'flex';
+
+}
+
+
+/* =========================================================
+   RENDER QUESTIONS
+   ========================================================= */
+
+function renderQuestions(
+    data,
+    options = {}
+) {
+
+    const d = parse(data);
+
+    renderAiCareer(d);
+
+    const qs =
+        Array.isArray(d.questions)
+            ? d.questions
+            : [];
+
+    const questionsBox =
+        document.getElementById(
+            'questions'
+        );
+
+
+    if (options.saveAsLatest) {
+
+        latestSessionData = d;
+
+        document
+            .getElementById(
+                'sessionViewing'
+            )
+            .classList.remove('show');
+
+    }
+
+
+    if (options.previous) {
+
+        const viewingBox =
+            document.getElementById(
+                'sessionViewing'
+            );
+
+        const viewingText =
+            document.getElementById(
+                'sessionViewingText'
+            );
+
+        viewingText.textContent =
+            options.label
+                ? `Reviewing ${options.label}.`
+                : 'You are reviewing an earlier interview session.';
+
+        viewingBox.classList.add('show');
+
+    }
+
+
+    questionsBox.innerHTML =
+
+        qs.length === 10
+
+            ? qs.map((q, i) => `
+
+                <article class="q-card">
+
+                    <div class="q-label">
+
+                        Question ${q.number || i + 1}
+
+                    </div>
+
+
+                    <h3>
+
+                        ${esc(q.question || '')}
+
+                    </h3>
+
+
+                    ${
+                        q.whyAsked
+                            ? `
+
+                                <p class="small text-muted">
+
+                                    ${esc(q.whyAsked)}
+
+                                </p>
+
+                            `
+                            : ''
+                    }
+
+
+                    <div class="q-label mt-3">
+
+                        Ideal answer
+
+                    </div>
+
+
+                    <div class="answer mt-2">
+
+                        ${esc(q.idealAnswer || '')}
+
+                    </div>
+
+
+                    <div class="q-label mt-3">
+
+                        Answer structure
+
+                    </div>
+
+
+                    <p class="tip mt-2">
+
+                        ${esc(q.answerStructure || '')}
+
+                    </p>
+
+
+                    <div class="q-label mt-3">
+
+                        Tips
+
+                    </div>
+
+
+                    <p class="tip mt-2">
+
+                        ${esc(q.tips || '')}
+
+                    </p>
+
+                </article>
+
+            `).join('')
+
+
+            : `
+
+                <div class="empty">
+
+                    <i
+                        class="fa-solid fa-circle-exclamation"
+                        style="font-size:28px;color:#b7cce5;margin-bottom:12px;">
+                    </i>
+
+                    <div>
+
+                        Exactly 10 valid questions are required.
+
+                    </div>
+
+                    <div style="margin-top:6px;">
+
+                        Please generate the interview again.
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+    if (options.scroll !== false) {
+
+        setTimeout(() => {
+
+            questionsBox.scrollIntoView({
+
+                behavior: 'smooth',
+
+                block: 'start'
+
+            });
+
+        }, 150);
+
+    }
+
+}
+
+
+/* =========================================================
+   BACK TO LATEST
+   ========================================================= */
+
+function backToLatestSession() {
+
+    if (!latestSessionData) {
+
+        document
+            .getElementById(
+                'sessionViewing'
+            )
+            .classList.remove('show');
+
+        return;
+
+    }
+
+
+    renderQuestions(
+
+        latestSessionData,
+
+        {
+            saveAsLatest: true,
+            scroll: true
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   RENDER MEDIA
+   ========================================================= */
+
+function renderMedia(items) {
+
+    const mediaBox =
+        document.getElementById(
+            'media'
+        );
+
+
+    if (
+        !Array.isArray(items) ||
+        !items.length
+    ) {
+
+        mediaBox.innerHTML = `
+
+            <div class="empty">
+
+                <i
+                    class="fa-solid fa-video-slash"
+                    style="font-size:28px;color:#b7cce5;margin-bottom:12px;">
+                </i>
+
+                <div>
+
+                    No saved resources yet.
+
+                </div>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    mediaBox.innerHTML =
+        items.map(m => `
+
+            <article class="media-card">
+
+                <div class="q-label">
+
+                    ${esc(
+                        m.mediaType ||
+                        'RESOURCE'
+                    )}
+
+                    ·
+
+                    ${esc(
+                        m.source ||
+                        ''
+                    )}
+
+                </div>
+
+
+                <h4>
+
+                    ${esc(
+                        m.title ||
+                        'Recommended resource'
+                    )}
+
+                </h4>
+
+
+                <p class="small text-muted">
+
+                    ${esc(
+                        m.description ||
+                        ''
+                    )}
+
+                </p>
+
+
+                ${
+                    m.embedUrl
+                        ? `
+
+                            <iframe
+
+                                src="${esc(
+                                    m.embedUrl
+                                )}"
+
+                                title="${esc(
+                                    m.title ||
+                                    'Video resource'
+                                )}"
+
+                                loading="lazy"
+
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
+                                allowfullscreen>
+
+                            </iframe>
+
+                        `
+                        : ''
+                }
+
+
+                ${
+                    m.url
+                        ? `
+
+                            <a
+
+                                href="${esc(
+                                    m.url
+                                )}"
+
+                                target="_blank"
+
+                                rel="noopener noreferrer">
+
+                                Open resource
+
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                            </a>
+
+                        `
+                        : ''
+                }
+
+            </article>
+
+        `).join('');
+
+}
+
+
+/* =========================================================
+   LOAD HISTORY
+   ========================================================= */
+
+async function loadHistory() {
+
+    try {
+
+        const r =
+            await apiJson(
+
+                '/interview/history',
+
+                {
+                    headers: auth()
+                }
+
+            );
+
+
+        renderMedia(
+            r.media || []
+        );
+
+
+        const h =
+            Array.isArray(r.sessions)
+                ? r.sessions
+                : [];
+
+
+        previousSessions =
+            h;
+
+
+        const historyBox =
+            document.getElementById(
+                'history'
+            );
+
+
+        if (!h.length) {
+
+            historyBox.innerHTML = `
+
+                <div class="empty">
+
+                    <i
+                        class="fa-solid fa-clock-rotate-left"
+                        style="font-size:28px;color:#b7cce5;margin-bottom:12px;">
+                    </i>
+
+                    <div>
+
+                        Your previous sessions will appear here.
+
+                    </div>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        historyBox.innerHTML =
+            h.map((s, index) => `
+
+                <div class="history-item">
+
+                    <div>
+
+                        <b>
+
+                            ${esc(
+                                s.position ||
+                                'Personalized interview'
+                            )}
+
+                        </b>
+
+
+                        <div class="small text-muted">
+
+                            ${esc(
+                                s.category ||
+                                'General'
+                            )}
+
+                            ·
+
+                            ${
+                                s.createdAt
+                                    ? new Date(
+                                        s.createdAt
+                                    ).toLocaleString()
+                                    : 'Previous session'
+                            }
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+
+                        type="button"
+
+                        class="view-session-btn"
+
+                        data-session-index="${index}">
+
+                        <i class="fa-solid fa-eye"></i>
+
+                        View session
+
+                    </button>
+
+                </div>
+
+            `).join('');
+
+
+        const viewButtons =
+            historyBox.querySelectorAll(
+                '.view-session-btn'
+            );
+
+
+        viewButtons.forEach(
+            button => {
+
+                button.addEventListener(
+                    'click',
+                    function () {
+
+                        const index =
+                            Number(
+                                this.dataset.sessionIndex
+                            );
+
+                        viewPreviousSession(
+                            index
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    }
+
+    catch (e) {
+
+        console.error(
+            'Interview history error:',
+            e
+        );
+
+
+        previousSessions = [];
+
+
+        document.getElementById(
+            'history'
+        ).innerHTML = `
+
+            <div class="empty">
+
+                <i
+                    class="fa-solid fa-triangle-exclamation"
+                    style="font-size:28px;color:#b7cce5;margin-bottom:12px;">
+                </i>
+
+                <div>
+
+                    Unable to load history.
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   VIEW PREVIOUS SESSION
+   ========================================================= */
+
+function viewPreviousSession(index) {
+
+    const session =
+        previousSessions[index];
+
+
+    if (!session) {
+
+        showNotice(
+            'This previous session could not be found.',
+            'error'
+        );
+
+        return;
+
+    }
+
+
+    const parsed =
+        parse(session.sessionJson);
+
+
+    if (
+        !parsed ||
+        !Array.isArray(
+            parsed.questions
+        )
+    ) {
+
+        showNotice(
+            'This previous session could not be displayed because its saved questions are invalid.',
+            'error'
+        );
+
+        return;
+
+    }
+
+
+    const position =
+        session.position ||
+        'previous interview session';
+
+
+    renderQuestions(
+
+        parsed,
+
+        {
+            previous: true,
+
+            label: position,
+
+            scroll: true
+
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   NOTICE
+   ========================================================= */
+
+function showNotice(
+    message,
+    type = 'info'
+) {
+
+    const notice =
+        document.getElementById(
+            'notice'
+        );
+
+
+    notice.className =
+        'notice show';
+
+
+    notice.textContent =
+        message;
+
+
+    if (type === 'error') {
+
+        notice.style.color =
+            '#bd3030';
+
+        notice.style.background =
+            '#fff2f2';
+
+        notice.style.borderColor =
+            '#f0caca';
+
+    }
+
+    else if (type === 'success') {
+
+        notice.style.color =
+            '#18794e';
+
+        notice.style.background =
+            '#eefaf5';
+
+        notice.style.borderColor =
+            '#c9eadc';
+
+    }
+
+    else {
+
+        notice.style.color =
+            '#1769e0';
+
+        notice.style.background =
+            '#edf5ff';
+
+        notice.style.borderColor =
+            '#cfe1f8';
+
+    }
+
+}
+
+
+/* =========================================================
+   GENERATE NEW INTERVIEW
+   ========================================================= */
+
+document
+    .getElementById('generate')
+    .addEventListener(
+        'click',
+        async () => {
+
+            const button =
+                document.getElementById(
+                    'generate'
+                );
+
+
+            const category =
+                document
+                    .getElementById(
+                        'category'
+                    )
+                    .value
+                    .trim();
+
+
+            const position =
+                document
+                    .getElementById(
+                        'position'
+                    )
+                    .value
+                    .trim();
+
+
+            button.disabled = true;
+
+
+            /*
+             * No selection:
+             * Ollama analyzes the complete candidate profile.
+             */
+
+            if (
+                !category &&
+                !position
+            ) {
+
+                showNotice(
+                    'Ollama is analyzing your profile, career analysis, resume and resume analysis to create your personalized interview...',
+                    'info'
+                );
+
+            }
+
+            /*
+             * Selected category / position:
+             * Ollama focuses only on that career.
+             */
+
+            else {
+
+                showNotice(
+                    'Ollama is preparing 10 questions for your selected career area...',
+                    'info'
+                );
+
+            }
+
+
+            try {
+
+                const r =
+                    await apiJson(
+
+                        '/interview/generate',
+
+                        {
+
+                            method: 'POST',
+
+                            headers: {
+
+                                ...auth(),
+
+                                'Content-Type':
+                                    'application/json'
+
+                            },
+
+                            body:
+                                JSON.stringify({
+
+                                    category:
+                                        category,
+
+                                    position:
+                                        position
+
+                                })
+
+                        }
+
+                    );
+
+
+                /*
+                 * Parse AI result.
+                 */
+
+                const generated =
+                    parse(r.data);
+
+
+                /*
+                 * IMPORTANT:
+                 * The backend must return exactly 10.
+                 */
+
+                if (
+                    !generated ||
+                    !Array.isArray(
+                        generated.questions
+                    ) ||
+                    generated.questions.length !== 10
+                ) {
+
+                    throw new Error(
+                        'The AI did not generate exactly 10 interview questions. Please try again.'
+                    );
+
+                }
+
+
+                /*
+                 * Save latest session.
+                 */
+
+                latestSessionData =
+                    generated;
+
+
+                /*
+                 * Display questions.
+                 */
+
+                renderQuestions(
+
+                    latestSessionData,
+
+                    {
+
+                        saveAsLatest: true,
+
+                        scroll: true
+
+                    }
+
+                );
+
+
+                /*
+                 * Display media.
+                 */
+
+                renderMedia(
+                    r.media || []
+                );
+
+
+                /*
+                 * Show successful result.
+                 */
+
+                const aiCategory =
+                    generated.category ||
+                    category ||
+                    'AI Personalized';
+
+
+                const aiPosition =
+                    generated.position ||
+                    position ||
+                    'Recommended Career';
+
+
+                showNotice(
+
+                    `10 interview questions generated for ${aiPosition} in ${aiCategory}.`,
+
+                    'success'
+
+                );
+
+
+                /*
+                 * Refresh previous sessions.
+                 */
+
+                await loadHistory();
+
+            }
+
+            catch (e) {
+
+                console.error(
+                    'Interview generation error:',
+                    e
+                );
+
+
+                showNotice(
+
+                    e.message ||
+                    'Unable to generate the interview session.',
+
+                    'error'
+
+                );
+
+            }
+
+            finally {
+
+                button.disabled =
+                    false;
+
+            }
+
+        }
+    );
+
+
+/* =========================================================
+   INITIAL LOAD
+   ========================================================= */
+
+loadHistory();
+
+</script>
+
+</body>
+</html>

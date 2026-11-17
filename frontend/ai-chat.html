@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Chat | JOBSPHERE</title>
+<link rel="stylesheet" href="assets/css/app.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+.chat-page{height:calc(100vh - 82px);min-height:620px;display:flex;gap:0;background:#f7faff;margin:-1px 0 0}
+.chat-sidebar{width:290px;background:#fff;border-right:1px solid #e1eaf4;display:flex;flex-direction:column;min-width:0}
+.chat-side-top{padding:20px;border-bottom:1px solid #edf1f6}
+.new-chat{width:100%;border:0;border-radius:13px;background:#1769e0;color:#fff;padding:12px 15px;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(23,105,224,.18)}
+.chat-search{margin-top:12px;position:relative}.chat-search i{position:absolute;left:13px;top:12px;color:#9aaabd;font-size:12px}.chat-search input{width:100%;box-sizing:border-box;padding:10px 12px 10px 34px;border:1px solid #e0e8f2;border-radius:11px;outline:none;font-size:12px}.chat-list{padding:10px;overflow:auto;flex:1}.chat-list-title{padding:8px 10px;color:#94a3b8;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px}.chat-item{display:flex;align-items:center;gap:9px;padding:11px 10px;border-radius:12px;cursor:pointer;margin-bottom:3px}.chat-item:hover,.chat-item.active{background:#edf5ff}.chat-item-icon{width:30px;height:30px;border-radius:9px;background:#f1f5f9;color:#64748b;display:grid;place-items:center;flex:0 0 auto;font-size:11px}.chat-item.active .chat-item-icon{background:#dbeafe;color:#1769e0}.chat-item-main{min-width:0;flex:1}.chat-item-title{font-size:12px;color:#243b57;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}.chat-item-time{font-size:9px;color:#a0aec0;margin-top:3px}.chat-delete{border:0;background:transparent;color:#b0bac8;cursor:pointer;opacity:0;font-size:11px}.chat-item:hover .chat-delete{opacity:1}.chat-empty{padding:25px 15px;text-align:center;color:#94a3b8;font-size:11px;line-height:1.6}
+.chat-main{flex:1;min-width:0;display:flex;flex-direction:column;background:linear-gradient(180deg,#f9fbff,#f3f7fc)}
+.chat-header{height:72px;background:#fff;border-bottom:1px solid #e1eaf4;display:flex;align-items:center;justify-content:space-between;padding:0 26px;box-sizing:border-box}.chat-brand{display:flex;align-items:center;gap:12px}.ai-orb{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,#071a33,#1769e0);color:#fff;display:grid;place-items:center;box-shadow:0 8px 20px rgba(23,105,224,.2)}.chat-header h2{font-size:16px;color:#09213f;margin:0}.chat-header p{font-size:10px;color:#94a3b8;margin:3px 0 0}.online-dot{width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block;margin-right:6px}.chat-messages{flex:1;overflow:auto;padding:30px clamp(16px,5vw,70px);scroll-behavior:smooth}.welcome{text-align:center;max-width:700px;margin:7vh auto 30px}.welcome .big-orb{width:64px;height:64px;margin:0 auto 18px;border-radius:20px;background:linear-gradient(135deg,#071a33,#1769e0);color:#fff;display:grid;place-items:center;font-size:25px;box-shadow:0 14px 35px rgba(23,105,224,.2)}.welcome h1{margin:0;color:#09213f;font-size:29px}.welcome p{color:#72839a;font-size:13px;line-height:1.7}.suggestions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}.suggestion{border:1px solid #e0e8f2;background:#fff;border-radius:13px;padding:13px;text-align:left;cursor:pointer;color:#53657c;font-size:11px;transition:.2s}.suggestion:hover{border-color:#bcd4f2;transform:translateY(-2px);box-shadow:0 8px 20px rgba(7,26,51,.06)}.bubble-row{display:flex;margin:0 auto 18px;max-width:820px;gap:10px}.bubble-row.user{justify-content:flex-end}.bubble-avatar{width:30px;height:30px;border-radius:10px;background:#1769e0;color:#fff;display:grid;place-items:center;flex:0 0 auto;font-size:11px}.bubble-row.assistant .bubble-avatar{background:#071a33}.bubble{max-width:min(76%,700px);padding:13px 15px;border-radius:16px;line-height:1.65;font-size:13px;white-space:normal;overflow-wrap:anywhere}.bubble.user-bubble{background:#1769e0;color:#fff;border-bottom-right-radius:5px}.bubble.ai-bubble{background:#fff;color:#334b66;border:1px solid #e2eaf4;border-bottom-left-radius:5px;box-shadow:0 5px 18px rgba(7,26,51,.04)}.bubble.ai-bubble h3,.bubble.ai-bubble h4{margin:10px 0 5px;color:#09213f}.bubble.ai-bubble p{margin:5px 0}.bubble.ai-bubble ul{margin:7px 0;padding-left:20px}.bubble.ai-bubble li{margin:3px 0}.bubble.ai-bubble pre{background:#0b1d34;color:#dbeafe;padding:12px;border-radius:10px;overflow:auto;font-size:11px}.bubble.ai-bubble code{background:#eef3f8;padding:2px 5px;border-radius:5px;font-size:11px}.bubble.ai-bubble pre code{background:none;padding:0}.typing{display:inline-flex;gap:4px;padding:5px 0}.typing span{width:6px;height:6px;border-radius:50%;background:#9aaabd;animation:blink 1.1s infinite}.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}@keyframes blink{0%,60%,100%{opacity:.25;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+.chat-compose{padding:14px clamp(16px,5vw,70px) 20px;background:rgba(255,255,255,.92);border-top:1px solid #e1eaf4}.composer{max-width:820px;margin:auto;background:#fff;border:1px solid #d8e3ef;border-radius:18px;display:flex;align-items:flex-end;padding:8px;box-shadow:0 12px 30px rgba(7,26,51,.07)}.composer textarea{border:0;outline:0;resize:none;flex:1;min-height:42px;max-height:140px;padding:10px 12px;font:13px Arial,sans-serif;color:#243b57;background:transparent}.send-btn{width:44px;height:44px;border:0;border-radius:13px;background:#1769e0;color:#fff;cursor:pointer}.send-btn:disabled{opacity:.5;cursor:not-allowed}.composer-hint{max-width:820px;margin:7px auto 0;font-size:9px;color:#9aaabd;text-align:center}.chat-error{max-width:820px;margin:0 auto 8px;color:#dc2626;font-size:11px;display:none}
+@media(max-width:850px){.chat-sidebar{width:235px}.chat-messages{padding:22px 15px}.chat-compose{padding:12px 15px 16px}.bubble{max-width:84%}}
+@media(max-width:650px){.chat-header .mobile-menu{display:block!important;margin-right:2px}.chat-page{height:calc(100vh - 70px);min-height:560px}.chat-sidebar{width:0;overflow:hidden;border:0;transition:.2s}.chat-sidebar.open{width:260px;border-right:1px solid #e1eaf4}.chat-header{padding:0 14px}.suggestions{grid-template-columns:1fr}.welcome h1{font-size:23px}.bubble{max-width:88%}}
+</style>
+</head>
+<body>
+<script src="assets/js/app.js"></script>
+<script>const currentUser=requireUser(); document.write(shell('AI Chat','chat'));</script>
+<div class="chat-page">
+ <aside class="chat-sidebar" id="chatSidebar">
+  <div class="chat-side-top">
+   <button class="new-chat" onclick="newConversation()"><i class="fa-solid fa-plus"></i> New chat</button>
+   <div class="chat-search"><i class="fa-solid fa-magnifying-glass"></i><input id="chatSearch" placeholder="Search conversations..." oninput="renderConversationList()"></div>
+  </div>
+  <div class="chat-list" id="chatList"></div>
+ </aside>
+ <section class="chat-main">
+  <header class="chat-header">
+   <div class="chat-brand">
+    <button class="mobile-menu" onclick="document.getElementById('chatSidebar').classList.toggle('open')" style="display:none">☰</button>
+    <div class="ai-orb"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+    <div><h2>JOBSPHERE AI</h2><p><span class="online-dot"></span>AI assistant · Private to your account</p></div>
+   </div>
+   <span class="pill" id="chatEmail"></span>
+  </header>
+  <div class="chat-messages" id="messagesArea"></div>
+  <div class="chat-compose">
+   <div class="chat-error" id="chatError"></div>
+   <div class="composer">
+    <textarea id="messageInput" maxlength="6000" placeholder="Ask JOBSPHERE AI anything..." rows="1"></textarea>
+    <button class="send-btn" id="sendBtn" onclick="sendMessage()"><i class="fa-solid fa-arrow-up"></i></button>
+   </div>
+   <div class="composer-hint">Your conversations are saved to your JOBSPHERE account. AI can make mistakes, so verify important information.</div>
+  </div>
+ </section>
+</div>
+<script>
+let conversations=[];
+let activeId=null;
+let busy=false;
+
+const area=document.getElementById('messagesArea');
+const input=document.getElementById('messageInput');
+const sendBtn=document.getElementById('sendBtn');
+document.getElementById('chatEmail').textContent=currentUser.email;
+
+input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}});
+input.addEventListener('input',()=>{input.style.height='auto';input.style.height=Math.min(input.scrollHeight,140)+'px';});
+
+function showError(text){const e=document.getElementById('chatError');e.textContent=text;e.style.display=text?'block':'none';}
+function escapeHtml(s){return String(s??'').replace(/[&<>'"]/g,x=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[x]));}
+function formatAI(text){
+ let x=escapeHtml(text);
+ const blocks=[];
+ x=x.replace(/```([\s\S]*?)```/g,(_,c)=>{const k='@@CODE'+blocks.length+'@@';blocks.push('<pre><code>'+c.trim()+'</code></pre>');return k;});
+ x=x.replace(/^###\s+(.+)$/gm,'<h4>$1</h4>').replace(/^##\s+(.+)$/gm,'<h3>$1</h3>');
+ x=x.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/`([^`]+)`/g,'<code>$1</code>');
+ const lines=x.split(/\n/), out=[]; let list=false;
+ for(const line of lines){
+  if(/^\s*[-*]\s+/.test(line)){if(!list){out.push('<ul>');list=true}out.push('<li>'+line.replace(/^\s*[-*]\s+/,'')+'</li>');continue}
+  if(list){out.push('</ul>');list=false}
+  if(line.trim()) out.push(line.trim().startsWith('@@CODE')?line.trim():'<p>'+line+'</p>');
+ }
+ if(list)out.push('</ul>');
+ x=out.join(''); blocks.forEach((b,i)=>x=x.replace('@@CODE'+i+'@@',b)); return x;
+}
+function timeText(v){if(!v)return '';const d=new Date(v);return isNaN(d)?'':d.toLocaleDateString([], {month:'short',day:'numeric'});}
+async function loadConversations(){
+ try{const j=await apiJson('/chat/conversations',{headers:auth()});conversations=j.conversations||[];renderConversationList();
+   if(!activeId&&conversations.length) await openConversation(conversations[0].id);
+   else if(!activeId) await newConversation(false);
+ }catch(e){showError(e.message);}
+}
+function renderConversationList(){
+ const q=(document.getElementById('chatSearch').value||'').toLowerCase().trim();
+ const list=conversations.filter(c=>(c.title||'').toLowerCase().includes(q));
+ const el=document.getElementById('chatList');
+ el.innerHTML='<div class="chat-list-title">Recent conversations</div>'+(
+  list.length?list.map(c=>`<div class="chat-item ${c.id===activeId?'active':''}" onclick="openConversation(${c.id})">
+   <div class="chat-item-icon"><i class="fa-regular fa-message"></i></div><div class="chat-item-main"><div class="chat-item-title">${escapeHtml(c.title)}</div><div class="chat-item-time">${timeText(c.updatedAt)}</div></div>
+   <button class="chat-delete" title="Delete" onclick="event.stopPropagation();deleteConversation(${c.id})"><i class="fa-solid fa-trash"></i></button></div>`).join(''):
+  '<div class="chat-empty">No conversations yet.<br>Start a new chat and your history will appear here.</div>');
+}
+async function newConversation(focus=true){
+ try{const j=await apiJson('/chat/conversations',{method:'POST',headers:{...auth(),'Content-Type':'application/json'},body:JSON.stringify({title:'New conversation'})});
+  const c=j.conversation; conversations.unshift({id:c.id,title:c.title,email:c.email,createdAt:c.createdAt,updatedAt:c.updatedAt}); activeId=c.id; renderConversationList(); renderWelcome(); if(focus)input.focus();
+ }catch(e){showError(e.message);}
+}
+async function openConversation(id){
+ if(busy)return; activeId=id; renderConversationList(); showError('');
+ try{const j=await apiJson('/chat/conversations/'+id,{headers:auth()}); renderMessages(j.conversation.messages||[]);}
+ catch(e){showError(e.message);}
+}
+function renderWelcome(){
+ area.innerHTML=`<div class="welcome"><div class="big-orb"><i class="fa-solid fa-sparkles"></i></div><h1>How can I help you?</h1><p>Ask anything — learn, brainstorm, code, write, plan your career, prepare for interviews, or explore a new topic.</p>
+ <div class="suggestions"><button class="suggestion" onclick="useSuggestion(this)">Explain a difficult topic in simple words</button><button class="suggestion" onclick="useSuggestion(this)">Help me prepare for a job interview</button><button class="suggestion" onclick="useSuggestion(this)">Create a study plan for me</button><button class="suggestion" onclick="useSuggestion(this)">Review this idea and suggest improvements</button></div></div>`;
+}
+function useSuggestion(btn){input.value=btn.textContent;input.dispatchEvent(new Event('input'));input.focus();}
+function renderMessages(list){
+ if(!list.length){renderWelcome();return}
+ area.innerHTML=list.map(m=>`<div class="bubble-row ${m.role==='USER'?'user':'assistant'}">${m.role==='ASSISTANT'?'<div class="bubble-avatar"><i class="fa-solid fa-sparkles"></i></div>':''}<div class="bubble ${m.role==='USER'?'user-bubble':'ai-bubble'}">${m.role==='USER'?escapeHtml(m.content):formatAI(m.content)}</div>${m.role==='USER'?'<div class="bubble-avatar"><i class="fa-solid fa-user"></i></div>':''}</div>`).join('');
+ area.scrollTop=area.scrollHeight;
+}
+function appendTyping(){
+ const d=document.createElement('div');d.className='bubble-row assistant';d.id='typingRow';d.innerHTML='<div class="bubble-avatar"><i class="fa-solid fa-sparkles"></i></div><div class="bubble ai-bubble"><div class="typing"><span></span><span></span><span></span></div></div>';area.appendChild(d);area.scrollTop=area.scrollHeight;
+}
+async function sendMessage(){
+ if(busy)return; const text=input.value.trim(); if(!text)return; if(!activeId){await newConversation(false);}
+ busy=true;sendBtn.disabled=true;showError('');
+ const current=text; input.value='';input.style.height='auto';
+ const row=document.createElement('div');row.className='bubble-row user';row.innerHTML='<div class="bubble user-bubble">'+escapeHtml(current)+'</div><div class="bubble-avatar"><i class="fa-solid fa-user"></i></div>'; 
+ const welcome=area.querySelector('.welcome');if(welcome)area.innerHTML='';area.appendChild(row);appendTyping();
+ try{
+  const j=await apiJson('/chat/messages',{method:'POST',headers:{...auth(),'Content-Type':'application/json'},body:JSON.stringify({conversationId:activeId,message:current})});
+  document.getElementById('typingRow')?.remove();
+  const a=j.message; const ar=document.createElement('div');ar.className='bubble-row assistant';ar.innerHTML='<div class="bubble-avatar"><i class="fa-solid fa-sparkles"></i></div><div class="bubble ai-bubble">'+formatAI(a.content)+'</div>';area.appendChild(ar);area.scrollTop=area.scrollHeight;
+  const c=conversations.find(x=>x.id===activeId);if(c){c.title=j.title;c.updatedAt=a.createdAt;}else conversations.unshift({id:activeId,title:j.title,updatedAt:a.createdAt});renderConversationList();
+ }catch(e){document.getElementById('typingRow')?.remove();showError(e.message);input.value=current;}
+ finally{busy=false;sendBtn.disabled=false;input.focus();}
+}
+async function deleteConversation(id){
+ if(!confirm('Delete this conversation and all of its messages?'))return;
+ try{await apiJson('/chat/conversations/'+id,{method:'DELETE',headers:auth()});conversations=conversations.filter(c=>c.id!==id);
+  if(activeId===id){activeId=null;if(conversations.length)await openConversation(conversations[0].id);else await newConversation(false);} else renderConversationList();
+ }catch(e){showError(e.message);}
+}
+loadConversations();
+</script>
+<script>document.write(closeShell());</script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Courses | JOBSPHERE</title>
+<link rel="stylesheet" href="assets/css/app.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+body{background:#f5f9ff}.course-wrap{max-width:1180px;margin:auto}.hero{background:linear-gradient(135deg,#0d63d8,#168cff);color:#fff;border-radius:24px;padding:36px;margin-bottom:26px;box-shadow:0 18px 45px rgba(22,140,255,.18)}.hero .eyebrow2{font-size:11px;font-weight:800;letter-spacing:1.5px;opacity:.9}.hero h2{font-size:34px;margin:9px 0}.hero p{max-width:800px;line-height:1.75;opacity:.92}.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:30px 0 15px}.section-head h2{margin:0;color:#0b2c52}.section-head p{margin:5px 0;color:#6c7d92;font-size:13px}.course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.course-card,.panel{background:#fff;border:1px solid #dfe9f5;border-radius:20px;box-shadow:0 10px 28px rgba(25,73,125,.06)}.course-card{padding:22px;transition:.22s}.course-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(23,105,224,.12)}.icon{width:48px;height:48px;border-radius:14px;background:#edf5ff;color:#1769e0;display:flex;align-items:center;justify-content:center;font-size:20px}.advanced .icon{background:#eaf3ff;color:#075fc7}.course-card h3{font-size:18px;color:#09213f;margin:16px 0 8px}.course-card p{font-size:12px;line-height:1.7;color:#64748b;min-height:67px}.meta{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.badge{padding:6px 9px;border-radius:99px;background:#f1f5f9;color:#52647a;font-size:10px;font-weight:800}.match{color:#1769e0;background:#edf5ff}.price{color:#075fc7;background:#e9f3ff}.btn{border:0;border-radius:11px;padding:11px 15px;font-weight:800;cursor:pointer;background:#1769e0;color:white;text-decoration:none;display:inline-block}.btn.secondary{background:#eef4fb;color:#1769e0}.btn.locked{background:#0a6fe8}.detail{display:none}.detail.show{display:block}.back{margin-bottom:16px}.detail-top{padding:28px}.detail-top h2{font-size:29px;color:#09213f;margin:10px 0}.detail-top p{color:#64748b;line-height:1.8}.columns{display:grid;grid-template-columns:1.35fr .75fr;gap:18px}.panel{padding:24px;margin-bottom:18px}.panel h3{margin:0 0 14px;color:#09213f;font-size:17px}.panel p,.panel li{font-size:13px;line-height:1.85;color:#52647a}.module{padding:18px;border:1px solid #e6edf6;border-radius:15px;margin:12px 0;background:#fbfdff}.module-head{display:flex;justify-content:space-between;gap:10px;font-weight:800;color:#173a63}.module p{margin:10px 0 0;white-space:pre-line}.daytag{font-size:10px;color:#1769e0;background:#edf5ff;padding:5px 8px;border-radius:99px}.noticebox{padding:16px;border-radius:14px;background:#f0f7ff;color:#24547e;font-size:12px;line-height:1.8}.quiz{display:none}.quiz.show{display:block}.question{border:1px solid #e4ebf4;border-radius:15px;padding:17px;margin:13px 0}.question strong{display:block;color:#173a63;margin-bottom:10px}.option{display:block;padding:9px;border-radius:8px}.option:hover{background:#f7faff}.result{padding:25px;border-radius:16px;text-align:center;margin-top:18px}.pass{background:#ecfdf3;border:1px solid #b7ebca;color:#176b3a}.fail{background:#fff6ed;border:1px solid #ffd9ad;color:#8a4b08}.empty{text-align:center;padding:50px;color:#64748b}.progress{height:9px;background:#e8eef6;border-radius:99px;overflow:hidden}.progress>span{display:block;height:100%;background:#168cff}.lock-card{border:1px solid #cfe1f8;background:linear-gradient(135deg,#f5faff,#fff);border-radius:18px;padding:22px}.lock-card h3{color:#0a3768}.payment-note{font-size:12px;color:#61758c;line-height:1.7}.days-row{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.day-btn{border:1px solid #d9e5f2;background:#fff;color:#41617f;border-radius:10px;padding:8px 11px;font-size:11px;font-weight:800}.day-btn.done{background:#e8f7ef;color:#167042;border-color:#bfe8cf}.day-btn.current{border-color:#168cff;color:#0b63c8}
+@media(max-width:950px){.course-grid{grid-template-columns:1fr 1fr}.columns{grid-template-columns:1fr}}@media(max-width:620px){.course-grid{grid-template-columns:1fr}.hero{padding:26px}.hero h2{font-size:27px}}
+</style></head><body>
+<script src="assets/js/app.js"></script><script>document.write(shell('Courses','courses'));</script>
+<div class="course-wrap" id="coursesView">
+ <div class="hero"><div class="eyebrow2">PERSONALISED LEARNING</div><h2>Learn today. Build your career tomorrow.</h2><p>JOBSPHERE uses your career profile to recommend focused 30-minute skill boosts and advanced seven-day learning programmes.</p></div>
+ <div class="section-head"><div><h2>30-Minute Skill Boosts</h2><p>Six focused courses with a quick theory lesson and 10-question assessment.</p></div></div>
+ <div id="basicGrid" class="course-grid"><div class="empty">Loading your recommended courses...</div></div>
+ <div class="section-head"><div><h2>7-Day Advanced Career Courses</h2><p>Six deeper programmes. Each course costs <b>LKR 250</b> and unlocks only after successful payment.</p></div></div>
+ <div id="advancedGrid" class="course-grid"><div class="empty">Loading advanced recommendations...</div></div>
+ <div class="section-head"><div><h2>My Payment Receipts</h2><p>Download receipts for your paid advanced courses.</p></div></div>
+ <div id="receipts" class="panel" style="padding:20px"><div class="empty">Loading receipts...</div></div>
+</div>
+<div class="course-wrap detail" id="detailView"></div>
+<script>
+requireUser();
+const basicGrid=document.getElementById('basicGrid'), advancedGrid=document.getElementById('advancedGrid');
+const listView=document.getElementById('coursesView'), detailView=document.getElementById('detailView');
+const icons=['fa-robot','fa-chart-line','fa-comments','fa-shield-halved','fa-list-check','fa-bullhorn'];
+function card(c,i,advanced){
+ return `<article class="course-card ${advanced?'advanced':''}"><div class="icon"><i class="fa-solid ${icons[i%icons.length]}"></i></div>
+ <h3>${esc(c.name)}</h3><p>${esc(c.shortDescription)}</p>
+ <div class="meta"><span class="badge">${esc(c.category)}</span><span class="badge">${advanced?'7 days':'30 min'}</span><span class="badge match">${esc(c.matchScore)}% match</span>${advanced?'<span class="badge price">LKR 250</span>':''}</div>
+ ${c.latestScore!=null?`<div class="small text-muted">Latest score: <b>${c.latestScore}%</b> ${c.passed?'· Passed':'· Try again'}</div>`:''}
+ <br><button class="btn" onclick="openCourse(${c.id})">${advanced?(c.paid?'Open Course':'View & Pay LKR 250'):'View Course'} <i class="fa-solid fa-arrow-right"></i></button></article>`;
+}
+async function loadCourses(){
+ try{
+  const d=await apiJson('/courses/recommended',{headers:auth()});
+  if(!d.profileReady){
+   const msg='<div class="empty" style="grid-column:1/-1"><i class="fa-solid fa-user-circle" style="font-size:35px"></i><h3>Complete your Career Profile first</h3><p>Your recommendations become accurate when your education, skills, experience, career interest and goal are completed.</p><a class="btn" href="profile.html">Complete My Profile</a></div>';
+   basicGrid.innerHTML=msg; advancedGrid.innerHTML=msg; return;
+  }
+  basicGrid.innerHTML=d.courses.map((c,i)=>card(c,i,false)).join('')||'<div class="empty">No basic courses are available.</div>';
+  advancedGrid.innerHTML=d.advancedCourses.map((c,i)=>card(c,i,true)).join('')||'<div class="empty">No advanced courses are available.</div>';
+ }catch(e){basicGrid.innerHTML=advancedGrid.innerHTML='<div class="empty">'+esc(e.message)+'</div>'}
+}
+async function openCourse(id){
+ listView.style.display='none'; detailView.className='course-wrap detail show'; detailView.innerHTML='<div class="empty">Loading course...</div>';
+ try{
+  const c=await apiJson('/courses/'+id,{headers:auth()});
+  const advanced=c.courseLevel==='ADVANCED';
+  if(advanced && c.paymentRequired){
+    detailView.innerHTML=`<button class="btn secondary back" onclick="backToCourses()"><i class="fa-solid fa-arrow-left"></i> Back to Courses</button>
+    <section class="panel detail-top"><span class="badge price">7-DAY ADVANCED</span><h2>${esc(c.name)}</h2><p>${esc(c.shortDescription)}</p><div class="meta"><span class="badge">7 days</span><span class="badge">10 MCQs</span><span class="badge price">LKR 250</span><span class="badge match">Personalised</span></div></section>
+    <div class="columns"><div><section class="panel"><h3>Course Introduction</h3><div class="noticebox">${esc(c.introduction)}</div><h3 style="margin-top:22px">What you will learn</h3><ul>${outcomeList(c.outcomes)}</ul><h3 style="margin-top:22px">Before you pay</h3><p>Payment is required once for this seven-day course. After successful payment, the full lessons, seven-day progress tracker and 10-question assessment will be unlocked for your account.</p></section></div>
+    <aside><div class="lock-card"><div style="font-size:28px;color:#168cff"><i class="fa-solid fa-lock"></i></div><h3>Unlock this advanced course</h3><p class="payment-note">Secure course access for <b>LKR 250.00</b>. Your payment receipt is generated as a PDF, emailed to your registered address and available to download from your account.</p><a class="btn locked" href="course-payment.html?courseId=${c.id}"><i class="fa-solid fa-credit-card"></i> Pay LKR 250 & Start</a></div></aside></div>`;
+    return;
+  }
+  renderCourse(c);
+ }catch(e){detailView.innerHTML='<div class="empty">'+esc(e.message)+'</div>'}
+}
+function outcomeList(text){return (text||'').split(/;|\. (?=[A-Z])/).map(x=>x.trim()).filter(Boolean).map(x=>'<li>'+esc(x)+'</li>').join('')}
+function renderCourse(c){
+ const advanced=c.courseLevel==='ADVANCED', modules=c.modules||[], done=c.completedDays||[];
+ detailView.innerHTML=`<button class="btn secondary back" onclick="backToCourses()"><i class="fa-solid fa-arrow-left"></i> Back to Courses</button>
+ <section class="panel detail-top"><span class="badge ${advanced?'price':''}">${advanced?'7-DAY ADVANCED':'30-MINUTE COURSE'}</span><h2>${esc(c.name)}</h2><p>${esc(c.shortDescription)}</p><div class="meta"><span class="badge">${advanced?'7 days':'30 minutes'}</span><span class="badge">10 MCQs</span><span class="badge">Pass mark 70%</span>${advanced?'<span class="badge price">Paid · LKR 250</span>':''}</div></section>
+ <div class="columns"><div>
+ <section class="panel"><h3>Introduction</h3><div class="noticebox">${esc(c.introduction)}</div><h3 style="margin-top:22px">Learning outcomes</h3><ul>${outcomeList(c.outcomes)}</ul></section>
+ <section class="panel"><h3>${advanced?'Seven-Day Detailed Lessons':'Course Learning & Industry Application'}</h3>
+ ${advanced?renderDays(modules,done,c.id):modules.map((m,i)=>`<div class="module"><div class="module-head"><span>${i+1}. ${esc(m.title)}</span><span>${esc(m.minutes)} min</span></div><p>${esc(m.theory)}</p></div>`).join('')}
+ <h3 style="margin-top:22px">Industry application</h3><p>${esc(c.industryApplication)}</p></section></div>
+ <aside><section class="panel"><h3>Assessment & Certificate</h3><p>Complete the learning sections, then answer 10 MCQs. A score of <b>70% or higher</b> qualifies you for a professional certificate. The administrator issues the certificate by email.</p>
+ ${advanced?`<div class="progress"><span style="width:${Math.round(done.length/7*100)}%"></span></div><p><b>${done.length}/7 days completed</b></p>`:''}
+ <button id="quizStart" class="btn" ${advanced&&done.length<7?'disabled title="Complete all 7 days first"':''} onclick="startQuiz()">${advanced?'Start Final 10-Question Assessment':'Start 10-Question Assessment'}</button></section></aside></div>
+ <section id="quiz" class="quiz panel"><h3>Course Assessment</h3><p class="section-note">Select one answer for each question.</p><form id="quizForm">${(c.questions||[]).map((q,i)=>`<div class="question"><strong>${i+1}. ${esc(q.question)}</strong>${['A','B','C','D'].map(o=>`<label class="option"><input type="radio" name="q${q.id}" value="${o}" required> ${o}. ${esc(q['option'+o])}</label>`).join('')}</div>`).join('')}<button class="btn" type="submit">Complete Course & Calculate Score</button></form><div id="result"></div></section>`;
+ window.currentCourse=c;
+}
+function renderDays(modules,done,id){
+ return modules.map((m,i)=>`<div class="module"><div class="module-head"><span><span class="daytag">DAY ${i+1}</span> ${esc(m.title)}</span><span>${esc(m.minutes)} min</span></div><p>${esc(m.theory)}</p><button class="day-btn ${done.includes(i+1)?'done':''}" onclick="completeDay(${id},${i+1},this)">${done.includes(i+1)?'✓ Day Completed':'Mark Day Complete'}</button></div>`).join('');
+}
+async function completeDay(id,day,btn){
+ try{const d=await apiJson('/courses/'+id+'/progress',{method:'POST',headers:{...auth(),'Content-Type':'application/json'},body:JSON.stringify({day})});btn.classList.add('done');btn.textContent='✓ Day Completed'; if(d.allDaysCompleted) openCourse(id);}catch(e){alert(e.message)}
+}
+function startQuiz(){document.getElementById('quiz').classList.add('show');document.getElementById('quiz').scrollIntoView({behavior:'smooth'});}
+document.addEventListener('submit',async e=>{
+ if(e.target.id!=='quizForm')return;e.preventDefault();const answers={};new FormData(e.target).forEach((v,k)=>answers[k.substring(1)]=v);
+ try{const d=await apiJson('/courses/'+window.currentCourse.id+'/complete',{method:'POST',headers:{...auth(),'Content-Type':'application/json'},body:JSON.stringify(answers)});
+ const result=document.getElementById('result');result.className='result '+(d.passed?'pass':'fail');
+ result.innerHTML=d.passed?`<i class="fa-solid fa-circle-check" style="font-size:32px"></i><h2>Congratulations — ${d.score}%</h2><p>You passed with ${d.correctAnswers}/${d.totalQuestions} correct answers.</p><p><b>The administrator can now issue your professional certificate to ${esc(user()?.email||'your registered email')}.</b></p><div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button class="btn" onclick="backToCourses()">Explore More Courses</button><a class="btn secondary" href="certificates.html"><i class="fa-solid fa-certificate"></i> My Certificates</a></div>`:`<i class="fa-solid fa-rotate-right" style="font-size:30px"></i><h2>${d.score}%</h2><p>${esc(d.message)}</p>`;
+ }catch(err){document.getElementById('result').className='result fail';document.getElementById('result').textContent=err.message}
+});
+function backToCourses(){detailView.className='course-wrap detail';detailView.innerHTML='';listView.style.display='block';loadCourses();}
+async function loadReceipts(){try{const d=await apiJson('/payments/my',{headers:auth()});const el=document.getElementById('receipts');const rows=d.filter(x=>x.status==='PAID'&&x.invoiceAvailable);if(!rows.length){el.innerHTML='<div class="empty" style="padding:20px">No paid advanced course receipts yet.</div>';return}el.innerHTML=rows.map(x=>`<div style="display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid #edf1f6"><div><b style="color:#173a63">${esc(x.courseName||'Advanced Course')}</b><div style="font-size:11px;color:#74869a">LKR ${esc(x.amount)} · ${esc(x.orderId)}</div></div><button class="btn secondary" onclick="downloadReceipt(${x.id})"><i class="fa-solid fa-file-pdf"></i> Download PDF</button></div>`).join('')}catch(e){document.getElementById('receipts').innerHTML='<div class="empty">'+esc(e.message)+'</div>'}}
+async function downloadReceipt(id){try{const r=await fetch(API+'/payments/'+id+'/invoice',{headers:auth()});if(!r.ok)throw new Error('Receipt could not be downloaded.');const b=await r.blob();const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='JOBSPHERE-Payment-Receipt.pdf';a.click();URL.revokeObjectURL(u)}catch(e){alert(e.message)}}
+loadCourses();loadReceipts();
+</script>
+<script>document.write(dashboardFooter());</script></main></body></html>

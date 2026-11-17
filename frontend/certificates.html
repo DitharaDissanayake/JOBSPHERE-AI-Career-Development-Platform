@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Certificates | JOBSPHERE</title>
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        :root{
+            --blue:#1769e0;
+            --blue-dark:#0b2c52;
+            --blue-light:#eaf3ff;
+            --bg:#f5f9ff;
+            --border:#dfe9f5;
+            --muted:#718096;
+            --shadow:0 14px 35px rgba(23,71,125,.08);
+        }
+        body{background:var(--bg);}
+        .cert-page{max-width:1180px;margin:0 auto;padding:8px 0 50px;}
+        .cert-hero{
+            position:relative;overflow:hidden;border-radius:24px;
+            padding:30px 34px;margin-bottom:24px;color:#fff;
+            background:linear-gradient(135deg,#0b2c52 0%,#1769e0 55%,#168cff 100%);
+            box-shadow:0 18px 45px rgba(23,105,224,.18);
+        }
+        .cert-hero:before,.cert-hero:after{
+            content:"";position:absolute;border-radius:50%;
+            border:1px solid rgba(255,255,255,.13);
+        }
+        .cert-hero:before{width:260px;height:260px;right:-100px;top:-145px;}
+        .cert-hero:after{width:180px;height:180px;left:-85px;bottom:-120px;}
+        .cert-hero-content{position:relative;z-index:2;max-width:760px;}
+        .eyebrow{font-size:10px;font-weight:900;letter-spacing:1.5px;opacity:.85;}
+        .cert-hero h2{margin:8px 0;font-size:31px;}
+        .cert-hero p{margin:0;line-height:1.7;color:#dbeafe;font-size:13px;}
+        .cert-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;}
+        .cert-card{
+            background:#fff;border:1px solid var(--border);border-radius:20px;
+            padding:20px;box-shadow:var(--shadow);
+        }
+        .cert-preview{
+            position:relative;overflow:hidden;min-height:190px;border-radius:15px;
+            background:linear-gradient(145deg,#f8fbff,#eaf3ff);
+            border:1px solid #cfe0f3;
+            display:flex;align-items:center;justify-content:center;text-align:center;
+        }
+        .cert-preview:before{
+            content:"";position:absolute;width:210px;height:210px;border-radius:50%;
+            border:5px solid rgba(23,105,224,.12);right:-90px;top:-105px;
+        }
+        .cert-preview:after{
+            content:"";position:absolute;width:190px;height:190px;border-radius:50%;
+            border:5px solid rgba(22,140,255,.10);left:-105px;bottom:-110px;
+        }
+        .cert-inner{position:relative;z-index:2;padding:20px;width:100%;}
+        .mini-brand{font-size:9px;font-weight:900;letter-spacing:1.8px;color:var(--blue-dark);}
+        .mini-title{font-family:Georgia,serif;font-style:italic;font-size:27px;color:#0b213d;margin:7px 0 1px;}
+        .mini-sub{font-size:8px;letter-spacing:2px;font-weight:900;color:var(--blue);}
+        .mini-present{font-size:8px;color:#75879b;margin-top:17px;}
+        .mini-name{font-family:Georgia,serif;font-style:italic;font-size:18px;color:var(--blue);margin-top:5px;}
+        .mini-course{font-size:9px;font-weight:800;color:#0b2c52;margin-top:7px;}
+        .mini-score{font-size:8px;color:#5f748c;margin-top:5px;}
+        .cert-info{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:17px 0;}
+        .info-box{background:#f8fbff;border:1px solid #e6eef7;border-radius:12px;padding:10px;}
+        .info-label{display:block;font-size:9px;color:#8a9aab;text-transform:uppercase;letter-spacing:.6px;font-weight:800;}
+        .info-value{display:block;margin-top:3px;font-size:11px;color:var(--blue-dark);font-weight:800;word-break:break-word;}
+        .cert-actions{display:flex;gap:9px;flex-wrap:wrap;}
+        .cert-btn{
+            border:0;border-radius:10px;padding:10px 13px;font-size:11px;font-weight:900;
+            cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:7px;
+        }
+        .cert-btn.primary{background:linear-gradient(135deg,#075fc7,#168cff);color:#fff;}
+        .cert-btn.secondary{background:#edf5ff;color:var(--blue);border:1px solid #d7e7fa;}
+        .empty{
+            background:#fff;border:1px solid var(--border);border-radius:20px;padding:55px 20px;
+            text-align:center;box-shadow:var(--shadow);color:var(--muted);
+        }
+        .empty i{font-size:40px;color:#9db9d8;margin-bottom:12px;}
+        .empty h3{color:var(--blue-dark);margin:5px 0 8px;}
+        .loading{text-align:center;padding:50px;color:var(--muted);}
+        @media(max-width:800px){.cert-grid{grid-template-columns:1fr;}}
+    </style>
+</head>
+<body>
+<script src="assets/js/app.js"></script>
+<script>
+document.write(shell('Certificates','certificates'));
+</script>
+
+<section class="cert-page">
+    <div class="cert-hero">
+        <div class="cert-hero-content">
+            <div class="eyebrow">LEARNING ACHIEVEMENTS</div>
+            <h2>My JOBSPHERE Certificates</h2>
+            <p>
+                View professional certificates issued by the JOBSPHERE administration.
+                Certificates are generated as PDF documents using the platform's official
+                blue and navy visual identity.
+            </p>
+        </div>
+    </div>
+
+    <div id="certificates">
+        <div class="loading">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+            Loading your certificates...
+        </div>
+    </div>
+</section>
+
+<script>
+async function loadCertificates(){
+    const box=document.getElementById('certificates');
+
+    try{
+        requireUser();
+
+        const data=await apiJson('/courses/my-certificates',{headers:auth()});
+
+        if(!Array.isArray(data) || !data.length){
+            box.innerHTML=`
+                <div class="empty">
+                    <i class="fa-solid fa-certificate"></i>
+                    <h3>No JOBSPHERE certificates yet</h3>
+                    <p>Complete a course with a score of 70% or higher and wait for the administrator to issue your certificate.</p>
+                    <a class="cert-btn primary" href="courses.html">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        Explore Courses
+                    </a>
+                </div>`;
+            return;
+        }
+
+        box.innerHTML=`
+            <div class="cert-grid">
+                ${data.map(c=>`
+                    <article class="cert-card">
+                        <div class="cert-preview">
+                            <div class="cert-inner">
+                                <div class="mini-brand">JOBSPHERE</div>
+                                <div class="mini-title">Certificate</div>
+                                <div class="mini-sub">OF COMPLETION</div>
+                                <div class="mini-present">This certificate is proudly presented to</div>
+                                <div class="mini-name">${esc(user()?.fullName||'Learner')}</div>
+                                <div class="mini-course">${esc(c.courseName||'Professional Learning Course')}</div>
+                                <div class="mini-score">Assessment Score: ${esc(c.score??'-')}%</div>
+                            </div>
+                        </div>
+
+                        <div class="cert-info">
+                            <div class="info-box">
+                                <span class="info-label">Course</span>
+                                <span class="info-value">${esc(c.courseName||'—')}</span>
+                            </div>
+                            <div class="info-box">
+                                <span class="info-label">Score</span>
+                                <span class="info-value">${esc(c.score??'—')}%</span>
+                            </div>
+                            <div class="info-box">
+                                <span class="info-label">Certificate No.</span>
+                                <span class="info-value">${esc(c.certificateNumber||'—')}</span>
+                            </div>
+                            <div class="info-box">
+                                <span class="info-label">Issued</span>
+                                <span class="info-value">${esc(String(c.issuedAt||'').replace('T',' ').slice(0,10)||'—')}</span>
+                            </div>
+                        </div>
+
+                        <div class="cert-actions">
+                            <button class="cert-btn primary" onclick="viewCertificate(${Number(c.id)})">
+                                <i class="fa-solid fa-file-pdf"></i>
+                                View Certificate
+                            </button>
+                            <button class="cert-btn secondary" onclick="downloadCertificate(${Number(c.id)})">
+                                <i class="fa-solid fa-download"></i>
+                                Download PDF
+                            </button>
+                        </div>
+                    </article>
+                `).join('')}
+            </div>`;
+    }catch(e){
+        box.innerHTML=`
+            <div class="empty">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <h3>Unable to load certificates</h3>
+                <p>${esc(e.message||'Please check the backend connection.')}</p>
+            </div>`;
+    }
+}
+
+async function getCertificateBlob(id){
+    const r=await fetch(API+'/courses/my-certificates/'+encodeURIComponent(id),{headers:auth()});
+    if(!r.ok) throw new Error('Certificate could not be opened.');
+    return await r.blob();
+}
+
+async function viewCertificate(id){
+    try{
+        const b=await getCertificateBlob(id);
+        const u=URL.createObjectURL(b);
+        window.open(u,'_blank','noopener');
+        setTimeout(()=>URL.revokeObjectURL(u),60000);
+    }catch(e){alert(e.message);}
+}
+
+async function downloadCertificate(id){
+    try{
+        const b=await getCertificateBlob(id);
+        const u=URL.createObjectURL(b);
+        const a=document.createElement('a');
+        a.href=u;
+        a.download='JOBSPHERE-Certificate.pdf';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(()=>URL.revokeObjectURL(u),1000);
+    }catch(e){alert(e.message);}
+}
+
+loadCertificates();
+</script>
+
+<script>
+document.write(closeShell());
+</script>
+</body>
+</html>

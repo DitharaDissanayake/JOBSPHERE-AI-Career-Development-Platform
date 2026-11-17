@@ -1,0 +1,2700 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dashboard | JOBSPHERE</title>
+
+    <link rel="stylesheet" href="assets/css/app.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+
+        /* =========================================================
+           JOBSPHERE PREMIUM USER DASHBOARD
+           ========================================================= */
+
+        :root {
+            --blue: #1769e0;
+            --blue-dark: #0b4fb3;
+            --blue-light: #eaf3ff;
+            --blue-soft: #f5f9ff;
+
+            --navy: #08203d;
+            --text: #172b4d;
+            --muted: #718096;
+
+            --white: #ffffff;
+            --border: #e3ebf5;
+
+            --green: #16a66a;
+            --orange: #f59e0b;
+            --purple: #7357e8;
+
+            --shadow: 0 10px 35px rgba(20, 75, 145, .08);
+            --shadow-hover: 0 18px 45px rgba(20, 75, 145, .14);
+
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+        }
+
+        body {
+            background: #f5f8fc;
+            color: var(--text);
+            font-family:
+                Inter,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .app {
+            flex: 1;
+        }
+
+        /* =========================================================
+           CONTENT
+           ========================================================= */
+
+        .dashboard-content {
+            width: min(1320px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 28px 0 60px;
+        }
+
+        /* =========================================================
+           TOP WELCOME AREA
+           ========================================================= */
+
+        .dashboard-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 25px;
+            margin-bottom: 24px;
+        }
+
+        .welcome-small {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--blue);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .welcome-small i {
+            font-size: 13px;
+        }
+
+        .dashboard-top h1 {
+            margin: 0;
+            color: var(--navy);
+            font-size: 30px;
+            line-height: 1.25;
+            letter-spacing: -.7px;
+        }
+
+        .dashboard-top p {
+            margin: 8px 0 0;
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .top-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 10px 15px;
+            box-shadow: 0 5px 20px rgba(20,75,145,.04);
+        }
+
+        .profile-avatar {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1769e0, #4d9bff);
+            color: #fff;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .top-profile strong {
+            display: block;
+            color: var(--navy);
+            font-size: 13px;
+        }
+
+        .top-profile span {
+            display: block;
+            margin-top: 2px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           HERO
+           ========================================================= */
+
+        .career-hero {
+            position: relative;
+            overflow: hidden;
+
+            min-height: 260px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 36px;
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    #ffffff 0%,
+                    #f3f8ff 58%,
+                    #eaf3ff 100%
+                );
+
+            border: 1px solid #dce8f6;
+
+            box-shadow: var(--shadow);
+        }
+
+        .career-hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 360px;
+            height: 360px;
+
+            right: -130px;
+            top: -180px;
+
+            border-radius: 50%;
+
+            background: rgba(23,105,224,.07);
+        }
+
+        .career-hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            right: 130px;
+            bottom: -170px;
+
+            border-radius: 50%;
+
+            background: rgba(66,165,255,.08);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+
+            width: 70%;
+            max-width: 790px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            padding: 7px 11px;
+
+            background: #e7f1ff;
+            border: 1px solid #d4e7ff;
+
+            color: var(--blue);
+
+            border-radius: 999px;
+
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: .8px;
+        }
+
+        .hero-content h2 {
+            margin: 17px 0 10px;
+
+            color: var(--navy);
+
+            font-size: 29px;
+            line-height: 1.3;
+            letter-spacing: -.6px;
+        }
+
+        .hero-content p {
+            max-width: 700px;
+
+            margin: 0;
+
+            color: #65758b;
+
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            margin-top: 22px;
+        }
+
+        .dashboard-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            min-height: 42px;
+
+            padding: 0 17px;
+
+            border-radius: 11px;
+
+            font-size: 12px;
+            font-weight: 750;
+
+            transition: .2s ease;
+        }
+
+        .dashboard-btn.primary {
+            color: #fff;
+            background: var(--blue);
+            box-shadow: 0 8px 20px rgba(23,105,224,.20);
+        }
+
+        .dashboard-btn.primary:hover {
+            background: var(--blue-dark);
+            transform: translateY(-2px);
+        }
+
+        .dashboard-btn.secondary {
+            color: var(--blue);
+            background: #fff;
+            border: 1px solid #cfe0f5;
+        }
+
+        .dashboard-btn.secondary:hover {
+            border-color: var(--blue);
+            transform: translateY(-2px);
+        }
+
+        /* =========================================================
+           HERO SCORE
+           ========================================================= */
+
+        .hero-score {
+            position: absolute;
+
+            z-index: 3;
+
+            right: 35px;
+
+            width: 190px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            padding: 20px;
+
+            background: rgba(255,255,255,.84);
+
+            border: 1px solid rgba(210,225,242,.95);
+
+            border-radius: 20px;
+
+            backdrop-filter: blur(10px);
+
+            box-shadow: 0 12px 35px rgba(20,75,145,.08);
+        }
+
+        .score-ring {
+            width: 92px;
+            height: 92px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                conic-gradient(
+                    var(--blue) var(--score, 82%),
+                    #e6edf5 var(--score, 82%)
+                );
+
+            position: relative;
+        }
+
+        .score-ring::before {
+            content: "";
+
+            position: absolute;
+
+            width: 70px;
+            height: 70px;
+
+            border-radius: 50%;
+
+            background: #fff;
+        }
+
+        .score-number {
+            position: relative;
+            z-index: 2;
+
+            color: var(--navy);
+            font-size: 20px;
+            font-weight: 850;
+        }
+
+        .score-label {
+            margin-top: 11px;
+
+            color: var(--navy);
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .score-description {
+            margin-top: 4px;
+
+            color: var(--muted);
+            font-size: 9px;
+
+            text-align: center;
+        }
+
+        /* =========================================================
+           STAT CARDS
+           ========================================================= */
+
+        .stats-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 16px;
+
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            padding: 19px;
+
+            box-shadow: 0 5px 20px rgba(20,75,145,.035);
+
+            transition: .2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-title {
+            color: var(--muted);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .stat-icon {
+            width: 35px;
+            height: 35px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            color: var(--blue);
+            background: var(--blue-light);
+
+            font-size: 13px;
+        }
+
+        .stat-card:nth-child(2) .stat-icon {
+            color: var(--purple);
+            background: #f0edff;
+        }
+
+        .stat-card:nth-child(3) .stat-icon {
+            color: var(--green);
+            background: #e9faf3;
+        }
+
+        .stat-card:nth-child(4) .stat-icon {
+            color: var(--orange);
+            background: #fff6df;
+        }
+
+        .stat-value {
+            margin-top: 14px;
+
+            color: var(--navy);
+
+            font-size: 25px;
+            line-height: 1;
+
+            font-weight: 850;
+        }
+
+        .stat-description {
+            margin-top: 7px;
+
+            color: #98a6b8;
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           MAIN GRID
+           ========================================================= */
+
+        .main-grid {
+            display: grid;
+
+            grid-template-columns: 1.35fr .85fr;
+
+            gap: 20px;
+
+            margin-top: 20px;
+        }
+
+        .dashboard-card {
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            padding: 23px;
+
+            box-shadow: 0 5px 20px rgba(20,75,145,.035);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            margin: 0;
+
+            color: var(--navy);
+
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .card-subtitle {
+            margin: 5px 0 0;
+
+            color: var(--muted);
+
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .view-link {
+            color: var(--blue);
+
+            font-size: 10px;
+            font-weight: 750;
+
+            white-space: nowrap;
+        }
+
+        /* =========================================================
+           STRENGTHS
+           ========================================================= */
+
+        .strength-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .strength-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+
+            padding: 8px 11px;
+
+            border-radius: 999px;
+
+            color: #1769e0;
+            background: #edf5ff;
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .strength-pill i {
+            font-size: 8px;
+        }
+
+        .focus-title {
+            margin: 23px 0 8px;
+
+            color: var(--navy);
+
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .focus-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 10px;
+
+            padding: 11px 0;
+
+            border-bottom: 1px solid #edf1f6;
+
+            color: #56677c;
+
+            font-size: 11px;
+        }
+
+        .focus-item:last-child {
+            border-bottom: 0;
+        }
+
+        .focus-label {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .focus-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--blue);
+        }
+
+        .focus-badge {
+            padding: 4px 7px;
+
+            border-radius: 999px;
+
+            color: var(--blue);
+
+            background: #edf5ff;
+
+            font-size: 8px;
+            font-weight: 800;
+        }
+
+        /* =========================================================
+           NEXT ACTIONS
+           ========================================================= */
+
+        .action-list {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .next-action {
+            display: flex;
+            align-items: flex-start;
+
+            gap: 12px;
+
+            padding: 12px 0;
+
+            border-bottom: 1px solid #edf1f6;
+        }
+
+        .next-action:last-child {
+            border-bottom: 0;
+        }
+
+        .action-number {
+            width: 29px;
+            height: 29px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background: var(--blue-light);
+            color: var(--blue);
+
+            font-size: 10px;
+            font-weight: 850;
+        }
+
+        .action-content strong {
+            display: block;
+
+            color: var(--navy);
+
+            font-size: 11px;
+        }
+
+        .action-content span {
+            display: block;
+
+            margin-top: 3px;
+
+            color: var(--muted);
+
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        /* =========================================================
+           AI INSIGHT
+           ========================================================= */
+
+        .ai-insight {
+            position: relative;
+
+            overflow: hidden;
+
+            margin-top: 20px;
+
+            padding: 25px;
+
+            border-radius: var(--radius);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #0c55b9 0%,
+                    #1769e0 55%,
+                    #3188ed 100%
+                );
+
+            color: #fff;
+
+            box-shadow: 0 15px 35px rgba(23,105,224,.18);
+        }
+
+        .ai-insight::after {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            right: -100px;
+            top: -100px;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,.08);
+        }
+
+        .ai-insight-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .ai-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 1px;
+
+            opacity: .85;
+        }
+
+        .ai-insight h2 {
+            margin: 11px 0 7px;
+
+            font-size: 18px;
+        }
+
+        .ai-insight p {
+            max-width: 850px;
+
+            margin: 0;
+
+            color: rgba(255,255,255,.84);
+
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        .ai-insight .ai-button {
+            display: inline-flex;
+
+            align-items: center;
+            gap: 7px;
+
+            margin-top: 17px;
+
+            padding: 9px 13px;
+
+            border-radius: 9px;
+
+            background: #fff;
+            color: var(--blue);
+
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        /* =========================================================
+           CAREER TOOLS
+           ========================================================= */
+
+        .tools-section {
+            margin-top: 20px;
+        }
+
+        .tools-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 13px;
+        }
+
+        .tool-card {
+            position: relative;
+
+            display: flex;
+            align-items: flex-start;
+
+            gap: 13px;
+
+            min-height: 100px;
+
+            padding: 17px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 15px;
+
+            background: #fff;
+
+            transition: .2s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-4px);
+
+            border-color: #bcd7f7;
+
+            box-shadow: var(--shadow-hover);
+        }
+
+        .tool-icon {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            color: var(--blue);
+            background: var(--blue-light);
+
+            font-size: 15px;
+        }
+
+        .tool-card:nth-child(2) .tool-icon {
+            color: #7357e8;
+            background: #f0edff;
+        }
+
+        .tool-card:nth-child(3) .tool-icon {
+            color: #16a66a;
+            background: #e9faf3;
+        }
+
+        .tool-card:nth-child(4) .tool-icon {
+            color: #f59e0b;
+            background: #fff6df;
+        }
+
+        .tool-card:nth-child(5) .tool-icon {
+            color: #ed5a7a;
+            background: #fff0f3;
+        }
+
+        .tool-card:nth-child(6) .tool-icon {
+            color: #2878d8;
+            background: #edf5ff;
+        }
+
+        .tool-card h3 {
+            margin: 1px 0 5px;
+
+            color: var(--navy);
+
+            font-size: 12px;
+        }
+
+        .tool-card p {
+            margin: 0;
+
+            color: var(--muted);
+
+            font-size: 9px;
+            line-height: 1.55;
+        }
+
+        .tool-arrow {
+            position: absolute;
+
+            right: 14px;
+            top: 15px;
+
+            color: #aab8c8;
+
+            font-size: 9px;
+        }
+
+        /* =========================================================
+           PROFILE PROGRESS
+           ========================================================= */
+
+        .profile-progress-card {
+            margin-top: 20px;
+
+            background: #fff;
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            padding: 22px;
+        }
+
+        .progress-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 15px;
+        }
+
+        .progress-top strong {
+            color: var(--navy);
+
+            font-size: 13px;
+        }
+
+        .progress-percent {
+            color: var(--blue);
+
+            font-size: 13px;
+            font-weight: 850;
+        }
+
+        .progress-bar {
+            height: 8px;
+
+            margin-top: 13px;
+
+            overflow: hidden;
+
+            border-radius: 999px;
+
+            background: #eaf0f7;
+        }
+
+        .progress-fill {
+            height: 100%;
+
+            border-radius: inherit;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #1769e0,
+                    #4c9aff
+                );
+
+            transition: width .5s ease;
+        }
+
+        .progress-note {
+            margin-top: 8px;
+
+            color: var(--muted);
+
+            font-size: 9px;
+        }
+
+        /* =========================================================
+           NEW USER
+           ========================================================= */
+
+        .empty-dashboard {
+            padding: 55px 30px;
+
+            text-align: center;
+
+            background: #fff;
+
+            border: 1px solid var(--border);
+
+            border-radius: 24px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .empty-icon {
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 20px;
+
+            color: var(--blue);
+            background: var(--blue-light);
+
+            font-size: 27px;
+        }
+
+        .empty-dashboard h2 {
+            margin: 0;
+
+            color: var(--navy);
+
+            font-size: 25px;
+        }
+
+        .empty-dashboard p {
+            max-width: 600px;
+
+            margin: 10px auto 22px;
+
+            color: var(--muted);
+
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        /* =========================================================
+           FOOTER
+           ========================================================= */
+
+        .jobsphere-footer {
+            width: 100%;
+
+            margin-top: 20px;
+
+            background: #071a33;
+
+            color: #fff;
+        }
+
+        .footer-container {
+            width: min(1200px, calc(100% - 40px));
+
+            margin: auto;
+
+            padding: 45px 0;
+
+            display: grid;
+
+            grid-template-columns:
+                2fr 1fr 1fr 1fr;
+
+            gap: 40px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            color: #fff;
+
+            font-size: 21px;
+            font-weight: 800;
+        }
+
+        .footer-logo span span {
+            color: #42a5ff;
+        }
+
+        .footer-logo-icon {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: var(--blue);
+        }
+
+        .footer-brand p {
+            max-width: 370px;
+
+            margin: 15px 0 0;
+
+            color: #8fa4ba;
+
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 8px;
+
+            margin-top: 17px;
+        }
+
+        .footer-social a {
+            width: 33px;
+            height: 33px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            color: #b8c8d9;
+
+            background: rgba(255,255,255,.07);
+
+            transition: .2s ease;
+        }
+
+        .footer-social a:hover {
+            color: #fff;
+            background: var(--blue);
+            transform: translateY(-2px);
+        }
+
+        .footer-column {
+            display: flex;
+            flex-direction: column;
+
+            gap: 10px;
+        }
+
+        .footer-column h3 {
+            margin: 0 0 7px;
+
+            color: #fff;
+
+            font-size: 13px;
+        }
+
+        .footer-column a {
+            color: #8fa4ba;
+
+            font-size: 11px;
+
+            transition: .2s ease;
+        }
+
+        .footer-column a:hover {
+            color: #42a5ff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,.1);
+        }
+
+        .footer-bottom-inner {
+            width: min(1200px, calc(100% - 40px));
+
+            min-height: 65px;
+
+            margin: auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+
+            color: #8fa4ba;
+
+            font-size: 11px;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-legal a {
+            color: #8fa4ba;
+
+            font-size: 11px;
+        }
+
+        .footer-legal span {
+            color: #50667d;
+        }
+
+        /* =========================================================
+           ERROR
+           ========================================================= */
+
+        .dashboard-error {
+            padding: 20px;
+
+            border-radius: 16px;
+
+            color: #b42318;
+
+            background: #fff1f0;
+
+            border: 1px solid #ffd0cc;
+
+            font-size: 12px;
+        }
+
+        /* =========================================================
+           RESPONSIVE
+           ========================================================= */
+
+        @media (max-width: 1100px) {
+
+            .hero-score {
+                right: 22px;
+            }
+
+            .hero-content {
+                width: 68%;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: 1.5fr 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 900px) {
+
+            .dashboard-top {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-score {
+                display: none;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .dashboard-content {
+                width: calc(100% - 28px);
+                padding-top: 20px;
+            }
+
+            .dashboard-top h1 {
+                font-size: 24px;
+            }
+
+            .career-hero {
+                padding: 25px 21px;
+            }
+
+            .hero-content h2 {
+                font-size: 23px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                width: calc(100% - 35px);
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .footer-bottom-inner {
+                width: calc(100% - 35px);
+
+                padding: 18px 0;
+
+                flex-direction: column;
+
+                text-align: center;
+            }
+
+            .footer-legal {
+                justify-content: center;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="page-wrapper">
+
+    <div class="app" id="app"></div>
+
+</div>
+
+<script src="assets/js/app.js"></script>
+
+<script>
+
+    /* =========================================================
+       LOGIN
+       ========================================================= */
+
+    const u = requireUser();
+
+    /* =========================================================
+       APPLICATION SHELL
+       ========================================================= */
+
+    app.innerHTML =
+        shell(
+            'Personalized Dashboard',
+            'dashboard'
+        )
+        +
+        `<main id="content" class="dashboard-content"></main>`
+        +
+        closeShell();
+
+    const content = document.getElementById('content');
+
+    /* =========================================================
+       DASHBOARD FOOTER
+       ========================================================= */
+
+    function dashboardFooter() {
+
+        return `
+
+        <footer class="jobsphere-footer">
+
+            <div class="footer-container">
+
+                <div class="footer-brand">
+
+                    <div class="footer-logo">
+
+                        <span class="footer-logo-icon">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </span>
+
+                        <span>
+                            JOB<span>SPHERE</span>
+                        </span>
+
+                    </div>
+
+                    <p>
+                        AI-powered career guidance and professional
+                        development platform helping you discover
+                        opportunities, build your skills and achieve
+                        your career goals.
+                    </p>
+
+                    <div class="footer-social">
+
+                        <a href="#" aria-label="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+
+                        <a href="#" aria-label="GitHub">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+
+                        <a href="#" aria-label="Facebook">
+                            <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+
+                        <a href="#" aria-label="Instagram">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Platform</h3>
+
+                    <a href="dashboard.html">
+                        Dashboard
+                    </a>
+
+                    <a href="profile.html">
+                        My Profile
+                    </a>
+
+                    <a href="career-advisor.html">
+                        AI Career Advisor
+                    </a>
+
+                    <a href="resume-analyzer.html">
+                        Resume Analyzer
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Career Tools</h3>
+
+                    <a href="career-advisor.html">
+                        Career Guidance
+                    </a>
+
+                    <a href="resume-analyzer.html">
+                        Resume Analysis
+                    </a>
+
+                    <a href="resume-builder.html">
+                        Resume Builder
+                    </a>
+
+                    <a href="courses.html">
+                        Professional Courses
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Support</h3>
+
+                    <a href="contact.html">
+                        Contact Us
+                    </a>
+
+                    <a href="contact.html">
+                        Help & Support
+                    </a>
+
+                    <a href="contact.html">
+                        Send Feedback
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <div class="footer-bottom-inner">
+
+                    <p>
+                        © 2026 JOBSPHERE. All rights reserved.
+                    </p>
+
+                    <div class="footer-legal">
+
+                        <a href="#">
+                            Privacy Policy
+                        </a>
+
+                        <span>|</span>
+
+                        <a href="#">
+                            Terms & Conditions
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </footer>
+
+        `;
+    }
+
+    document
+        .querySelector('.page-wrapper')
+        .insertAdjacentHTML(
+            'beforeend',
+            dashboardFooter()
+        );
+
+
+    /* =========================================================
+       LOAD DASHBOARD
+       ========================================================= */
+
+    async function load() {
+
+        try {
+
+            const j =
+                await apiJson(
+                    '/dashboard',
+                    {
+                        headers: auth()
+                    }
+                );
+
+
+            /* =====================================================
+               NEW USER
+               ===================================================== */
+
+            if (!j.hasProfile) {
+
+                content.innerHTML = `
+
+                    <div class="dashboard-top">
+
+                        <div>
+
+                            <div class="welcome-small">
+                                <i class="fa-solid fa-sparkles"></i>
+                                Welcome to JOBSPHERE
+                            </div>
+
+                            <h1>
+                                Your career journey starts here
+                            </h1>
+
+                            <p>
+                                Create your professional profile to unlock
+                                personalised career recommendations.
+                            </p>
+
+                        </div>
+
+                        <div class="top-profile">
+
+                            <div class="profile-avatar">
+                                ${initials(u.fullName)}
+                            </div>
+
+                            <div>
+                                <strong>${esc(u.fullName)}</strong>
+                                <span>New JOBSPHERE member</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <section class="empty-dashboard">
+
+                        <div class="empty-icon">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                        </div>
+
+                        <h2>
+                            Build your career profile
+                        </h2>
+
+                        <p>
+                            Add your education, skills, experience, projects
+                            and career goals. JOBSPHERE will use this
+                            information to generate personalised career
+                            insights and recommendations for you.
+                        </p>
+
+                        <a
+                            href="profile.html"
+                            class="dashboard-btn primary">
+
+                            <i class="fa-solid fa-user-pen"></i>
+
+                            Build My Profile
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </section>
+
+
+                    <div class="stats-grid">
+
+                        ${newUserStat(
+                            'Career Match',
+                            '—',
+                            'Complete your profile first',
+                            'fa-bullseye'
+                        )}
+
+                        ${newUserStat(
+                            'AI Readiness',
+                            '—',
+                            'Available after analysis',
+                            'fa-brain'
+                        )}
+
+                        ${newUserStat(
+                            'Profile Strength',
+                            '0%',
+                            'Your profile is not started',
+                            'fa-user-check'
+                        )}
+
+                        ${newUserStat(
+                            'Growth Potential',
+                            '—',
+                            'AI analysis required',
+                            'fa-chart-line'
+                        )}
+
+                    </div>
+
+                `;
+
+                return;
+            }
+
+
+            /* =====================================================
+               EXISTING USER DATA
+               ===================================================== */
+
+            const d =
+                prettyJson(
+                    j.dashboardInsight
+                );
+
+            const c =
+                prettyJson(
+                    j.latestCareerAnalysis
+                );
+
+            const profile =
+                j.profile || {};
+
+            const completion =
+                j.profile
+                    ? profileComplete(j.profile)
+                    : 0;
+
+            const match =
+                c &&
+                c.overallMatchScore != null
+                    ? c.overallMatchScore
+                    : null;
+
+            const readiness =
+                d &&
+                d.readiness != null
+                    ? d.readiness
+                    : null;
+
+
+            /* =====================================================
+               DISPLAY NAME / CAREER
+               ===================================================== */
+
+            const careerDirection =
+                d.careerDirection ||
+                d.targetRole ||
+                d.recommendedCareer ||
+                c.recommendedCareer ||
+                profile.careerGoal ||
+                'Your personalised career direction';
+
+            const headline =
+                d.headline ||
+                `Welcome back, ${u.fullName} 👋`;
+
+            const summary =
+                d.summary ||
+                'Your profile has been analysed. Continue building your skills and exploring personalised career opportunities.';
+
+
+            /* =====================================================
+               HERO
+               ===================================================== */
+
+            content.innerHTML = `
+
+                <div class="dashboard-top">
+
+                    <div>
+
+                        <div class="welcome-small">
+                            <i class="fa-solid fa-sparkles"></i>
+                            AI Personalised Career Dashboard
+                        </div>
+
+                        <h1>
+                            ${esc(u.fullName)}
+                        </h1>
+
+                        <p>
+                            Your personalised career overview and development workspace.
+                        </p>
+
+                    </div>
+
+
+                    <div class="top-profile">
+
+                        <div class="profile-avatar">
+                            ${initials(u.fullName)}
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                ${esc(u.fullName)}
+                            </strong>
+
+                            <span>
+                                ${esc(
+                                    profile.headline ||
+                                    profile.careerInterest ||
+                                    'Career Explorer'
+                                )}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <section class="career-hero">
+
+                    <div class="hero-content">
+
+                        <div class="hero-badge">
+
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                            AI-POWERED INSIGHT
+
+                        </div>
+
+
+                        <h2>
+                            ${esc(headline)}
+                        </h2>
+
+
+                        <p>
+                            ${esc(summary)}
+                        </p>
+
+
+                        <div class="hero-actions">
+
+                            <a
+                                href="career-advisor.html"
+                                class="dashboard-btn primary">
+
+                                <i class="fa-solid fa-compass"></i>
+
+                                Open AI Career Advisor
+
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+
+                            <a
+                                href="profile.html"
+                                class="dashboard-btn secondary">
+
+                                <i class="fa-solid fa-user-pen"></i>
+
+                                Edit My Profile
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    ${
+                        match != null
+                            ? `
+                                <div
+                                    class="hero-score"
+                                    style="--score:${Math.min(
+                                        100,
+                                        Math.max(0, Number(match))
+                                    )}%">
+
+                                    <div class="score-ring">
+
+                                        <span class="score-number">
+                                            ${esc(match)}%
+                                        </span>
+
+                                    </div>
+
+                                    <div class="score-label">
+                                        Career Match
+                                    </div>
+
+                                    <div class="score-description">
+                                        Based on your latest AI career analysis
+                                    </div>
+
+                                </div>
+                            `
+                            : ''
+                    }
+
+                </section>
+
+
+                <!-- =================================================
+                     STATISTICS
+                     ================================================= -->
+
+                <div class="stats-grid">
+
+
+                    ${statCard(
+                        'Profile Strength',
+                        completion + '%',
+                        'Based on your saved profile',
+                        'fa-user-check',
+                        completion
+                    )}
+
+
+                    ${statCard(
+                        'Career Match',
+                        match != null ? match + '%' : '—',
+                        match != null
+                            ? 'Latest saved career analysis'
+                            : 'Run your career analysis',
+                        'fa-bullseye'
+                    )}
+
+
+                    ${statCard(
+                        'AI Readiness',
+                        readiness != null ? readiness + '%' : '—',
+                        'Ollama profile assessment',
+                        'fa-brain'
+                    )}
+
+
+                    ${statCard(
+                        'Career Direction',
+                        shorten(careerDirection, 20),
+                        'Your current recommended path',
+                        'fa-route'
+                    )}
+
+                </div>
+
+
+                <!-- =================================================
+                     PROFILE PROGRESS
+                     ================================================= -->
+
+                <section class="profile-progress-card">
+
+                    <div class="progress-top">
+
+                        <strong>
+                            Your Profile Completion
+                        </strong>
+
+                        <span class="progress-percent">
+                            ${completion}%
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            style="width:${completion}%">
+                        </div>
+
+                    </div>
+
+
+                    <div class="progress-note">
+
+                        ${
+                            completion >= 90
+                                ? 'Excellent! Your profile is ready for strong personalised recommendations.'
+                                : completion >= 70
+                                    ? 'Great progress. Add a few more details to improve your recommendations.'
+                                    : 'Complete more profile sections to improve the quality of your AI recommendations.'
+                        }
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     MAIN GRID
+                     ================================================= -->
+
+                <div class="main-grid">
+
+
+                    <!-- PERSONAL STRENGTHS -->
+
+                    <section class="dashboard-card">
+
+                        <div class="card-header">
+
+                            <div>
+
+                                <h2 class="card-title">
+                                    Personal Strengths
+                                </h2>
+
+                                <p class="card-subtitle">
+                                    Skills and qualities identified from your profile
+                                </p>
+
+                            </div>
+
+
+                            <a
+                                href="career-advisor.html"
+                                class="view-link">
+
+                                Full Analysis
+                                <i class="fa-solid fa-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+
+                        <div class="strength-grid">
+
+                            ${
+                                arr(d.strengths)
+                                    .map(x => `
+
+                                        <span class="strength-pill">
+
+                                            <i class="fa-solid fa-check"></i>
+
+                                            ${esc(x)}
+
+                                        </span>
+
+                                    `)
+                                    .join('')
+                                ||
+                                `
+                                    <p style="
+                                        margin:0;
+                                        color:#8b9aae;
+                                        font-size:11px;
+                                    ">
+                                        Complete your AI career analysis
+                                        to discover your personal strengths.
+                                    </p>
+                                `
+                            }
+
+                        </div>
+
+
+                        <div class="focus-title">
+                            Focus Areas
+                        </div>
+
+
+                        ${
+                            arr(d.focusAreas)
+                                .map(x => `
+
+                                    <div class="focus-item">
+
+                                        <div class="focus-label">
+
+                                            <span class="focus-dot"></span>
+
+                                            ${esc(x)}
+
+                                        </div>
+
+                                        <span class="focus-badge">
+                                            Focus
+                                        </span>
+
+                                    </div>
+
+                                `)
+                                .join('')
+                            ||
+                            `
+                                <div class="focus-item">
+
+                                    <div class="focus-label">
+
+                                        <span class="focus-dot"></span>
+
+                                        No focus areas identified yet
+
+                                    </div>
+
+                                </div>
+                            `
+                        }
+
+                    </section>
+
+
+                    <!-- NEXT ACTIONS -->
+
+                    <section class="dashboard-card">
+
+                        <div class="card-header">
+
+                            <div>
+
+                                <h2 class="card-title">
+                                    Your Next Actions
+                                </h2>
+
+                                <p class="card-subtitle">
+                                    Practical steps recommended by AI
+                                </p>
+
+                            </div>
+
+                            <span class="focus-badge">
+                                AI GENERATED
+                            </span>
+
+                        </div>
+
+
+                        <div class="action-list">
+
+                            ${
+                                arr(d.nextActions)
+                                    .map((x, i) => `
+
+                                        <div class="next-action">
+
+                                            <div class="action-number">
+                                                ${i + 1}
+                                            </div>
+
+                                            <div class="action-content">
+
+                                                <strong>
+                                                    Career Development Step
+                                                </strong>
+
+                                                <span>
+                                                    ${esc(x)}
+                                                </span>
+
+                                            </div>
+
+                                        </div>
+
+                                    `)
+                                    .join('')
+                                ||
+                                `
+                                    <div class="next-action">
+
+                                        <div class="action-number">
+                                            1
+                                        </div>
+
+                                        <div class="action-content">
+
+                                            <strong>
+                                                Run your AI analysis
+                                            </strong>
+
+                                            <span>
+                                                Open Career Advisor to generate
+                                                personalised next steps.
+                                            </span>
+
+                                        </div>
+
+                                    </div>
+                                `
+                            }
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+
+                <!-- =================================================
+                     AI INSIGHT
+                     ================================================= -->
+
+                <section class="ai-insight">
+
+                    <div class="ai-insight-content">
+
+                        <div class="ai-label">
+
+                            <i class="fa-solid fa-robot"></i>
+
+                            JOBSPHERE AI CAREER INSIGHT
+
+                        </div>
+
+
+                        <h2>
+                            ${
+                                d.insightTitle ||
+                                'Keep building your career profile'
+                            }
+                        </h2>
+
+
+                        <p>
+
+                            ${
+                                d.aiInsight ||
+                                d.recommendation ||
+                                d.summary ||
+                                'Use the Career Advisor to explore your career direction, identify skill gaps and receive personalised development recommendations.'
+                            }
+
+                        </p>
+
+
+                        <a
+                            href="career-advisor.html"
+                            class="ai-button">
+
+                            Explore My Career Plan
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     CAREER TOOLS
+                     ================================================= -->
+
+                <section class="dashboard-card tools-section">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <h2 class="card-title">
+                                Continue Your Career Journey
+                            </h2>
+
+                            <p class="card-subtitle">
+                                Access the tools available in JOBSPHERE
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tools-grid">
+
+
+                        <a
+                            href="ai-chat.html"
+                            class="tool-card">
+
+                            <div class="tool-icon">
+
+                                <i class="fa-solid fa-sparkles"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    JOBSPHERE AI Chat
+                                </h3>
+
+                                <p>
+                                    Ask questions, get AI answers and
+                                    continue your saved conversations.
+                                </p>
+
+                            </div>
+
+                            <i class="fa-solid fa-arrow-right tool-arrow"></i>
+
+                        </a>
+
+
+                        <a
+                            href="career-advisor.html"
+                            class="tool-card">
+
+                            <div class="tool-icon">
+
+                                <i class="fa-solid fa-compass"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    AI Career Advisor
+                                </h3>
+
+                                <p>
+                                    Discover personalised career paths,
+                                    recommendations and skill gaps.
+                                </p>
+
+                            </div>
+
+                            <i class="fa-solid fa-arrow-right tool-arrow"></i>
+
+                        </a>
+
+
+                        <a
+                            href="resume-analyzer.html"
+                            class="tool-card">
+
+                            <div class="tool-icon">
+
+                                <i class="fa-solid fa-file-circle-check"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Resume Analyzer
+                                </h3>
+
+                                <p>
+                                    Analyse your resume and improve
+                                    professional and ATS readiness.
+                                </p>
+
+                            </div>
+
+                            <i class="fa-solid fa-arrow-right tool-arrow"></i>
+
+                        </a>
+
+
+                        <a
+                            href="interview-simulator.html"
+                            class="tool-card">
+
+                            <div class="tool-icon">
+
+                                <i class="fa-solid fa-comments"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Interview Simulator
+                                </h3>
+
+                                <p>
+                                    Practise AI-generated interview questions
+                                    based on your career profile.
+                                </p>
+
+                            </div>
+
+                            <i class="fa-solid fa-arrow-right tool-arrow"></i>
+
+                        </a>
+
+
+                        <a
+                            href="courses.html"
+                            class="tool-card">
+
+                            <div class="tool-icon">
+
+                                <i class="fa-solid fa-graduation-cap"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Courses
+                                </h3>
+
+                                <p>
+                                    Build job-ready skills through personalised
+                                    professional learning.
+                                </p>
+
+                            </div>
+
+                            <i class="fa-solid fa-arrow-right tool-arrow"></i>
+
+                        </a>
+
+
+                        <a
+                            href="profile.html"
+                            class="tool-card">
+
+                            <div class="tool-icon">
+
+                                <i class="fa-solid fa-user"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    My Profile
+                                </h3>
+
+                                <p>
+                                    Keep your education, skills, experience
+                                    and career goals updated.
+                                </p>
+
+                            </div>
+
+                            <i class="fa-solid fa-arrow-right tool-arrow"></i>
+
+                        </a>
+
+
+                        <a
+                            href="executives.html"
+                            class="tool-card">
+
+                            <div class="tool-icon">
+
+                                <i class="fa-solid fa-user-tie"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Career Professionals
+                                </h3>
+
+                                <p>
+                                    Find professionals matched to your
+                                    career interests and connect through WhatsApp.
+                                </p>
+
+                            </div>
+
+                            <i class="fa-solid fa-arrow-right tool-arrow"></i>
+
+                        </a>
+
+
+                        <a
+                            href="certificates.html"
+                            class="tool-card">
+
+                            <div class="tool-icon">
+
+                                <i class="fa-solid fa-certificate"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Certificates
+                                </h3>
+
+                                <p>
+                                    View your professional learning and
+                                    achievement certificates.
+                                </p>
+
+                            </div>
+
+                            <i class="fa-solid fa-arrow-right tool-arrow"></i>
+
+                        </a>
+
+
+                        <a
+                            href="settings.html"
+                            class="tool-card">
+
+                            <div class="tool-icon">
+
+                                <i class="fa-solid fa-sliders"></i>
+
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    Settings
+                                </h3>
+
+                                <p>
+                                    Manage your account, preferences,
+                                    privacy and notifications.
+                                </p>
+
+                            </div>
+
+                            <i class="fa-solid fa-arrow-right tool-arrow"></i>
+
+                        </a>
+
+                    </div>
+
+                </section>
+
+            `;
+
+        }
+        catch (e) {
+
+            content.innerHTML = `
+
+                <div class="dashboard-error">
+
+                    <i class="fa-solid fa-circle-exclamation"></i>
+
+                    ${esc(e.message)}
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    /* =========================================================
+       STAT CARD
+       ========================================================= */
+
+    function statCard(
+        title,
+        value,
+        description,
+        icon,
+        score = null
+    ) {
+
+        return `
+
+            <div class="stat-card">
+
+                <div class="stat-head">
+
+                    <span class="stat-title">
+                        ${esc(title)}
+                    </span>
+
+                    <span class="stat-icon">
+
+                        <i class="fa-solid ${icon}"></i>
+
+                    </span>
+
+                </div>
+
+
+                <div class="stat-value">
+
+                    ${esc(String(value))}
+
+                </div>
+
+
+                <div class="stat-description">
+
+                    ${esc(description)}
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* =========================================================
+       NEW USER STAT
+       ========================================================= */
+
+    function newUserStat(
+        title,
+        value,
+        description,
+        icon
+    ) {
+
+        return statCard(
+            title,
+            value,
+            description,
+            icon
+        );
+
+    }
+
+
+    /* =========================================================
+       INITIALS
+       ========================================================= */
+
+    function initials(name) {
+
+        if (!name) {
+            return 'JS';
+        }
+
+        return name
+            .trim()
+            .split(/\s+/)
+            .slice(0, 2)
+            .map(
+                x => x.charAt(0).toUpperCase()
+            )
+            .join('');
+
+    }
+
+
+    /* =========================================================
+       SHORTEN TEXT
+       ========================================================= */
+
+    function shorten(
+        text,
+        max
+    ) {
+
+        if (!text) {
+            return '—';
+        }
+
+        text = String(text);
+
+        return text.length > max
+            ? text.substring(0, max) + '…'
+            : text;
+
+    }
+
+
+    /* =========================================================
+       ARRAY HELPER
+       ========================================================= */
+
+    function arr(x) {
+
+        return Array.isArray(x)
+            ? x
+            : [];
+
+    }
+
+
+    /* =========================================================
+       PROFILE COMPLETION
+       ========================================================= */
+
+    function profileComplete(p) {
+
+        const keys = [
+
+            'phone',
+            'location',
+            'university',
+            'degree',
+            'graduationYear',
+            'education',
+            'skills',
+            'experience',
+            'projects',
+            'careerInterest',
+            'careerGoal'
+
+        ];
+
+        return Math.round(
+
+            keys.filter(
+
+                k =>
+
+                    p[k] != null &&
+
+                    String(p[k]).trim() &&
+
+                    String(p[k]) !== 'null'
+
+            ).length
+
+            /
+
+            keys.length
+
+            *
+
+            100
+
+        );
+
+    }
+
+
+    /* =========================================================
+       START
+       ========================================================= */
+
+    load();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1660 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My Profile | JOBSPHERE</title>
+
+<link rel="stylesheet" href="assets/css/app.css">
+
+<style>
+/* =========================================================
+   JOBSPHERE PROFILE PAGE
+   ========================================================= */
+
+:root{
+    --profile-blue:#2563eb;
+    --profile-blue-dark:#1d4ed8;
+    --profile-blue-light:#eff6ff;
+    --profile-bg:#f5f8ff;
+    --profile-border:#e5eaf3;
+    --profile-text:#172033;
+    --profile-muted:#718096;
+    --profile-success:#16a34a;
+    --profile-shadow:0 10px 30px rgba(30,64,175,.08);
+}
+
+/* Page background */
+.profile-page{
+    background:var(--profile-bg);
+    min-height:100vh;
+}
+
+/* Main container */
+.profile-container{
+    max-width:1450px;
+    margin:0 auto;
+    padding:30px 24px 60px;
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.profile-hero{
+    position:relative;
+    overflow:hidden;
+    border-radius:24px;
+    background:linear-gradient(135deg,#1d4ed8 0%,#2563eb 55%,#3b82f6 100%);
+    padding:34px;
+    color:#fff;
+    margin-bottom:28px;
+    box-shadow:0 18px 45px rgba(37,99,235,.20);
+}
+
+.profile-hero::before{
+    content:"";
+    position:absolute;
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    background:rgba(255,255,255,.08);
+    right:-90px;
+    top:-110px;
+}
+
+.profile-hero::after{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:rgba(255,255,255,.06);
+    right:180px;
+    bottom:-100px;
+}
+
+.profile-hero-content{
+    position:relative;
+    z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+}
+
+.profile-intro{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
+
+.profile-avatar{
+    width:82px;
+    height:82px;
+    border-radius:50%;
+    background:rgba(255,255,255,.18);
+    border:3px solid rgba(255,255,255,.65);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    font-weight:800;
+    backdrop-filter:blur(8px);
+}
+
+.profile-title h1{
+    margin:0 0 6px;
+    font-size:30px;
+    font-weight:800;
+}
+
+.profile-title p{
+    margin:0;
+    color:rgba(255,255,255,.84);
+    font-size:15px;
+}
+
+.profile-progress-box{
+    min-width:240px;
+    background:rgba(255,255,255,.13);
+    border:1px solid rgba(255,255,255,.20);
+    border-radius:18px;
+    padding:18px;
+    backdrop-filter:blur(8px);
+}
+
+.progress-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+.progress-top span:first-child{
+    font-size:13px;
+    color:rgba(255,255,255,.85);
+}
+
+.progress-percent{
+    font-size:22px;
+    font-weight:800;
+}
+
+.profile-progress{
+    height:8px;
+    background:rgba(255,255,255,.20);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.profile-progress-bar{
+    height:100%;
+    width:0;
+    background:#fff;
+    border-radius:20px;
+    transition:width .4s ease;
+}
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.profile-layout{
+    display:grid;
+    grid-template-columns:minmax(0,2fr) minmax(300px,1fr);
+    gap:25px;
+    align-items:start;
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.profile-card{
+    background:#fff;
+    border:1px solid var(--profile-border);
+    border-radius:20px;
+    box-shadow:var(--profile-shadow);
+    padding:26px;
+    margin-bottom:22px;
+}
+
+.profile-card:last-child{
+    margin-bottom:0;
+}
+
+.card-heading{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    margin-bottom:24px;
+}
+
+.card-icon{
+    width:44px;
+    height:44px;
+    flex:0 0 44px;
+    border-radius:13px;
+    background:var(--profile-blue-light);
+    color:var(--profile-blue);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:20px;
+}
+
+.card-heading h2{
+    margin:0 0 5px;
+    font-size:20px;
+    color:var(--profile-text);
+}
+
+.card-heading p{
+    margin:0;
+    color:var(--profile-muted);
+    font-size:13px;
+    line-height:1.6;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.profile-form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.profile-form-grid .full{
+    grid-column:1/-1;
+}
+
+.profile-field{
+    margin-bottom:18px;
+}
+
+.profile-field label{
+    display:block;
+    font-size:13px;
+    font-weight:700;
+    color:#344054;
+    margin-bottom:8px;
+}
+
+.profile-input,
+.profile-select,
+.profile-textarea{
+    width:100%;
+    box-sizing:border-box;
+    border:1px solid #dbe2ec;
+    background:#fbfcfe;
+    color:var(--profile-text);
+    border-radius:12px;
+    padding:12px 14px;
+    font-size:14px;
+    outline:none;
+    transition:.2s ease;
+    font-family:inherit;
+}
+
+.profile-input,
+.profile-select{
+    min-height:46px;
+}
+
+.profile-textarea{
+    resize:vertical;
+    min-height:100px;
+    line-height:1.6;
+}
+
+.profile-input:focus,
+.profile-select:focus,
+.profile-textarea:focus{
+    border-color:var(--profile-blue);
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(37,99,235,.08);
+}
+
+.profile-input::placeholder,
+.profile-textarea::placeholder{
+    color:#a0aec0;
+}
+
+/* =========================================================
+   SECTION LABEL
+   ========================================================= */
+
+.section-label{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:14px;
+    font-weight:800;
+    color:#27364b;
+    margin:28px 0 18px;
+    padding-bottom:10px;
+    border-bottom:1px solid #edf0f5;
+}
+
+.section-label span{
+    color:var(--profile-blue);
+}
+
+/* =========================================================
+   SAVE BUTTON
+   ========================================================= */
+
+.profile-save{
+    width:100%;
+    border:0;
+    border-radius:13px;
+    padding:14px 20px;
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+    color:#fff;
+    font-weight:800;
+    font-size:14px;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(37,99,235,.20);
+    transition:.2s ease;
+    margin-top:8px;
+}
+
+.profile-save:hover{
+    transform:translateY(-1px);
+    box-shadow:0 12px 25px rgba(37,99,235,.25);
+}
+
+.profile-save:disabled{
+    opacity:.65;
+    cursor:not-allowed;
+    transform:none;
+}
+
+/* =========================================================
+   SIDE SUMMARY
+   ========================================================= */
+
+.profile-sidebar{
+    position:sticky;
+    top:25px;
+}
+
+.profile-summary{
+    background:#fff;
+    border:1px solid var(--profile-border);
+    border-radius:20px;
+    padding:24px;
+    box-shadow:var(--profile-shadow);
+    margin-bottom:22px;
+}
+
+.summary-title{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.summary-title h2{
+    margin:0;
+    font-size:18px;
+    color:var(--profile-text);
+}
+
+.summary-status{
+    background:#ecfdf3;
+    color:#15803d;
+    padding:5px 9px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:800;
+}
+
+.summary-item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:13px 0;
+    border-bottom:1px solid #edf0f5;
+}
+
+.summary-item:last-child{
+    border-bottom:0;
+}
+
+.summary-icon{
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    background:#eff6ff;
+    color:#2563eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+.summary-content strong{
+    display:block;
+    color:#334155;
+    font-size:13px;
+    margin-bottom:3px;
+}
+
+.summary-content span{
+    display:block;
+    color:#718096;
+    font-size:12px;
+    line-height:1.5;
+}
+
+/* =========================================================
+   CERTIFICATES
+   ========================================================= */
+
+.upload-box{
+    border:2px dashed #cbd5e1;
+    background:#f8faff;
+    border-radius:16px;
+    padding:22px;
+    text-align:center;
+    margin-bottom:18px;
+    transition:.2s ease;
+}
+
+.upload-box:hover{
+    border-color:#93c5fd;
+    background:#f5f9ff;
+}
+
+.upload-icon{
+    width:48px;
+    height:48px;
+    margin:0 auto 10px;
+    border-radius:14px;
+    background:#eff6ff;
+    color:#2563eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.upload-box h3{
+    margin:0 0 5px;
+    font-size:15px;
+    color:#334155;
+}
+
+.upload-box p{
+    margin:0 0 15px;
+    color:#718096;
+    font-size:12px;
+}
+
+.upload-box input{
+    max-width:100%;
+}
+
+.certificate-list{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+.certificate-item{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    border:1px solid #e5eaf3;
+    border-radius:13px;
+    padding:13px;
+    background:#fff;
+}
+
+.certificate-info{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    min-width:0;
+}
+
+.certificate-icon{
+    width:38px;
+    height:38px;
+    border-radius:10px;
+    background:#eff6ff;
+    color:#2563eb;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.certificate-name{
+    font-size:13px;
+    font-weight:700;
+    color:#334155;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+.certificate-date{
+    display:block;
+    font-size:11px;
+    color:#94a3b8;
+    margin-top:3px;
+}
+
+.certificate-actions{
+    display:flex;
+    gap:7px;
+    flex-shrink:0;
+}
+
+.small-btn{
+    border:1px solid #dbe2ec;
+    background:#fff;
+    color:#2563eb;
+    padding:7px 10px;
+    border-radius:8px;
+    font-size:11px;
+    font-weight:700;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+.small-btn:hover{
+    background:#eff6ff;
+}
+
+.small-btn.danger{
+    color:#dc2626;
+}
+
+.small-btn.danger:hover{
+    background:#fef2f2;
+}
+
+/* =========================================================
+   ALERT
+   ========================================================= */
+
+.profile-notice{
+    margin-bottom:20px;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:1050px){
+
+    .profile-layout{
+        grid-template-columns:1fr;
+    }
+
+    .profile-sidebar{
+        position:static;
+    }
+
+}
+
+@media(max-width:700px){
+
+    .profile-container{
+        padding:18px 14px 40px;
+    }
+
+    .profile-hero{
+        padding:24px 20px;
+        border-radius:18px;
+    }
+
+    .profile-hero-content{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .profile-intro{
+        align-items:flex-start;
+    }
+
+    .profile-avatar{
+        width:65px;
+        height:65px;
+        font-size:26px;
+    }
+
+    .profile-title h1{
+        font-size:24px;
+    }
+
+    .profile-progress-box{
+        width:100%;
+        box-sizing:border-box;
+    }
+
+    .profile-card,
+    .profile-summary{
+        padding:19px;
+        border-radius:16px;
+    }
+
+    .profile-form-grid{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .profile-form-grid .full{
+        grid-column:auto;
+    }
+
+    .certificate-item{
+        align-items:flex-start;
+        flex-direction:column;
+    }
+
+    .certificate-actions{
+        width:100%;
+    }
+
+    .small-btn{
+        flex:1;
+        text-align:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app profile-page" id="app"></div>
+
+<script src="assets/js/app.js"></script>
+
+<script>
+
+const u = requireUser();
+
+app.innerHTML = shell('My Profile','profile') + `
+
+<div class="profile-container">
+
+    <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+    <section class="profile-hero">
+
+        <div class="profile-hero-content">
+
+            <div class="profile-intro">
+
+                <div class="profile-avatar">
+                    ${((u.fullName || u.name || 'U').trim().charAt(0)).toUpperCase()}
+                </div>
+
+                <div class="profile-title">
+
+                    <h1>My Professional Profile</h1>
+
+                    <p>
+                        Build your professional identity and unlock personalised
+                        career recommendations.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="profile-progress-box">
+
+                <div class="progress-top">
+                    <span>Profile completion</span>
+                    <span class="progress-percent" id="completion">0%</span>
+                </div>
+
+                <div class="profile-progress">
+                    <div
+                        class="profile-progress-bar"
+                        id="completionBar">
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div id="n" class="notice profile-notice"></div>
+
+
+    <!-- =====================================================
+         MAIN LAYOUT
+    ====================================================== -->
+
+    <div class="profile-layout">
+
+
+        <!-- =================================================
+             LEFT SIDE
+        ================================================== -->
+
+        <main>
+
+
+            <!-- PERSONAL / PROFESSIONAL INFORMATION -->
+
+            <form class="profile-card" id="pf">
+
+                <div class="card-heading">
+
+                    <div class="card-icon">
+                        👤
+                    </div>
+
+                    <div>
+                        <h2>Professional Information</h2>
+
+                        <p>
+                            Keep your professional information up to date.
+                            This information helps JOBSPHERE personalise your
+                            career recommendations.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="profile-form-grid">
+
+
+                    <div class="profile-field">
+
+                        <label>Phone</label>
+
+                        <input
+                            id="phone"
+                            class="profile-input"
+                            maxlength="10"
+                            placeholder="07XXXXXXXX">
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>Location</label>
+
+                        <input
+                            id="location"
+                            class="profile-input"
+                            placeholder="Colombo, Sri Lanka">
+
+                    </div>
+
+
+                    <div class="profile-field full">
+
+                        <label>Professional Headline</label>
+
+                        <input
+                            id="headline"
+                            class="profile-input"
+                            maxlength="200"
+                            placeholder="ICT undergraduate interested in software engineering">
+
+                    </div>
+
+
+                    <div class="profile-field full">
+
+                        <label>University / Institute</label>
+
+                        <input
+                            id="university"
+                            class="profile-input">
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>Degree / Qualification</label>
+
+                        <input
+                            id="degree"
+                            class="profile-input">
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>Graduation Year</label>
+
+                        <input
+                            id="graduationYear"
+                            class="profile-input"
+                            type="number"
+                            min="1950"
+                            max="2100">
+
+                    </div>
+
+
+                    <div class="profile-field full">
+
+                        <label>Current Status</label>
+
+                        <select
+                            id="employmentStatus"
+                            class="profile-select">
+
+                            <option value="">Select status</option>
+                            <option>Student</option>
+                            <option>Graduate</option>
+                            <option>Employed</option>
+                            <option>Job Seeker</option>
+                            <option>Career Changer</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EDUCATION -->
+
+                <div class="section-label">
+                    <span>🎓</span>
+                    Education & Academic Background
+                </div>
+
+
+                <div class="profile-field">
+
+                    <label>Education Details</label>
+
+                    <textarea
+                        id="education"
+                        class="profile-textarea"
+                        rows="4"
+                        placeholder="Modules, academic achievements, relevant coursework..."></textarea>
+
+                </div>
+
+
+                <!-- SKILLS -->
+
+                <div class="section-label">
+                    <span>💻</span>
+                    Skills & Experience
+                </div>
+
+
+                <div class="profile-field">
+
+                    <label>Technical Skills</label>
+
+                    <textarea
+                        id="skills"
+                        class="profile-textarea"
+                        rows="4"
+                        placeholder="Java, Spring Boot, SQL, Python, Git..."></textarea>
+
+                </div>
+
+
+                <div class="profile-field">
+
+                    <label>Soft Skills</label>
+
+                    <textarea
+                        id="softSkills"
+                        class="profile-textarea"
+                        rows="3"
+                        placeholder="Communication, teamwork, leadership..."></textarea>
+
+                </div>
+
+
+                <div class="profile-field">
+
+                    <label>Experience</label>
+
+                    <textarea
+                        id="experience"
+                        class="profile-textarea"
+                        rows="4"
+                        placeholder="Internships, part-time work, volunteering or professional experience..."></textarea>
+
+                </div>
+
+
+                <div class="profile-field">
+
+                    <label>Projects</label>
+
+                    <textarea
+                        id="projects"
+                        class="profile-textarea"
+                        rows="4"
+                        placeholder="Project name, technologies used, your contribution and result..."></textarea>
+
+                </div>
+
+
+                <div class="profile-field">
+
+                    <label>Certifications / Qualifications</label>
+
+                    <textarea
+                        id="certifications"
+                        class="profile-textarea"
+                        rows="3"></textarea>
+
+                </div>
+
+
+                <!-- CAREER -->
+
+                <div class="section-label">
+                    <span>🎯</span>
+                    Career Direction
+                </div>
+
+
+                <div class="profile-field">
+
+                    <label>Career Interests</label>
+
+                    <textarea
+                        id="careerInterest"
+                        class="profile-textarea"
+                        rows="3"
+                        placeholder="Software engineering, data analytics, AI..."></textarea>
+
+                </div>
+
+
+                <div class="profile-field">
+
+                    <label>Career Goal</label>
+
+                    <textarea
+                        id="careerGoal"
+                        class="profile-textarea"
+                        rows="3"
+                        placeholder="What role do you want and what do you want to achieve?"></textarea>
+
+                </div>
+
+
+                <!-- LINKS -->
+
+                <div class="section-label">
+                    <span>🔗</span>
+                    Professional Links
+                    <small style="font-weight:500;color:#94a3b8;">
+                        Optional
+                    </small>
+                </div>
+
+
+                <div class="profile-form-grid">
+
+                    <div class="profile-field">
+
+                        <label>LinkedIn URL</label>
+
+                        <input
+                            id="linkedinUrl"
+                            class="profile-input"
+                            placeholder="https://...">
+
+                    </div>
+
+
+                    <div class="profile-field">
+
+                        <label>GitHub URL</label>
+
+                        <input
+                            id="githubUrl"
+                            class="profile-input"
+                            placeholder="https://...">
+
+                    </div>
+
+
+                    <div class="profile-field full">
+
+                        <label>Portfolio URL</label>
+
+                        <input
+                            id="portfolioUrl"
+                            class="profile-input"
+                            placeholder="https://...">
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="profile-save"
+                    id="save">
+
+                    ✨ Save Profile & Personalise Dashboard
+
+                </button>
+
+            </form>
+
+
+            <!-- =================================================
+                 CERTIFICATES
+            ================================================== -->
+
+            <section class="profile-card">
+
+                <div class="card-heading">
+
+                    <div class="card-icon">
+                        📜
+                    </div>
+
+                    <div>
+
+                        <h2>Certificates</h2>
+
+                        <p>
+                            Upload your professional and academic certificates
+                            to strengthen your career profile.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="upload-box">
+
+                    <div class="upload-icon">
+                        📄
+                    </div>
+
+                    <h3>Upload a Certificate</h3>
+
+                    <p>
+                        PDF files only · Maximum 5 MB
+                    </p>
+
+                    <input
+                        id="file"
+                        class="profile-input"
+                        type="file"
+                        accept="application/pdf">
+
+                    <button
+                        class="btn outline"
+                        style="margin-top:12px"
+                        onclick="uploadCert()">
+
+                        Upload Certificate
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="cm"
+                    class="notice">
+                </div>
+
+
+                <div
+                    id="certs"
+                    class="certificate-list">
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- =================================================
+             RIGHT SIDEBAR
+        ================================================== -->
+
+        <aside class="profile-sidebar">
+
+
+            <section class="profile-summary">
+
+                <div class="summary-title">
+
+                    <h2>Profile Overview</h2>
+
+                    <span class="summary-status">
+                        ACTIVE
+                    </span>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <div class="summary-icon">
+                        👤
+                    </div>
+
+                    <div class="summary-content">
+
+                        <strong>Professional Profile</strong>
+
+                        <span>
+                            Used to personalise your JOBSPHERE experience.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <div class="summary-icon">
+                        🤖
+                    </div>
+
+                    <div class="summary-content">
+
+                        <strong>AI Career Advisor</strong>
+
+                        <span>
+                            Uses your profile to generate personalised career guidance.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <div class="summary-icon">
+                        📚
+                    </div>
+
+                    <div class="summary-content">
+
+                        <strong>Course Recommendations</strong>
+
+                        <span>
+                            Your skills and career goals help identify relevant courses.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <div class="summary-icon">
+                        🤝
+                    </div>
+
+                    <div class="summary-content">
+
+                        <strong>Professional Matching</strong>
+
+                        <span>
+                            Your profile helps match you with relevant career professionals.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <div class="summary-icon">
+                        💼
+                    </div>
+
+                    <div class="summary-content">
+
+                        <strong>Career Opportunities</strong>
+
+                        <span>
+                            Keep your information updated for better career recommendations.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <section class="profile-summary">
+
+                <div class="summary-title">
+
+                    <h2>Profile Tips</h2>
+
+                </div>
+
+                <div style="
+                    background:#eff6ff;
+                    border-radius:14px;
+                    padding:15px;
+                    color:#334155;
+                    font-size:13px;
+                    line-height:1.7;
+                ">
+
+                    <strong style="color:#2563eb;">
+                        💡 Make your profile stronger
+                    </strong>
+
+                    <p style="margin:8px 0 0;">
+                        Add your technical skills, projects, certifications,
+                        career interests and career goals. A complete profile
+                        helps JOBSPHERE provide more relevant recommendations.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+        </aside>
+
+    </div>
+
+</div>
+
+` + closeShell();
+
+
+/* =========================================================
+   EXISTING PROFILE LOGIC
+   ========================================================= */
+
+const ids = [
+    'phone',
+    'location',
+    'headline',
+    'university',
+    'degree',
+    'graduationYear',
+    'employmentStatus',
+    'education',
+    'skills',
+    'softSkills',
+    'experience',
+    'projects',
+    'certifications',
+    'careerInterest',
+    'careerGoal',
+    'linkedinUrl',
+    'githubUrl',
+    'portfolioUrl'
+];
+
+
+async function load(){
+
+    try{
+
+        let j = await apiJson(
+            '/profile',
+            {
+                headers:auth()
+            }
+        );
+
+        if(j.exists){
+
+            ids.forEach(x => {
+
+                $(x).value =
+                    j.profile[x] ?? '';
+
+            });
+
+        }
+
+        updateCompletion(
+            j.exists
+                ? profileComplete(j.profile)
+                : 0
+        );
+
+        loadCerts();
+
+    }
+    catch(e){
+
+        notice(
+            n,
+            e.message
+        );
+
+    }
+
+}
+
+
+pf.onsubmit = async e => {
+
+    e.preventDefault();
+
+    const body = {};
+
+    ids.forEach(x => {
+
+        body[x] = $(x).value.trim();
+
+    });
+
+
+    save.disabled = true;
+
+    save.innerHTML =
+        '⏳ Saving & analysing...';
+
+
+    try{
+
+        let j = await apiJson(
+            '/profile',
+            {
+                method:'PUT',
+                headers:{
+                    ...auth(),
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(body)
+            }
+        );
+
+
+        notice(
+            n,
+            j.message,
+            j.aiUpdated
+        );
+
+
+        if(j.aiMessage && !j.aiUpdated){
+
+            notice(
+                n,
+                j.message + ' ' + j.aiMessage
+            );
+
+        }
+
+
+        updateCompletion(
+            profileComplete(body)
+        );
+
+    }
+    catch(e){
+
+        notice(
+            n,
+            e.message
+        );
+
+    }
+    finally{
+
+        save.disabled = false;
+
+        save.innerHTML =
+            '✨ Save Profile & Personalise Dashboard';
+
+    }
+
+};
+
+
+function updateCompletion(value){
+
+    value = Math.max(
+        0,
+        Math.min(
+            100,
+            Number(value) || 0
+        )
+    );
+
+    completion.textContent =
+        value + '%';
+
+    completionBar.style.width =
+        value + '%';
+
+}
+
+
+async function uploadCert(){
+
+    const f =
+        file.files[0];
+
+    if(!f)
+        return notice(
+            cm,
+            'Please choose a PDF certificate.'
+        );
+
+
+    if(
+        f.type !== 'application/pdf' &&
+        !f.name.toLowerCase().endsWith('.pdf')
+    ){
+
+        return notice(
+            cm,
+            'Only PDF certificates are supported.'
+        );
+
+    }
+
+
+    if(f.size > 5242880){
+
+        return notice(
+            cm,
+            'Certificate must be 5 MB or smaller.'
+        );
+
+    }
+
+
+    const fd =
+        new FormData();
+
+    fd.append(
+        'file',
+        f
+    );
+
+
+    try{
+
+        await apiJson(
+            '/profile/certificates',
+            {
+                method:'POST',
+                headers:auth(),
+                body:fd
+            }
+        );
+
+
+        notice(
+            cm,
+            'Certificate uploaded successfully.',
+            true
+        );
+
+
+        file.value = '';
+
+        loadCerts();
+
+    }
+    catch(e){
+
+        notice(
+            cm,
+            e.message
+        );
+
+    }
+
+}
+
+
+async function loadCerts(){
+
+    try{
+
+        let a =
+            await apiJson(
+                '/profile/certificates',
+                {
+                    headers:auth()
+                }
+            );
+
+
+        certs.innerHTML =
+            a.length
+
+            ?
+
+            a.map(c => `
+
+                <div class="certificate-item">
+
+                    <div class="certificate-info">
+
+                        <div class="certificate-icon">
+                            📄
+                        </div>
+
+                        <div style="min-width:0">
+
+                            <div class="certificate-name">
+                                ${esc(c.fileName)}
+                            </div>
+
+                            <span class="certificate-date">
+                                Uploaded ${new Date(c.uploadedAt).toLocaleString()}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="certificate-actions">
+
+                        <a
+                            class="small-btn"
+                            href="${API}/profile/certificates/${c.id}"
+                            target="_blank">
+
+                            View
+
+                        </a>
+
+
+                        <button
+                            class="small-btn danger"
+                            onclick="deleteCert(${c.id})">
+
+                            Delete
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `).join('')
+
+            :
+
+            `
+
+                <div style="
+                    text-align:center;
+                    padding:25px;
+                    color:#94a3b8;
+                    font-size:13px;
+                ">
+
+                    📂 No certificates uploaded yet.
+
+                </div>
+
+            `;
+
+    }
+    catch(e){
+
+        certs.innerHTML =
+            '<p class="muted">Unable to load certificates.</p>';
+
+    }
+
+}
+
+
+async function deleteCert(id){
+
+    if(
+        !confirm(
+            'Delete this certificate?'
+        )
+    )
+        return;
+
+
+    try{
+
+        await apiJson(
+            '/profile/certificates/' + id,
+            {
+                method:'DELETE',
+                headers:auth()
+            }
+        );
+
+
+        loadCerts();
+
+    }
+    catch(e){
+
+        notice(
+            cm,
+            e.message
+        );
+
+    }
+
+}
+
+
+function profileComplete(p){
+
+    return Math.round(
+
+        ids.filter(
+            k =>
+                p[k] != null &&
+                String(p[k]).trim() &&
+                String(p[k]) !== 'null'
+        ).length
+
+        /
+
+        ids.length
+
+        *
+
+        100
+
+    );
+
+}
+
+
+load();
+
+</script>
+
+</body>
+</html>

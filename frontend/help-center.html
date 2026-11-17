@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Help Center | JOBSPHERE</title>
+
+    <link rel="stylesheet" href="assets/css/app.css">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+
+        /* =========================================================
+           HELP CENTER
+           ========================================================= */
+
+        .help-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================================================
+           HERO
+           ========================================================= */
+
+        .help-hero {
+            background: linear-gradient(
+                135deg,
+                #071a33,
+                #1769e0
+            );
+
+            color: #fff;
+            border-radius: 25px;
+            padding: 35px;
+            margin-bottom: 22px;
+            position: relative;
+            overflow: hidden;
+
+            box-shadow:
+                0 18px 45px rgba(7,26,51,.12);
+        }
+
+
+        .help-hero::after {
+            content: "";
+
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            border-radius: 50%;
+
+            right: -110px;
+            top: -130px;
+
+            border:
+                1px solid rgba(255,255,255,.13);
+        }
+
+
+        .help-hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            right: 100px;
+            bottom: -150px;
+
+            background:
+                rgba(255,255,255,.06);
+        }
+
+
+        .help-hero > * {
+            position: relative;
+            z-index: 2;
+        }
+
+
+        .help-hero .eyebrow {
+            display: inline-flex;
+
+            align-items: center;
+
+            padding: 7px 12px;
+
+            border-radius: 999px;
+
+            background:
+                rgba(255,255,255,.12);
+
+            border:
+                1px solid rgba(255,255,255,.18);
+
+            color: #fff;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+
+        .help-hero h2 {
+            margin-top: 18px;
+            margin-bottom: 10px;
+
+            color: #fff;
+
+            font-size: 32px;
+
+            letter-spacing: -.7px;
+        }
+
+
+        .help-hero p {
+            color: #d4e5f8;
+
+            max-width: 760px;
+
+            margin: 0;
+
+            line-height: 1.75;
+
+            font-size: 13px;
+        }
+
+
+        /* =========================================================
+           HELP GRID
+           ========================================================= */
+
+        .help-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+
+        /* =========================================================
+           HELP CARD
+           ========================================================= */
+
+        .help-card {
+            background: #fff;
+
+            border:
+                1px solid #dfe9f5;
+
+            border-radius: 20px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 14px 35px rgba(7,26,51,.06);
+
+            transition:
+                transform .2s ease,
+                box-shadow .2s ease,
+                border-color .2s ease;
+        }
+
+
+        .help-card:hover {
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 20px 45px rgba(7,26,51,.10);
+
+            border-color:
+                #cbdcf3;
+        }
+
+
+        /* =========================================================
+           ICON
+           ========================================================= */
+
+        .help-icon {
+            width: 46px;
+            height: 46px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 13px;
+
+            background:
+                #eaf4ff;
+
+            color:
+                #1769e0;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================================================
+           CARD CONTENT
+           ========================================================= */
+
+        .help-card h3 {
+            font-size: 18px;
+
+            margin:
+                15px 0 8px;
+
+            color:
+                #09213f;
+
+            letter-spacing:
+                -.2px;
+        }
+
+
+        .help-card p,
+        .help-card li {
+            color:
+                #60738b;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.7;
+        }
+
+
+        .help-card p {
+            margin:
+                0 0 8px;
+        }
+
+
+        .help-card ol {
+            padding-left:
+                19px;
+
+            margin:
+                8px 0 0;
+        }
+
+
+        .help-card li {
+            margin-bottom:
+                4px;
+        }
+
+
+        /* =========================================================
+           OUTPUT
+           ========================================================= */
+
+        .output {
+            margin-top:
+                15px;
+
+            background:
+                #f6faff;
+
+            border:
+                1px solid #e1edfb;
+
+            border-radius:
+                13px;
+
+            padding:
+                12px;
+
+            color:
+                #1769e0;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            line-height:
+                1.5;
+        }
+
+
+        /* =========================================================
+           FOOTER
+
+           IMPORTANT:
+           Footer is OUTSIDE shell/main.
+
+           Desktop:
+           Sidebar = 270px
+           Footer starts = 270px
+           Footer width = remaining screen
+           ========================================================= */
+
+        footer.jobsphere-footer {
+
+            width:
+                calc(100% - 270px) !important;
+
+            margin-left:
+                270px !important;
+
+            margin-right:
+                0 !important;
+
+            margin-top:
+                55px !important;
+
+            margin-bottom:
+                0 !important;
+
+            padding:
+                0 !important;
+
+            position:
+                relative !important;
+
+            left:
+                auto !important;
+
+            right:
+                auto !important;
+
+            bottom:
+                auto !important;
+
+            float:
+                none !important;
+
+            clear:
+                both !important;
+
+            display:
+                block !important;
+
+            box-sizing:
+                border-box !important;
+
+            background:
+                #071a33 !important;
+
+            color:
+                #fff !important;
+
+            overflow:
+                hidden !important;
+        }
+
+
+        /* =========================================================
+           FOOTER TOP LINE
+           ========================================================= */
+
+        footer.jobsphere-footer::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                0;
+
+            width:
+                100%;
+
+            height:
+                2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #1769e0,
+                    #42a5ff,
+                    transparent
+                );
+
+            z-index:
+                2;
+        }
+
+
+        /* =========================================================
+           FOOTER BOTTOM
+           ========================================================= */
+
+        footer.jobsphere-footer .footer-bottom {
+
+            width:
+                100% !important;
+
+            margin:
+                0 !important;
+
+            padding:
+                0 !important;
+
+            border-top:
+                1px solid rgba(255,255,255,.08) !important;
+
+            box-sizing:
+                border-box !important;
+        }
+
+
+        /* =========================================================
+           FOOTER CONTAINER
+           ========================================================= */
+
+        footer.jobsphere-footer .footer-bottom-container {
+
+            width:
+                100% !important;
+
+            min-height:
+                72px;
+
+            margin:
+                0 !important;
+
+            padding:
+                18px 32px !important;
+
+            box-sizing:
+                border-box;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+        }
+
+
+        /* =========================================================
+           COPYRIGHT
+           ========================================================= */
+
+        footer.jobsphere-footer .footer-bottom p {
+
+            margin:
+                0 !important;
+
+            padding:
+                0 !important;
+
+            color:
+                #9aacc0 !important;
+
+            background:
+                transparent !important;
+
+            font-size:
+                13px !important;
+
+            font-weight:
+                500;
+
+            line-height:
+                1.5;
+        }
+
+
+        /* =========================================================
+           FOOTER LINKS
+           ========================================================= */
+
+        footer.jobsphere-footer .footer-legal {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                12px;
+
+            margin:
+                0;
+
+            padding:
+                0;
+
+            white-space:
+                nowrap;
+        }
+
+
+        footer.jobsphere-footer .footer-legal a {
+
+            color:
+                #9aacc0 !important;
+
+            text-decoration:
+                none !important;
+
+            font-size:
+                13px;
+
+            font-weight:
+                500;
+
+            transition:
+                color .2s ease,
+                transform .2s ease;
+        }
+
+
+        footer.jobsphere-footer .footer-legal a:hover {
+
+            color:
+                #42a5ff !important;
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        footer.jobsphere-footer .footer-legal span {
+
+            color:
+                #425871 !important;
+
+            font-size:
+                12px;
+        }
+
+
+        /* =========================================================
+           TABLET
+
+           app.css sidebar = 220px
+           Footer starts = 220px
+           ========================================================= */
+
+        @media (max-width: 1000px) {
+
+            .help-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            footer.jobsphere-footer {
+
+                width:
+                    calc(100% - 220px) !important;
+
+                margin-left:
+                    220px !important;
+
+                margin-right:
+                    0 !important;
+
+                margin-top:
+                    45px !important;
+            }
+
+
+            footer.jobsphere-footer .footer-bottom-container {
+
+                padding:
+                    18px 25px !important;
+            }
+
+        }
+
+
+        /* =========================================================
+           MOBILE
+
+           app.css sidebar becomes hidden.
+           Footer becomes full width.
+           ========================================================= */
+
+        @media (max-width: 700px) {
+
+            footer.jobsphere-footer {
+
+                width:
+                    100% !important;
+
+                margin-left:
+                    0 !important;
+
+                margin-right:
+                    0 !important;
+
+                margin-top:
+                    40px !important;
+            }
+
+
+            footer.jobsphere-footer .footer-bottom-container {
+
+                min-height:
+                    auto;
+
+                padding:
+                    20px !important;
+
+                flex-direction:
+                    column;
+
+                text-align:
+                    center;
+
+                gap:
+                    12px;
+            }
+
+
+            footer.jobsphere-footer .footer-bottom p {
+
+                font-size:
+                    12px !important;
+            }
+
+
+            footer.jobsphere-footer .footer-legal {
+
+                gap:
+                    9px;
+
+                flex-wrap:
+                    wrap;
+
+                justify-content:
+                    center;
+
+                white-space:
+                    normal;
+            }
+
+
+            footer.jobsphere-footer .footer-legal a {
+
+                font-size:
+                    12px;
+            }
+
+        }
+
+
+        /* =========================================================
+           VERY SMALL MOBILE
+           ========================================================= */
+
+        @media (max-width: 380px) {
+
+            footer.jobsphere-footer .footer-bottom-container {
+
+                padding:
+                    18px 15px !important;
+            }
+
+
+            footer.jobsphere-footer .footer-legal {
+
+                gap:
+                    8px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     LOAD APP
+     ========================================================= -->
+
+<script src="assets/js/app.js"></script>
+
+
+<script>
+
+    requireUser();
+
+    document.write(
+        shell(
+            'Help Center',
+            'help'
+        )
+    );
+
+</script>
+
+
+<!-- =========================================================
+     HELP CENTER CONTENT
+     ========================================================= -->
+
+<div class="help-wrap">
+
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
+    <section class="help-hero">
+
+        <div class="eyebrow">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            &nbsp;
+
+            Guided support
+
+        </div>
+
+
+        <h2>
+            How to use JOBSPHERE
+        </h2>
+
+
+        <p>
+            Follow these simple procedures to understand
+            what each tool does, what information it uses
+            and what output you should expect.
+        </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         HELP GRID
+         ===================================================== -->
+
+    <div class="help-grid">
+
+
+        <!-- =================================================
+             1. MY PROFILE
+             ================================================= -->
+
+        <div class="help-card">
+
+            <div class="help-icon">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+
+            <h3>
+                1. My Profile
+            </h3>
+
+
+            <p>
+                Your profile is the foundation
+                for personalization.
+            </p>
+
+
+            <ol>
+
+                <li>
+                    Open My Profile.
+                </li>
+
+                <li>
+                    Enter education, skills, soft skills,
+                    experience, projects, career interest
+                    and career goal.
+                </li>
+
+                <li>
+                    Save the profile.
+                </li>
+
+                <li>
+                    Keep it updated when your skills
+                    or goals change.
+                </li>
+
+            </ol>
+
+
+            <div class="output">
+
+                Output: your profile becomes available
+                to the AI career and interview tools.
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             2. AI CAREER ADVISOR
+             ================================================= -->
+
+        <div class="help-card">
+
+            <div class="help-icon">
+
+                <i class="fa-solid fa-brain"></i>
+
+            </div>
+
+
+            <h3>
+                2. AI Career Advisor
+            </h3>
+
+
+            <p>
+                Use this after completing your profile.
+            </p>
+
+
+            <ol>
+
+                <li>
+                    Open AI Career Advisor.
+                </li>
+
+                <li>
+                    Run the analysis.
+                </li>
+
+                <li>
+                    Review career paths, match score,
+                    strengths, weaknesses and skill gaps.
+                </li>
+
+                <li>
+                    Follow the development roadmap.
+                </li>
+
+            </ol>
+
+
+            <div class="output">
+
+                Output: personalized career analysis
+                saved to your account.
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             3. RESUME ANALYZER
+             ================================================= -->
+
+        <div class="help-card">
+
+            <div class="help-icon">
+
+                <i class="fa-solid fa-file-lines"></i>
+
+            </div>
+
+
+            <h3>
+                3. Resume Analyzer
+            </h3>
+
+
+            <p>
+                Upload your PDF/DOC/DOCX resume.
+            </p>
+
+
+            <ol>
+
+                <li>
+                    Choose your resume file.
+                </li>
+
+                <li>
+                    Upload and analyze.
+                </li>
+
+                <li>
+                    Review skills, strengths, gaps
+                    and recommendations.
+                </li>
+
+                <li>
+                    Update your resume and analyze again
+                    when needed.
+                </li>
+
+            </ol>
+
+
+            <div class="output">
+
+                Output: AI resume analysis
+                connected to your profile.
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             4. INTERVIEW SIMULATOR
+             ================================================= -->
+
+        <div class="help-card">
+
+            <div class="help-icon">
+
+                <i class="fa-solid fa-microphone-lines"></i>
+
+            </div>
+
+
+            <h3>
+                4. Interview Simulator
+            </h3>
+
+
+            <p>
+                Practice for a specific category
+                and job position.
+            </p>
+
+
+            <ol>
+
+                <li>
+                    Open Interview Simulator.
+                </li>
+
+                <li>
+                    Leave filters empty for profile-based
+                    recommendations, or enter a category
+                    and position.
+                </li>
+
+                <li>
+                    Generate the session.
+                </li>
+
+                <li>
+                    Read each question, why it is asked,
+                    ideal answer and tips.
+                </li>
+
+            </ol>
+
+
+            <div class="output">
+
+                Output: 10 personalized questions
+                and answer guidance saved in history.
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             5. VIDEOS & PODCASTS
+             ================================================= -->
+
+        <div class="help-card">
+
+            <div class="help-icon">
+
+                <i class="fa-solid fa-play"></i>
+
+            </div>
+
+
+            <h3>
+                5. Recommended Videos &amp; Podcasts
+            </h3>
+
+
+            <p>
+                Use the learning resources after
+                generating an interview session.
+            </p>
+
+
+            <ol>
+
+                <li>
+                    Open the Recommended Resources section.
+                </li>
+
+                <li>
+                    Select a topic relevant to your target role.
+                </li>
+
+                <li>
+                    Watch/listen using the resource link.
+                </li>
+
+                <li>
+                    Return later to view your previously
+                    saved recommendations.
+                </li>
+
+            </ol>
+
+
+            <div class="output">
+
+                Output: career and interview learning
+                resources linked to your account.
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             6. FEEDBACK & CONTACT ADMIN
+             ================================================= -->
+
+        <div class="help-card">
+
+            <div class="help-icon">
+
+                <i class="fa-solid fa-comments"></i>
+
+            </div>
+
+
+            <h3>
+                6. Feedback &amp; Contact Admin
+            </h3>
+
+
+            <p>
+                Use Feedback for product improvements
+                and Contact Admin for support.
+            </p>
+
+
+            <ol>
+
+                <li>
+                    Choose the relevant category.
+                </li>
+
+                <li>
+                    Give a clear rating or message.
+                </li>
+
+                <li>
+                    Submit the form.
+                </li>
+
+                <li>
+                    Check your email if an administrator replies.
+                </li>
+
+            </ol>
+
+
+            <div class="output">
+
+                Output: your message is stored
+                for JOBSPHERE administration.
+
+            </div>
+
+        </div>
+
+
+        <!-- 7. DASHBOARD -->
+
+        <div class="help-card">
+            <div class="help-icon"><i class="fa-solid fa-chart-pie"></i></div>
+            <h3>7. Personalized Dashboard</h3>
+            <p>Your dashboard brings your career activity and AI insights together in one place.</p>
+            <ol>
+                <li>Complete My Profile for personalization.</li>
+                <li>Review career match, technical level and growth insights.</li>
+                <li>Check strengths, focus areas and next actions.</li>
+                <li>Continue directly to Career Advisor, Resume Analyzer, Courses, Settings or AI Chat.</li>
+            </ol>
+            <div class="output">Output: one personalized career workspace based on your account.</div>
+        </div>
+
+
+        <!-- 8. JOBSPHERE AI CHAT -->
+
+        <div class="help-card">
+            <div class="help-icon"><i class="fa-solid fa-sparkles"></i></div>
+            <h3>8. JOBSPHERE AI Chat</h3>
+            <p>Chat with your personal AI assistant for general questions, learning, coding, writing, career help and more.</p>
+            <ol>
+                <li>Open AI Chat from the dashboard or sidebar.</li>
+                <li>Start a new conversation and ask your question in natural language.</li>
+                <li>Continue the same conversation with follow-up questions.</li>
+                <li>Use Recent Conversations to reopen previous chats linked to your JOBSPHERE account.</li>
+            </ol>
+            <div class="output">Output: instant AI answers with conversation history saved privately to your user account.</div>
+        </div>
+
+
+        <!-- 9. RESUME BUILDER -->
+
+        <div class="help-card">
+            <div class="help-icon"><i class="fa-solid fa-file-pen"></i></div>
+            <h3>9. Resume Builder</h3>
+            <p>Create and refine a professional resume using the information in your career workspace.</p>
+            <ol>
+                <li>Open Resume Builder.</li>
+                <li>Enter or review your professional details.</li>
+                <li>Build your resume and check the final structure.</li>
+                <li>Use Resume Analyzer to identify improvements when needed.</li>
+            </ol>
+            <div class="output">Output: a structured professional resume ready for further editing.</div>
+        </div>
+
+
+        <!-- 10. COURSES -->
+
+        <div class="help-card">
+            <div class="help-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h3>10. Courses &amp; Certificates</h3>
+            <p>Learn practical, job-ready skills through short courses and complete assessments.</p>
+            <ol>
+                <li>Browse available courses by category.</li>
+                <li>Read the introduction, modules, outcomes and industry application.</li>
+                <li>Complete the course assessment.</li>
+                <li>Review your result and access your certificate when eligible.</li>
+            </ol>
+            <div class="output">Output: tracked learning progress, assessment results and course certificates.</div>
+        </div>
+
+
+        <!-- 11. SETTINGS -->
+
+        <div class="help-card">
+            <div class="help-icon"><i class="fa-solid fa-sliders"></i></div>
+            <h3>11. Settings &amp; Preferences</h3>
+            <p>Control the experience and notifications connected to your JOBSPHERE account.</p>
+            <ol>
+                <li>Open Settings from the sidebar.</li>
+                <li>Manage email notifications, course reminders and career recommendations.</li>
+                <li>Choose profile visibility, theme and language preferences.</li>
+                <li>Save your changes.</li>
+            </ol>
+            <div class="output">Output: your selected JOBSPHERE account preferences are saved to your profile.</div>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     VERY IMPORTANT
+
+     CLOSE THE SHELL FIRST.
+     
+     This moves the footer OUTSIDE the .main container.
+     ========================================================= -->
+
+<script>
+
+    document.write(
+        closeShell()
+    );
+
+</script>
+
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+
+<footer class="jobsphere-footer">
+
+
+    <div class="footer-bottom">
+
+
+        <div class="footer-bottom-container">
+
+
+            <p>
+                © 2026 JOBSPHERE. All rights reserved.
+            </p>
+
+
+            <div class="footer-legal">
+
+
+                <a href="feedback.html#">
+                    Privacy Policy
+                </a>
+
+
+                <span>
+                    |
+                </span>
+
+
+                <a href="feedback.html#">
+                    Terms &amp; Conditions
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</footer>
+
+
+</body>
+
+</html>
