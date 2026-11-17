@@ -1,0 +1,1 @@
+package com.jobsphere.repository; import com.jobsphere.entity.CareerAnalysis; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface CareerAnalysisRepository extends JpaRepository<CareerAnalysis,Long>{ Optional<CareerAnalysis> findTopByUserIdOrderByCreatedAtDesc(Long userId);}

@@ -1,0 +1,1 @@
+package com.jobsphere.repository; import com.jobsphere.entity.DashboardInsight; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface DashboardInsightRepository extends JpaRepository<DashboardInsight,Long>{}

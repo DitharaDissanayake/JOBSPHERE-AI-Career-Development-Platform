@@ -1,0 +1,1 @@
+package com.jobsphere.repository; import com.jobsphere.entity.ContactMessage; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface ContactMessageRepository extends JpaRepository<ContactMessage,Long>{}

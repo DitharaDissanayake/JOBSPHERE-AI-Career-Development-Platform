@@ -1,0 +1,1 @@
+package com.jobsphere.repository; import com.jobsphere.entity.Resume; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*; public interface ResumeRepository extends JpaRepository<Resume,Long>{ List<Resume> findTop10ByUserIdOrderByUploadedAtDesc(Long userId); Optional<Resume> findTopByUserIdOrderByUploadedAtDesc(Long userId);}

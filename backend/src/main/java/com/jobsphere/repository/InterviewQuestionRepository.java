@@ -1,0 +1,3 @@
+package com.jobsphere.repository;
+import com.jobsphere.entity.InterviewQuestion; import org.springframework.data.jpa.repository.JpaRepository; import java.util.*;
+public interface InterviewQuestionRepository extends JpaRepository<InterviewQuestion,Long>{ List<InterviewQuestion> findTop20ByActiveTrueAndCategoryContainingIgnoreCaseAndPositionContainingIgnoreCase(String category,String position); List<InterviewQuestion> findTop20ByActiveTrueAndCategoryContainingIgnoreCase(String category); List<InterviewQuestion> findTop20ByActiveTrueAndPositionContainingIgnoreCase(String position); List<InterviewQuestion> findTop20ByActiveTrue(); }
